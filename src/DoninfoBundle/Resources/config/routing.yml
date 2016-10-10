@@ -1,0 +1,90 @@
+#Connection optionnelle
+
+doninfo_acceuil:
+    path:       /
+    defaults:
+        _controller:    DoninfoBundle:Site:accueil
+        
+doninfo_infos_donateur:
+    path:       /donateur
+    defaults:
+        _controller:    DoninfoBundle:Site:donateur
+        
+doninfo_infos_demandeur:
+    path:       /demandeur
+    defaults:
+        _controller:    DoninfoBundle:Site:demandeur
+    
+doninfo_inscription:
+    path:       /inscription
+    defaults:
+        _controller:    DoninfoBundle:Site:inscription
+    
+doninfo_connexion:
+    path:       /connexion
+    defaults:
+        _controller:    DoninfoBundle:Site:connexion
+        
+doninfo_contact_public:
+    path:       /contact
+    defaults:
+        _controller:    DoninfoBundle:Site:contact
+        
+doninfo_mentions:
+    path:       /mentions
+    defaults:
+        _controller:    DoninfoBundle:Site:mentions
+  
+#Connection obligatoire  
+
+doninfo_index:
+    path:       /index
+    defaults:
+        _controller:    DoninfoBundle:Site:index
+        
+doninfo_index_donations:
+    path:       /donations
+    defaults:
+        _controller:    DoninfoBundle:Site:donations
+        
+doninfo_don:
+    path:       /donations/{id}
+    defaults:
+        _controller:    DoninfoBundle:Site:don
+        
+doninfo_index_demandes:
+    path:       /demandes
+    defaults:
+        _controller:    DoninfoBundle:Site:demandes
+        
+doninfo_demande:
+    path:       /demandes/{id}
+    defaults:
+        _controller:    DoninfoBundle:Site:demande
+        
+doninfo_tuto:
+    path:       /tutoriel
+    defaults:
+        _controller:    DoninfoBundle:Site:tutoriel
+        
+doninfo_contact_membres:
+    path:       /contact-membres
+    defaults:
+        _controller:    DoninfoBundle:Site:contactmembre
+        
+#Espace membre
+
+doninfo_membre:
+    path:       /membre/{id}
+    defaults:
+        _controller:    DoninfoBundle:Site:membre
+        
+doninfo_membre_informations:
+    path:       /membre/{id}/informations
+    defaults:
+        _controller:    DoninfoBundle:Site:infomembre
+        
+doninfo_membre_suivi:
+    path:       /membre/{id}/suivi
+    defaults:
+        _controller:    DoninfoBundle:Site:suivi
