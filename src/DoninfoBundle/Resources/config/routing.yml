@@ -19,11 +19,6 @@ doninfo_inscription:
     path:       /inscription
     defaults:
         _controller:    DoninfoBundle:Site:inscription
-    
-doninfo_connexion:
-    path:       /connexion
-    defaults:
-        _controller:    DoninfoBundle:Site:connexion
         
 doninfo_contact_public:
     path:       /contact
@@ -37,30 +32,30 @@ doninfo_mentions:
   
 #Connection obligatoire  
 
-doninfo_index:
-    path:       /index
+doninfo_infos:
+    path:       /infos
     defaults:
-        _controller:    DoninfoBundle:Site:index
-        
+        _controller:    DoninfoBundle:Site:infos
+
+doninfo_post:
+    path:       /post
+    defaults:
+        _controller:    DoninfoBundle:Site:postAnnonce
+
 doninfo_index_donations:
     path:       /donations
     defaults:
         _controller:    DoninfoBundle:Site:donations
         
-doninfo_don:
-    path:       /donations/{id}
+doninfo_annonce:
+    path:       /annonce/{id}
     defaults:
-        _controller:    DoninfoBundle:Site:don
+        _controller:    DoninfoBundle:Site:annonce
         
 doninfo_index_demandes:
     path:       /demandes
     defaults:
         _controller:    DoninfoBundle:Site:demandes
-        
-doninfo_demande:
-    path:       /demandes/{id}
-    defaults:
-        _controller:    DoninfoBundle:Site:demande
         
 doninfo_tuto:
     path:       /tutoriel

@@ -1,0 +1,118 @@
+/*------------------------------------------------------------------------
+---------------------- COULEURS ------------------------------------------
+------------------------------------------------------------------------*/
+
+@back_form: #3A2047;
+@bordures: #EDEDED;
+@text_form: #000000;
+@text_form_label: #FFFFFF;
+
+/*------------------------------------------------------------------------
+---------------------- FONCTIONS ET CLASS --------------------------------
+------------------------------------------------------------------------*/
+
+.shadow-box-form
+{
+    -moz-box-shadow: 2px 2px 3px 0px #656565;
+    -webkit-box-shadow: 2px 2px 3px 0px #656565;
+    -o-box-shadow: 2px 2px 3px 0px #656565;
+    box-shadow: 2px 2px 3px 0px #656565;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=3);
+}
+
+.blocs-form
+{
+    padding: 20px;
+    border: 3px solid @bordures;
+    background-color: @back_form;
+    color: @text_form;
+    .shadow-box-form;
+}
+
+/*------------------------------------------------------------------------
+---------------------- FORM INPUTS ---------------------------------------
+------------------------------------------------------------------------*/
+
+.input-form-box
+{
+    border: 1px solid #000;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+}
+
+/*------------------------------------------------------------------------
+---------------------- FORM CONNEXION ------------------------------------
+------------------------------------------------------------------------*/
+
+.form-connexion
+{
+    max-width: 300px;
+    margin-top: 220px;
+    margin-bottom: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    .blocs-form;
+    input
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h4
+    {
+        color: @text_form_label;
+    }
+    .button
+    {
+        color: @text_form_label;
+        border-bottom: 4px solid black;
+    }
+}
+
+/*------------------------------------------------------------------------
+---------------------- FORM INSCRIPTION ----------------------------------
+------------------------------------------------------------------------*/
+
+.form-inscription
+{
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+    .blocs-form;
+    input
+    {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .g-recaptcha
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        max-width: 304px;
+    }
+    h4
+    {
+        color: @text_form_label;
+        margin-bottom: 20px;
+    }
+    .button
+    {
+        margin-top: 20px;
+        color: @text_form_label;
+        border-bottom: 4px solid black;
+    }
+}
+
+.bottom-inscription
+{
+    margin-bottom: 50px;
+}

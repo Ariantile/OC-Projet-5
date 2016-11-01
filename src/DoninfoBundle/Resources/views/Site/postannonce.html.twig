@@ -1,0 +1,53 @@
+{# src/DoninfoBundle/Resources/views/Site/postannonce.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+      
+       {{ form_start(annonce) }}
+                
+            <div class="form-post">
+                
+                <h4></h4>
+                
+                {{ form_row(annonce.titre, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(annonce.description, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(annonce.datelimite, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(annonce.choixadresse, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(annonce.adresse, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(annonce.ville, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(annonce.codepostal, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(annonce.photo1, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(annonce.photo2, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(annonce.photo3, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(annonce.objetannonce)}}
+                {{ form_row(annonce.recaptcha)}}
+                {{ form_row(annonce.envoyer, 
+                    {'attr': {'class' : 'button'}}
+                )}}
+                
+            </div>
+                
+        {{ form_end(annonce) }}
+ 
+{% endblock %}

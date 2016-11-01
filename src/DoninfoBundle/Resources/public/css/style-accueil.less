@@ -1,0 +1,115 @@
+/*------------------------------------------------------------------------
+---------------------- COULEURS ------------------------------------------
+------------------------------------------------------------------------*/
+
+@bloc-slide-pair: #D09DFF;
+@bloc-slide-imp: #9093FF;
+@bloc-pair: #FFFFFF;
+@bordures: #EDEDED;
+
+/*------------------------------------------------------------------------
+---------------------- FONCTIONS ET CLASS --------------------------------
+------------------------------------------------------------------------*/
+
+.blocs-accueil
+{
+    padding-top: 4em;
+    padding-bottom: 4em;
+    p 
+    {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.shadow-leger
+{
+    -moz-box-shadow: 0px 2px 5px 0px #656565;
+    -webkit-box-shadow: 0px 2px 5px 0px #656565;
+    -o-box-shadow: 0px 2px 5px 0px #656565;
+    box-shadow: 0px 2px 5px 0px #656565;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+}
+
+/*------------------------------------------------------------------------
+---------------------- SLIDER --------------------------------------------
+------------------------------------------------------------------------*/
+
+.bloc_slider
+{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    .shadow-leger
+}
+
+.slider-contenu
+{
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-indicators li {
+  background-color: #999;
+  background-color: rgba(70,70,70,.25);
+}
+
+.carousel-indicators .active {
+  background-color: #444;
+}
+
+.img-acceuil 
+{
+    max-width: 500px;
+}
+
+#accueil_b1, #accueil_b3, #accueil_b2
+{
+    
+    .blocs-accueil;
+    img 
+    {
+        float: left;
+        padding: 10px;
+    }
+}
+
+#accueil_b1, #accueil_b3
+{
+    background-color: @bloc-slide-pair;
+}
+
+#accueil_b2
+{
+    background-color: @bloc-slide-imp;
+}
+
+/*------------------------------------------------------------------------
+---------------------- CONTENU PAGE --------------------------------------
+------------------------------------------------------------------------*/
+
+.accueil_p
+{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.acceuil_pair
+{
+    background-color: @bloc-pair;
+}
+
+/*------------------------------------------------------------------------
+---------------------- MEDIA QUERIES -------------------------------------
+------------------------------------------------------------------------*/
+
+@media screen and (max-width: 780px) 
+{
+
+}    

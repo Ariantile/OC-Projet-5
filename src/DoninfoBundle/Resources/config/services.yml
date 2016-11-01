@@ -1,4 +1,7 @@
 services:
-#    doninfo.example:
-#        class: DoninfoBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    doninfo.inscription:
+        class: DoninfoBundle\Inscription\DoninfoInscription
+        arguments:
+            - "@doctrine"
+            - "@security.password_encoder"
+            

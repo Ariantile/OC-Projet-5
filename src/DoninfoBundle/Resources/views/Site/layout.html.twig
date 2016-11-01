@@ -9,33 +9,85 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-layout.css') }}" />            
+            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-layout.css') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-accueil.css') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-form.css') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-index.css') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-infos.css') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/jquery-jvectormap-2.0.3.css') }}" />          
         {% endblock %}
     </head>
-
+    
     <body>
-        <header>
-            <div class="bloc_header">
-                <a href="{{ path('doninfo_inscription') }}" class="liens">Inscription</a>
-                <a href="{{ path('doninfo_connexion') }}" class="liens">Connexion</a>
-            </div>
-        </header>
-        
-        {% block contenu %}
-        {% endblock %}
-        
-        <footer>
-            <div class="bloc_footer">
-                <a href="{{ path('doninfo_contact_public') }}" class="liens">Contact</a>
-                <a href="{{ path('doninfo_mentions') }}" class="liens">Mentions légales</a>
-                <p>Doninfo © {{ 'now'|date('Y') }}</p> 
-            </div>
-        </footer>
-
+        <div class="bloc_page container">
+            <header class="row">  
+               <nav class="navbar bloc_header" role="navigation">
+	                <div class="navbar-header">
+		                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+			                <span class="sr-only">Toggle navigation</span>
+			                <span class="icon-bar"></span>
+			                <span class="icon-bar"></span>
+			                <span class="icon-bar"></span>
+		                </button>
+		                <a href="{{ path('doninfo_acceuil') }}" class="navbar-brand">
+                            <img src="{{ asset('bundles/doninfobundle/images/logo2.png') }}" alt="logo" class="logo"/>
+                        </a>
+	                </div>
+	                
+	                <div class="collapse navbar-collapse navbar-ex1-collapse">
+		                <ul class="nav navbar-nav">
+                            <li><a href="{{ path('doninfo_index_demandes') }}" class="liens lien1">Besoins</a></li>
+                            <li><a href="{{ path('doninfo_index_donations') }}" class="liens lien2">Donations</a></li>
+                            <li><a href="{{ path('doninfo_post') }}" class="liens lien3">Poster</a></li>
+                            {% if is_granted('ROLE_USER') %}
+                            {% endif %}
+		                </ul>
+		                <form class="navbar-form navbar-left" role="search">
+			                <div class="form-group">
+				                <input type="text" class="form-control" placeholder="Recherche...">
+			                </div>
+			                <button type="submit" class="btn btn-default btn-recherche">Chercher</button>
+		                </form>
+		                <ul class="nav navbar-nav navbar-right">
+			                <li><a href="#" class="liens">Link</a></li>
+			                <li class="dropdown">
+				                <a href="#" class="dropdown-toggle liens" data-toggle="dropdown">
+				                    <span class="glyphicon glyphicon-user"></span> Compte</b>
+				                </a>
+				                <ul class="dropdown-menu">
+                                    {% if not is_granted('ROLE_USER') %}
+                                    <li><a href="{{ path('doninfo_inscription') }}" class="liens">Inscription</a></li>
+                                    <li><a href="{{ path('doninfo_connexion') }}" class="liens">Connexion</a></li>
+                                    {% endif %}
+				                </ul>
+			                </li>
+		                </ul>
+	                </div><!-- /.navbar-collapse -->
+                </nav>     
+            </header>
+            
+            <section class="row">
+                {% block contenu %}
+                {% endblock %}
+            </section>  
+            
+            <footer class="row">
+                <div class="bloc_footer">
+                    <a href="{{ path('doninfo_contact_public') }}" class="liens liens-footer">Contact</a>
+                    <a href="{{ path('doninfo_mentions') }}" class="liens liens-footer">Mentions légales</a>
+                    <p class="liens">Doninfo © {{ 'now'|date('Y') }}</p> 
+                </div>
+            </footer>
+            
+        </div>
+             
         {% block javascripts %}
             <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="{{ asset('bundles/doninfobundle/js/jquery-jvectormap-2.0.3.min.js') }}"></script>
+            <script src="{{ asset('bundles/doninfobundle/js/jquery-jvectormap-fr-mill.js') }}"></script>
+            <script src="{{ asset('bundles/doninfobundle/js/script-layout.js') }}"></script>
         {% endblock %}
-
+    
     </body>
 </html>

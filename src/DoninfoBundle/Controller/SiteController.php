@@ -3,6 +3,15 @@
 namespace DoninfoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use DoninfoBundle\Entity\User;
+use DoninfoBundle\Entity\Annonce;
+use DoninfoBundle\Entity\Recherche;
+use DoninfoBundle\Form\Type\InscriptionType;
+use DoninfoBundle\Form\Type\AnnonceType;
+use DoninfoBundle\Form\Type\RechercheType;
+use \DateTime;
 
 class SiteController extends Controller
 {
@@ -11,24 +20,37 @@ class SiteController extends Controller
         return $this->render('DoninfoBundle:Site:accueil.html.twig');
     }
     
-    public function donateurAction()
+    public function inscriptionAction(Request $request)
     {
-        return $this->render('DoninfoBundle:Site:donateur.html.twig');
+        $user = new User();
+        $form = $this->get('form.factory')->create(InscriptionType::class, $user);
+        
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
+        {
+            /*$session->getFlashBag()->add('erreur', 'louvre.flash.erreur.billet');*/
+            $inscription = $this->container->get('doninfo.inscription');
+            $inscription->createUser($user);
+            return $this->redirectToRoute('doninfo_inscription_done');
+        }
+        
+        return $this->render('DoninfoBundle:Site:inscription.html.twig', array(
+                'inscription'  => $form->createView()
+        ));
     }
     
-    public function demandeurAction()
+    public function connexionAction(Request $request)
     {
-        return $this->render('DoninfoBundle:Site:demandeur.html.twig');
-    }
-    
-    public function inscriptionAction()
-    {
-        return $this->render('DoninfoBundle:Site:inscription.html.twig');
-    }
-    
-    public function connexionAction()
-    {
-        return $this->render('DoninfoBundle:Site:connexion.html.twig');
+        
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('doninfo_index');
+        }
+
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        return $this->render('DoninfoBundle:Security:connexion.html.twig', array(
+            'last_username' => $authenticationUtils->getLastUsername(),
+            'error'         => $authenticationUtils->getLastAuthenticationError(),
+        ));
     }
     
     public function contactAction()
@@ -36,19 +58,27 @@ class SiteController extends Controller
         return $this->render('DoninfoBundle:Site:contact.html.twig');
     }
     
-    public function mentionsAction()
+    public function infosAction()
     {
-        return $this->render('DoninfoBundle:Site:mentions.html.twig');
+        return $this->render('DoninfoBundle:Site:plusinfos.html.twig');
     }
     
-    public function indexAction()
+    public function postAnnonceAction()
     {
-        return $this->render('DoninfoBundle:Site:index.html.twig');
+        $annonce = new Annonce();
+        $form = $this->get('form.factory')->create(AnnonceType::class, $annonce);
+        return $this->render('DoninfoBundle:Site:postannonce.html.twig', array(
+                'annonce'  => $form->createView()
+        ));
     }
     
     public function donationsAction()
     {
-        return $this->render('DoninfoBundle:Site:donations.html.twig');
+        $recherche = new Recherche();
+        $form = $this->get('form.factory')->create(RechercheType::class, $recherche);        
+        return $this->render('DoninfoBundle:Site:donations.html.twig', array(
+                'recherche'  => $form->createView()
+        ));
     }
     
     public function donAction($id)

@@ -1,0 +1,86 @@
+{# src/DoninfoBundle/Resources/views/Site/inscription.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+      
+       {{ form_start(inscription) }}
+                
+            <div class="form-inscription">
+                
+                <h4>Votre structure</h4>
+                
+                {{ form_row(inscription.nomstructure, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(inscription.activite, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(inscription.sirenrna, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(inscription.ape, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                
+            </div>
+            
+            <div class="form-inscription">
+                
+                <h4>Coordonées de votre structure</h4>
+                
+                {{ form_row(inscription.siteweb, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(inscription.adresse, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(inscription.ville, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(inscription.codepostal, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(inscription.telephone, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(inscription.courriel.first, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(inscription.courriel.second, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                
+            </div>
+            
+            <div class="form-inscription">  
+                
+                <h4>Représentant de la structure</h4>
+                
+                {{ form_row(inscription.nomuser, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(inscription.prenomuser, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                
+            </div>
+            
+            <div class="form-inscription bottom-inscription">
+            
+                <h4>Informations de compte</h4>
+                {{ form_row(inscription.password.first, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(inscription.password.second, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}   
+                {{ form_row(inscription.recaptcha) }}
+                {{ form_row(inscription.envoyer, 
+                    {'attr': {'class' : 'button'}}
+                )}}
+            </div>
+                
+        {{ form_end(inscription) }}
+ 
+{% endblock %}

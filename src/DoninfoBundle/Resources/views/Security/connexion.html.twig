@@ -1,0 +1,38 @@
+{# src/DoninfoBundle/Resources/views/Security/connexion.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.message }}</div>
+    {% endif %}
+
+    <form action="{{ path('login_check') }}" method="post" class="form-connexion">
+    
+        <h4>Connectez-vous</h4>
+        
+        <br />
+        
+        <div class="input-group input-form-box">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-user"></span>
+            </span>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Nom d'utilisateur" class="form-control"/>
+        </div>
+        
+        <br />
+        
+        <div class="input-group input-form-box">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-lock"></span>
+            </span>
+            <input type="password" id="password" name="_password" placeholder="Mot de passe" class="form-control"/>
+        </div>
+        
+        <br />
+        
+        <input type="submit" value="Connexion" class="button" />
+    </form>
+
+{% endblock %}

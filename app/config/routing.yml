@@ -1,14 +1,13 @@
 doninfo:
     resource: "@DoninfoBundle/Resources/config/routing.yml"
 
-    
 doninfo_connexion:
     path:       /connexion
     defaults:
-        _controller:    DoninfoUserBundle:Security:connexion
+        _controller:    DoninfoBundle:Site:connexion
 
 login_check:
-    path: /login_check
+    path:       /connexion_check
 
 logout:
-    path: /logout
+    path:       /logout

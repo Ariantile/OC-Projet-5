@@ -3,28 +3,148 @@
 ------------------------------------------------------------------------*/
 
 @liens: #FFFFFF;
-@back_header: #000000;
-@back_footer: #000000;
+@liensHover: #FFFFFF;
+@liensHoverFooter: #A8E2FF;
+@back_header: #262625;
+@back_footer: #262625;
+@back_top_footer: #40403E;
+@back_button: #2444AD;
+@button_hover: #3564FF;
+@back_body: #F8F7FF;
 
 /*------------------------------------------------------------------------
----------------------- HEADER / FOOTER -----------------------------------
+---------------------- FONCTIONS ET CLASS --------------------------------
 ------------------------------------------------------------------------*/
 
-.bloc_header
+/*------------------------------------------------------------------------
+---------------------- POLICE --------------------------------------------
+------------------------------------------------------------------------*/
+
+p
 {
-    height: 50px;
-    background: @back_header;
-    margin-bottom: 20px;
+    font-family: Oswald;
+    font-weight: bold;
+    text-align: justify;
+    font-size: 1em;
 }
 
-.bloc_footer
+a, h1, h2, h3, h4
 {
-    height: 200px;
-    background: @back_footer;
-    margin-top: 20px;
+    font-family: Lato;
+    font-weight: bold;
+}
+
+/*------------------------------------------------------------------------
+---------------------- BOUTONS / LIENS -----------------------------------
+------------------------------------------------------------------------*/
+
+.button
+{
+    background-color: @back_button;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.button:hover
+{
+    background-color: @button_hover;
 }
 
 .liens
 {
     color: @liens;
+}
+
+/*------------------------------------------------------------------------
+---------------------- BODY ----------------------------------------------
+------------------------------------------------------------------------*/
+
+body
+{
+    background-color: @back_body;
+}
+
+.bloc_page
+{
+    min-height:100%;
+    width: 100%;
+}
+
+/*------------------------------------------------------------------------
+---------------------- HEADER --------------------------------------------
+------------------------------------------------------------------------*/
+
+header
+{
+    border-bottom: 2px solid grey;
+}
+
+.bloc_header
+{
+    height: 60px;
+    width: 100%;
+    line-height: 60px;
+    white-space: nowrap;
+    background: @back_header;
+    text-align: center;
+    a
+    {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-top-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    
+    a:hover
+    {
+        background-color: @liensHover;
+        text-decoration: none;
+    }
+    
+}
+
+/*------------------------------------------------------------------------
+---------------------- FOOTER --------------------------------------------
+------------------------------------------------------------------------*/
+
+footer
+{
+    padding-top: 50px;
+    height: 100px;
+    background-color: @back_top_footer;
+    border-top: 1px solid black;
+}
+
+.bloc_footer
+{
+    margin-top: 20px;
+    padding-top: 20px;
+    height: 200px;
+    background: @back_footer;
+    p 
+    {
+        text-align: right;
+        margin-right: 20px;
+    }
+    a 
+    {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    a:hover
+    {
+        text-decoration: none;
+        color: @liensHoverFooter;
+    }
+}
+
+.liens-footer
+{
+    display: block;
 }

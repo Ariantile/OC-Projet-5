@@ -3,16 +3,32 @@
 security:
     
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\User: sha512
+        DoninfoBundle\Entity\User: sha512
+        DoninfoBundle\Entity\Admin: sha512
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        # Un admin hérite des droits d'auteur et de modérateur
+        ROLE_ADMIN:       [ROLE_USER]
+        # On garde ce rôle superadmin, il nous resservira par la suite
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        
+    providers:
+        main:
+            entity:
+                class:    DoninfoBundle\Entity\User
+                property: username
     
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
         main:
-            pattern:   ^/
-            anonymous: true
+            pattern:        ^/
+            anonymous:      true
+            provider:       main
+            form_login:
+                login_path: doninfo_connexion
+                check_path: login_check
+            logout:
+                path:       logout
+                target:     /
+            remember_me:
+                secret:     "%secret%"
