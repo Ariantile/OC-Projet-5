@@ -23,7 +23,7 @@ doninfo_inscription:
 doninfo_contact_public:
     path:       /contact
     defaults:
-        _controller:    DoninfoBundle:Site:contact
+        _controller:    DoninfoBundle:Site:contactPublic
         
 doninfo_mentions:
     path:       /mentions
@@ -62,10 +62,10 @@ doninfo_tuto:
     defaults:
         _controller:    DoninfoBundle:Site:tutoriel
         
-doninfo_contact_membres:
-    path:       /contact-membres
+doninfo_contact_membre:
+    path:       /contact-membre
     defaults:
-        _controller:    DoninfoBundle:Site:contactmembre
+        _controller:    DoninfoBundle:Site:contactMembre
         
 #Espace membre
 

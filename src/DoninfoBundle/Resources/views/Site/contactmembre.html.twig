@@ -1,0 +1,31 @@
+{# src/DoninfoBundle/Resources/views/Site/contactmembre.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+      
+       {{ form_start(contactmembre) }}
+                
+            <div class="form-contact">
+                
+                <h4>Votre structure</h4>
+                
+                {{ form_row(contactmembre.sujet, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(contactmembre.titre, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(contactmembre.message, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(contactmembre.recaptcha)}}
+                {{ form_row(contactmembre.envoyer, 
+                    {'attr': {'class' : 'button'}}
+                )}}
+                
+            </div>
+                
+        {{ form_end(contactmembre) }}
+ 
+{% endblock %}

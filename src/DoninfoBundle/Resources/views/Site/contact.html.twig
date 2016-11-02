@@ -1,0 +1,53 @@
+{# src/DoninfoBundle/Resources/views/Site/contact.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+      
+        <div class="bloc-form">  
+        
+        {{ form_start(contact) }}
+                
+            <div class="form-contact-info">
+                
+                <h4>Contactez-nous</h4>
+                
+                <p>Si vous avez des questions ou des remarques à nous soumettre, 
+                veuillez utiliser le formulaire de contact ci-dessous, nous vous
+                recontacterons au plus vite.</p>
+                
+            </div>
+                
+            <div class="form-contact">
+                
+                {{ form_row(contact.nom, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(contact.prenom, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(contact.courriel, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(contact.titre, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(contact.message, 
+                    {'attr': {'class' : 'form-control input-form-box text-area-box'}}
+                )}}
+                {{ form_row(contact.recaptcha)}}
+                
+                <div class="form-group has-feedback button-container">
+                    {{ form_row(contact.envoyer, 
+                        {'attr': {'class' : 'button form-control'}}
+                    )}}
+                    <i class="glyphicon glyphicon-chevron-right form-control-feedback button-icon"></i>
+                </div>
+                
+            </div>
+                
+        {{ form_end(contact) }}
+        
+        </div>
+ 
+{% endblock %}

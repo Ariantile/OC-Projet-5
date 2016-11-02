@@ -4,4 +4,9 @@ services:
         arguments:
             - "@doctrine"
             - "@security.password_encoder"
+    
+    doninfo.poster_annonce:
+        class: DoninfoBundle\PosterAnnonce\DoninfoPosterAnnonce
+        arguments:
+            - "@doctrine"
             

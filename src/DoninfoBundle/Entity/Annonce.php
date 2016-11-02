@@ -94,21 +94,21 @@ class Annonce
     /**
      * @var string
      *
-     * @ORM\Column(name="photo1", type="string", length=255)
+     * @ORM\Column(name="photo1", type="string", length=255, nullable=true)
      */
     private $photo1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="photo2", type="string", length=255)
+     * @ORM\Column(name="photo2", type="string", length=255, nullable=true)
      */
     private $photo2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="photo3", type="string", length=255)
+     * @ORM\Column(name="photo3", type="string", length=255, nullable=true)
      */
     private $photo3;
 

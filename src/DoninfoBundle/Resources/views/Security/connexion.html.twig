@@ -7,7 +7,19 @@
     {% if error %}
         <div class="alert alert-danger">{{ error.message }}</div>
     {% endif %}
-
+    
+    <div class="bloc-form">
+    
+        <div class="form-connexion-info">
+                
+            <h4>Connectez-vous</h4>
+                
+            <p>
+                Veuillez indiquer votre adresse courriel et votre mot de passe.
+            </p>
+                
+        </div> 
+    
     <form action="{{ path('login_check') }}" method="post" class="form-connexion">
     
         <h4>Connectez-vous</h4>
@@ -32,7 +44,14 @@
         
         <br />
         
-        <input type="submit" value="Connexion" class="button" />
+        <div class="form-group has-feedback button-container">
+            <input type="submit" value="Connexion" class="button form-control" />
+            <i class="glyphicon glyphicon-chevron-right form-control-feedback button-icon"></i>
+        </div>
+        
+        
+        
     </form>
+    </div>
 
 {% endblock %}

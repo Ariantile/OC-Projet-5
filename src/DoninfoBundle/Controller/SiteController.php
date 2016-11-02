@@ -8,9 +8,13 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use DoninfoBundle\Entity\User;
 use DoninfoBundle\Entity\Annonce;
 use DoninfoBundle\Entity\Recherche;
+use DoninfoBundle\Entity\ContactPublic;
+use DoninfoBundle\Entity\ContactMembre;
 use DoninfoBundle\Form\Type\InscriptionType;
 use DoninfoBundle\Form\Type\AnnonceType;
 use DoninfoBundle\Form\Type\RechercheType;
+use DoninfoBundle\Form\Type\ContactPublicType;
+use DoninfoBundle\Form\Type\ContactMembreType;
 use \DateTime;
 
 class SiteController extends Controller
@@ -27,7 +31,6 @@ class SiteController extends Controller
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
         {
-            /*$session->getFlashBag()->add('erreur', 'louvre.flash.erreur.billet');*/
             $inscription = $this->container->get('doninfo.inscription');
             $inscription->createUser($user);
             return $this->redirectToRoute('doninfo_inscription_done');
@@ -53,23 +56,67 @@ class SiteController extends Controller
         ));
     }
     
-    public function contactAction()
+    public function postAnnonceAction(Request $request)
     {
-        return $this->render('DoninfoBundle:Site:contact.html.twig');
+        $annonce = new Annonce();
+        $form = $this->get('form.factory')->create(AnnonceType::class, $annonce);
+        
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
+        {
+            $poster = $this->container->get('doninfo.poster_annonce');
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $poster->createAnnonce($annonce, $user);
+            return $this->redirectToRoute('doninfo_index');
+        }
+        
+        return $this->render('DoninfoBundle:Site:postannonce.html.twig', array(
+                'annonce'  => $form->createView()
+        ));
     }
+    
+    public function contactPublicAction(Request $request)
+    {
+        $contact = new ContactPublic();
+        $form  = $this->get('form.factory')->create(ContactPublicType::class, $contact);
+        
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            $mail = $this->container->get('doninfo.send_contact');
+            $mail->sendContactPublic($contact);
+        }
+        
+        return $this->render('DoninfoBundle:Site:contact.html.twig', array(
+                'contact'   => $form->createView()
+        ));
+    }
+    
+    public function contactMembreAction(Request $request)
+    {
+        $contact = new ContactMembre();
+        $form = $this->get('form.factory')->create(ContactMembreType::class, $contact);
+        
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            $mail = $this->container->get('doninfo.send_contact');
+            $mail->sendContactMembre($contact);
+        }
+        
+        return $this->render('DoninfoBundle:Site:contactmembre.html.twig', array(
+                'contactmembre' => $form->createView()
+        ));
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     public function infosAction()
     {
         return $this->render('DoninfoBundle:Site:plusinfos.html.twig');
-    }
-    
-    public function postAnnonceAction()
-    {
-        $annonce = new Annonce();
-        $form = $this->get('form.factory')->create(AnnonceType::class, $annonce);
-        return $this->render('DoninfoBundle:Site:postannonce.html.twig', array(
-                'annonce'  => $form->createView()
-        ));
     }
     
     public function donationsAction()
@@ -99,11 +146,6 @@ class SiteController extends Controller
     public function tutorielAction()
     {
         return $this->render('DoninfoBundle:Site:tutoriel.html.twig');
-    }
-    
-    public function contactmembreAction()
-    {
-        return $this->render('DoninfoBundle:Site:contactmembre.html.twig');
     }
     
     public function membreAction($id)

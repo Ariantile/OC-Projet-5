@@ -3,8 +3,26 @@
 {% extends "DoninfoBundle:Site:layout.html.twig" %}
 
 {% block contenu %}
-      
+        
+        <div class="bloc-form">
+        
        {{ form_start(inscription) }}
+               
+            <div class="form-inscription-info">
+                
+                <h4>Inscrivez-vous</h4>
+                
+                <p class="inscription-p1">
+                    Si vous souhaitez proposer un don ou répondre à un besoin, 
+                    veuillez remplir le formulaire ci-dessous pour vous inscrire.
+                    <br>
+                    <br>
+                    Suite à votre inscription, un courriel de confirmation vous 
+                    sera envoyé dans les plus bref délais
+                </p>
+                
+            </div>   
+            
                 
             <div class="form-inscription">
                 
@@ -76,11 +94,18 @@
                     {'attr': {'class' : 'form-control input-form-box'}}
                 )}}   
                 {{ form_row(inscription.recaptcha) }}
-                {{ form_row(inscription.envoyer, 
-                    {'attr': {'class' : 'button'}}
-                )}}
+                
+                <div class="form-group has-feedback button-container">
+                    {{ form_row(inscription.envoyer, 
+                        {'attr': {'class' : 'button form-control'}}
+                    )}}
+                    <i class="glyphicon glyphicon-chevron-right form-control-feedback button-icon"></i>
+                </div>
+
             </div>
                 
         {{ form_end(inscription) }}
+        
+        </div>
  
 {% endblock %}

@@ -1,11 +1,11 @@
 <?php
 // src/DoninfoBundle/PosterAnnonce/DoninfoPosterAnnonce.php
 
-namespace DoninfoBundle\Inscription;
+namespace DoninfoBundle\PosterAnnonce;
 
 use \DateTime;
 
-class DoninfoInscription
+class DoninfoPosterAnnonce
 {
 
     protected $doctrine;
@@ -19,18 +19,24 @@ class DoninfoInscription
      * Poster une annonce
      *
      */
-    public function createAnnonce($annonce)
+    public function createAnnonce($annonce, $user)
     {
         $em = $this->doctrine->getManager();
         $date = new \DateTime('now');
+        $annonce->setDatecreation($date);
+        $annonce->setNumero(uniqid().$annonce->getId());
+        $annonce->setStatut('En cours');
+        $annonce->setUser($user);
         
-        $user->setTypestructure('Entreprise');
-        $user->setStatut('Inscrit');
-        $user->setDateinscription($date);
-        $user->setUsername($user->getCourriel());
-        $user->setSalt('');
-        $user->setRoles(array('ROLE_USER'));
-                    
+        $annonce->setType('Don');
+        
+        $objets = $annonce->getObjetAnnonce();
+            
+        foreach ($objets as $objet) {
+            $objet->setAnnonce($annonce);
+        }
+        
+        
         $em->persist($annonce);
         $em->flush();
     }
