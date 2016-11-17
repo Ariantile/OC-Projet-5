@@ -6,24 +6,22 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * ObjetAnnonce
+ * Objet
  *
- * @ORM\Table(name="objet_annonce")
- * @ORM\Entity(repositoryClass="DoninfoBundle\Repository\ObjetAnnonceRepository")
+ * @ORM\Table(name="objet")
+ * @ORM\Entity(repositoryClass="DoninfoBundle\Repository\ObjetRepository")
  */
-class ObjetAnnonce
+class Objet
 {
     /**
-     * @ORM\ManyToOne(targetEntity="DoninfoBundle\Entity\Annonce", inversedBy="objetannonce")
+     * @ORM\ManyToOne(targetEntity="DoninfoBundle\Entity\Annonce", inversedBy="objets")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\Valid()
      */
     private $annonce;
     
     /**
      * @ORM\ManyToOne(targetEntity="Categorie")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\Valid()
      */
     private $categorie;
     
@@ -47,6 +45,13 @@ class ObjetAnnonce
      * @var string
      *
      * @ORM\Column(name="quantite", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.objet.qte.blank")
+     * @Assert\Range(
+     *      min = 1,
+     *      minMessage = "validation.objet.qte.min",
+     * )
+     *
      */
     private $quantite;
 
@@ -54,6 +59,14 @@ class ObjetAnnonce
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 2000,
+     *      minMessage = "validation.objet.description.min",
+     *      maxMessage = "validation.objet.description.max"
+     * )
+     *
      */
     private $description;
 
@@ -73,7 +86,7 @@ class ObjetAnnonce
      *
      * @param string $etat
      *
-     * @return ObjetAnnonce
+     * @return Objet
      */
     public function setEtat($etat)
     {
@@ -97,7 +110,7 @@ class ObjetAnnonce
      *
      * @param string $quantite
      *
-     * @return ObjetAnnonce
+     * @return Objet
      */
     public function setQuantite($quantite)
     {
@@ -121,7 +134,7 @@ class ObjetAnnonce
      *
      * @param string $description
      *
-     * @return ObjetAnnonce
+     * @return Objet
      */
     public function setDescription($description)
     {
@@ -145,12 +158,12 @@ class ObjetAnnonce
      *
      * @param \DoninfoBundle\Entity\Annonce $annonce
      *
-     * @return ObjetAnnonce
+     * @return Objet
      */
-    public function setAnnonce(\DoninfoBundle\Entity\Annonce $annonce)
+    public function setAnnonce(Annonce $annonce)
     {
         $this->annonce = $annonce;
-
+        
         return $this;
     }
 
@@ -169,9 +182,9 @@ class ObjetAnnonce
      *
      * @param \DoninfoBundle\Entity\Categorie $categorie
      *
-     * @return ObjetAnnonce
+     * @return Objet
      */
-    public function setCategorie(\DoninfoBundle\Entity\Categorie $categorie)
+    public function setCategorie(Categorie $categorie)
     {
         $this->categorie = $categorie;
 

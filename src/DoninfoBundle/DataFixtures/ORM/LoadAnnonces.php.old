@@ -1,0 +1,16 @@
+<?php
+// src/DoninfoBundle/DataFixtures/ORM/LoadCategories.php
+
+namespace DoninfoBundle\DataFixtures\ORM;
+
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use DoninfoBundle\Entity\Categorie;
+
+class LoadCategories implements FixtureInterface
+{
+    public function load(ObjectManager $manager)
+    {           
+        
+    }
+}

@@ -3,6 +3,7 @@
 namespace DoninfoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
 
@@ -15,16 +16,22 @@ use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
 class Annonce
 {
     /**
-     * @ORM\OneToMany(targetEntity="DoninfoBundle\Entity\ObjetAnnonce", mappedBy="annonce", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="DoninfoBundle\Entity\Objet", mappedBy="annonce", cascade={"persist", "remove"})
      * @Assert\Valid()
      */
-    private $objetannonce;
+    private $objets;
     
     /**
-     * @ORM\OneToMany(targetEntity="DoninfoBundle\Entity\MessageAnnonce", mappedBy="annonce", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="DoninfoBundle\Entity\Image", mappedBy="annonce", cascade={"persist", "remove"})
      * @Assert\Valid()
      */
-    private $messageannonce;
+    private $images;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="DoninfoBundle\Entity\Message", mappedBy="annonce", cascade={"persist", "remove"})
+     * @Assert\Valid()
+     */
+    private $messages;
     
     /**
      * @ORM\ManyToOne(targetEntity="DoninfoBundle\Entity\User")
@@ -46,6 +53,14 @@ class Annonce
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.annonce.titre.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 100,
+     *      minMessage = "validation.annonce.titre.min",
+     *      maxMessage = "validation.annonce.titre.max"
+     * )
      */
     private $titre;
 
@@ -53,6 +68,14 @@ class Annonce
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     *
+     * @Assert\NotBlank(message = "validation.annonce.description.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 2000,
+     *      minMessage = "validation.annonce.description.min",
+     *      maxMessage = "validation.annonce.description.max"
+     * )
      */
     private $description;
 
@@ -60,13 +83,15 @@ class Annonce
      * @var \DateTime
      *
      * @ORM\Column(name="datelimite", type="datetime")
+     *
      */
     private $datelimite;
-
+    
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="datecreation", type="datetime")
+     *
      */
     private $datecreation;
 
@@ -74,6 +99,14 @@ class Annonce
      * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.annonce.adresse.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 150,
+     *      minMessage = "validation.annonce.adresse.min",
+     *      maxMessage = "validation.annonce.adresse.max"
+     * )
      */
     private $adresse;
 
@@ -81,6 +114,14 @@ class Annonce
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.annonce.ville.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 80,
+     *      minMessage = "validation.annonce.ville.min",
+     *      maxMessage = "validation.annonce.ville.max"
+     * )
      */
     private $ville;
 
@@ -88,30 +129,17 @@ class Annonce
      * @var string
      *
      * @ORM\Column(name="codepostal", type="string", length=12)
+     *
+     * @Assert\NotBlank(message = "validation.annonce.postal.blank")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 12,
+     *      minMessage = "validation.annonce.postal.min",
+     *      maxMessage = "validation.annonce.postal.max"
+     * )
      */
     private $codepostal;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="photo1", type="string", length=255, nullable=true)
-     */
-    private $photo1;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="photo2", type="string", length=255, nullable=true)
-     */
-    private $photo2;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="photo3", type="string", length=255, nullable=true)
-     */
-    private $photo3;
-
+    
     /**
      * @var string
      *
@@ -137,6 +165,13 @@ class Annonce
      * @Recaptcha\IsTrue
      */
     public $recaptcha;
+    
+    public function __construct()
+    {
+        $this->objets   = new ArrayCollection();
+        $this->images   = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+    }
     
     /**
      * Get id
@@ -315,79 +350,7 @@ class Annonce
     {
         return $this->codepostal;
     }
-
-    /**
-     * Set photo1
-     *
-     * @param string $photo1
-     *
-     * @return Annonce
-     */
-    public function setPhoto1($photo1)
-    {
-        $this->photo1 = $photo1;
-
-        return $this;
-    }
-
-    /**
-     * Get photo1
-     *
-     * @return string
-     */
-    public function getPhoto1()
-    {
-        return $this->photo1;
-    }
-
-    /**
-     * Set photo2
-     *
-     * @param string $photo2
-     *
-     * @return Annonce
-     */
-    public function setPhoto2($photo2)
-    {
-        $this->photo2 = $photo2;
-
-        return $this;
-    }
-
-    /**
-     * Get photo2
-     *
-     * @return string
-     */
-    public function getPhoto2()
-    {
-        return $this->photo2;
-    }
-
-    /**
-     * Set photo3
-     *
-     * @param string $photo3
-     *
-     * @return Annonce
-     */
-    public function setPhoto3($photo3)
-    {
-        $this->photo3 = $photo3;
-
-        return $this;
-    }
-
-    /**
-     * Get photo3
-     *
-     * @return string
-     */
-    public function getPhoto3()
-    {
-        return $this->photo3;
-    }
-
+    
     /**
      * Set type
      *
@@ -467,7 +430,7 @@ class Annonce
      *
      * @return Annonce
      */
-    public function setUser(\DoninfoBundle\Entity\User $user)
+    public function setUser(User $user)
     {
         $this->user = $user;
 
@@ -486,70 +449,114 @@ class Annonce
     
         
     /**
-     * Add objetannonce
+     * Add objet
      *
-     * @param \DoninfoBundle\Entity\ObjetAnnonce $objetannonce
+     * @param \DoninfoBundle\Entity\Objet $objet
      *
      * @return Annonce
      */
-    public function addObjetAnnonce(\DoninfoBundle\Entity\ObjetAnnonce $objetannonce)
+    public function addObjet(Objet $objet)
     {
-        $this->objetannonce[] = $objetannonce;
+        $this->objets[] = $objet;
 
-        return $this;
+        $objet->setAnnonce($this);
     }
 
     /**
-     * Remove objetannonce
+     * Remove objet
      *
-     * @param \DoninfoBundle\Entity\ObjetAnnonce $objetannonce
+     * @param \DoninfoBundle\Entity\Objet $objet
      */
-    public function removeObjetAnnonce(\DoninfoBundle\Entity\ObjetAnnonce $objetannonce)
+    public function removeObjet(Objet $objet)
     {
-        $this->objetannonce->removeElement($objetannonce);
+        $this->objetsannonce->removeElement($objet);
     }
 
     /**
-     * Get objetannonce
+     * Get objet
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getObjetAnnonce()
+    public function getObjets()
     {
-        return $this->objetannonce;
+        return $this->objets;
     }
     
     /**
-     * Add messageannonce
+     * Add message
      *
-     * @param \DoninfoBundle\Entity\MessageAnnonce $messageannonce
+     * @param \DoninfoBundle\Entity\Message $message
      *
      * @return Annonce
      */
-    public function addMessageAnnonce(\DoninfoBundle\Entity\MessageAnnonce $messageannonce)
+    public function addMessage(Message $message)
     {
-        $this->messageannonce[] = $messageannonce;
+        $this->messages[] = $message;
 
-        return $this;
+        $message->setAnnonce($this);
     }
 
     /**
-     * Remove messageannonce
+     * Remove message
      *
-     * @param \DoninfoBundle\Entity\MessageAnnonce $messageannonce
+     * @param \DoninfoBundle\Entity\Message $message
      */
-    public function removeMessageAnnonce(\DoninfoBundle\Entity\MessageAnnonce $messageannonce)
+    public function removeMessage(Message $message)
     {
-        $this->messageannonce->removeElement($messageannonce);
+        $this->messages->removeElement($message);
     }
 
     /**
-     * Get messageannonce
+     * Get message
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMessageAnnonce()
+    public function getMessages()
     {
-        return $this->messageannonce;
+        return $this->messages;
     }
+    
+    /**
+     * Add image
+     *
+     * @param \DoninfoBundle\Entity\Image $image
+     *
+     * @return Annonce
+     */
+    public function addImage(Image $image)
+    {
+        $this->images[] = $image;
+
+        $images->setAnnonce($this);
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \DoninfoBundle\Entity\image $image
+     */
+    public function removeImage(Image $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+    
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function numAnnonce()
+    {
+        $this->setNumero($this->getNumero . $this->getId());
+    }
+    
 }

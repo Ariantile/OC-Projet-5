@@ -1,0 +1,162 @@
+{# src/DoninfoBundle/Resources/views/Site/membre.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+        
+    <div class="bloc-form">
+      
+        {% for flashMessage in app.session.flashbag.get('erreur') %}
+            <div class="flash-messages">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+
+       
+        <div class="bloc-membre-compte">
+           
+            <h4>Informations du compte</h4>
+            
+            <p class="membre-label">
+                Type de compte
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.typestructure }}
+            </p>
+            
+            <p class="membre-label">
+                Statut du compte
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.statut }}
+            </p>
+            
+            <p class="membre-label">
+                Date d'inscription
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.dateinscription|date("d/m/Y") }}
+            </p>
+            
+        </div>
+        
+        <div class="bloc-membre-structure">
+          
+            <h4>Informations de la structure</h4>
+            
+            <p class="membre-label">
+                Nom
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.nomstructure }}
+            </p>
+            
+            <p class="membre-label">
+                Numéro siren / siret / rna
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.sirenrna }}
+            </p>
+            
+            <p class="membre-label">
+                Secteur d'activité
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.activite }}
+            </p>
+            
+            <p class="membre-label">
+                Numéro ape
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.ape }}
+            </p>
+            
+        </div>
+        
+        <div class="bloc-membre-contact">
+          
+            <h4>Informations de contact</h4>
+           
+            <p class="membre-label">
+                Adresse
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.adresse }}
+            </p>
+            
+            <p class="membre-label">
+                Ville
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.ville }}
+            </p>
+            
+            <p class="membre-label">
+                Code postal
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.codepostal }}
+            </p>
+            
+            <p class="membre-label">
+                Site internet
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.siteweb }}
+            </p>
+            
+            <p class="membre-label">
+                Numéro de téléphone
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.telephone }}
+            </p>
+            
+            <p class="membre-label">
+                Adresse courriel
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.courriel }}
+            </p>
+            
+        </div>
+        
+        <div class="bloc-membre-nom">
+            
+            <h4>Informations utilisateur</h4>
+            
+            <p class="membre-label">
+                Nom
+            </p>
+           
+            <p  class="membre-infos">
+                {{ app.user.nomuser }}
+            </p>
+            
+            <p class="membre-label">
+                Prénom
+            </p>
+            
+            <p  class="membre-infos">
+                {{ app.user.prenomuser }}
+            </p>
+            
+        </div>
+        
+    </div>
+ 
+{% endblock %}

@@ -46,7 +46,8 @@ class ContactPublicType extends AbstractType
             ->add('message', TextareaType::class, array(
                 'required'  => true,
                 'attr'      => array(
-                    'placeholder'   => 'Votre message...'
+                    'placeholder'   => 'Votre message...',
+                    'rows'          => 3
                 )
             ))
             ->add('recaptcha', EWZRecaptchaType::class, array(

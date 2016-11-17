@@ -2,6 +2,263 @@
 ---------------------- COULEURS ------------------------------------------
 ------------------------------------------------------------------------*/
 
+@back_index: #D0BBFF;
+
+@bordure-lignes: #B5B5B5;
+@text_index: #000000;
+@ligne_pair: #FFFFFF;
+@ligne_imp: #EDEDED;
+@index_titre: #FFFFFF;
+@back_index_titre: #2E2938;
+@back_form_recherche: #FFFFFF;
+
+@list-annonce-th-back: #B7B8EE;
+@bordures: #EDEDED;
+
 /*------------------------------------------------------------------------
 ---------------------- FONCTIONS ET CLASS --------------------------------
 ------------------------------------------------------------------------*/
+
+.shadow-box-form
+{
+    -moz-box-shadow: 2px 2px 3px 0px #656565;
+    -webkit-box-shadow: 2px 2px 3px 0px #656565;
+    -o-box-shadow: 2px 2px 3px 0px #656565;
+    box-shadow: 2px 2px 3px 0px #656565;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=3);
+}
+
+.blocs-index
+{
+    color: @text_index;
+    .shadow-box-form;
+}
+
+.back-titre
+{
+    background: #3A2047;
+    background: -moz-linear-gradient(135deg, #3A2047, #7C5596); 
+    background: -webkit-linear-gradient(135deg, #3A2047, #7C5596); 
+    background: linear-gradient(135deg, #3A2047, #7C5596); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3A2047', endColorstr='#7C5596',GradientType=0 );
+}
+
+/*------------------------------------------------------------------------
+---------------------- DONATEUR ------------------------------------------
+------------------------------------------------------------------------*/
+
+.titre-donateur
+{
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 0px;
+    color: @index_titre;
+    .back-titre;
+}
+
+.index-donateur
+{
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    .blocs-index;
+    .row
+    {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+/*------------------------------------------------------------------------
+---------------------- DONATAIRE -----------------------------------------
+------------------------------------------------------------------------*/
+
+.titre-donataire
+{
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 0px;
+    color: @index_titre;
+    .back-titre;
+}
+
+.index-donataire
+{
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    .blocs-index;
+    .row
+    {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+/*------------------------------------------------------------------------
+---------------------- TABLEAU LISTE -------------------------------------
+------------------------------------------------------------------------*/
+
+.police-listes
+{
+    font-family: Lato;
+    font-size: 1em;
+}
+
+.index-liste-don, .index-liste-demande
+{
+    max-width: 1000px;
+    background: #FFFFFF;
+    .police-listes
+}
+
+.index-liste-ligne
+{
+    max-width: 1000px;
+    border-bottom: 1px solid @bordure-lignes;
+}
+
+.index-imp
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: @ligne_imp; 
+}
+
+.index-pair
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: @ligne_pair;
+}
+
+.td-date
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.td-titre
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.td-description
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: justify;
+}
+
+.list-annonce
+{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    table 
+    {
+        width: 100%;
+    }
+    td 
+    {
+        border: 1px solid @bordure-lignes;
+    }
+    
+    .list-annonce-th
+    {
+        background-color: @list-annonce-th-back;
+        th 
+        {
+            border: 1px solid @bordures;
+        }
+    }
+}
+
+/*------------------------------------------------------------------------
+---------------------- RECHERCHE -----------------------------------------
+------------------------------------------------------------------------*/
+
+.index-recherche
+{
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+.bloc-recherche
+{
+    max-width: 270px;
+    .shadow-box-form;
+}
+
+.titre-recherche
+{
+    max-width: 270px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    margin-bottom: 0px;
+    color: @index_titre;
+    .back-titre;
+    span 
+    {
+        float: right;
+    }
+}
+
+.form-recherche
+{
+    max-width: 270px;
+    padding: 10px;
+    background: @back_form_recherche;
+}
+
+.input-recherche
+{
+    max-width: 250px;
+    margin-bottom: 10px;
+    background: #F8F7FF;
+}
+
+.boutton-recherche
+{
+    border-radius: 5px;
+}
+
+/*------------------------------------------------------------------------
+---------------------- MEDIA QUERIES -------------------------------------
+------------------------------------------------------------------------*/
+
+@media screen and (max-width: 769px) 
+{
+    .td-date
+    {
+        border-bottom: 1px solid @bordure-lignes;
+    }
+
+    .td-titre
+    {
+        border-bottom: 1px solid @bordure-lignes;
+    }
+}

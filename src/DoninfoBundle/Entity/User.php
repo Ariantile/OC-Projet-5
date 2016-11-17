@@ -4,7 +4,7 @@ namespace DoninfoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * User
@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="DoninfoBundle\Repository\UserRepository")
  */
-class User implements UserInterface
+class User implements AdvancedUserInterface
 {
     /**
      * @var int
@@ -42,6 +42,13 @@ class User implements UserInterface
      * @ORM\Column(name="roles", type="array")
      */
     private $roles = array();
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="active_code", type="string", length=255)
+     */
+    private $activation;
     
     /**
      * @var string
@@ -140,7 +147,7 @@ class User implements UserInterface
      * @ORM\Column(name="statut", type="string", length=255)
      */
     private $statut;
-
+    
     /**
      * @var \DateTime
      *
@@ -168,7 +175,7 @@ class User implements UserInterface
      *
      * @return string
      */
-    public function SetUsername($username)
+    public function setUsername($username)
     {
         $this->username = $username;
             
@@ -253,6 +260,28 @@ class User implements UserInterface
     public function getRoles()
     {
         return $this->roles;
+    }
+    
+    /**
+     * Set activation
+     *
+     * @return string
+     */
+    public function setActivation($activation)
+    {
+        $this->activation = $activation;
+        
+        return $this;
+    }
+    
+    /**
+     * Get activation
+     *
+     * @return string
+     */
+    public function getActivation()
+    {
+        return $this->activation;
     }
     
     /**
@@ -618,4 +647,29 @@ class User implements UserInterface
     public function eraseCredentials()
     {
     }
+    
+    public function isEnabled()
+    {
+        if ( ($this->getStatut() === 'Inscrit') || ($this->getStatut() === 'Banni') ) {
+            return false;
+        } else if ($this->getStatut() === 'Valide') {
+            return true;
+        }
+    }
+    
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+    
 }

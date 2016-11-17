@@ -1,0 +1,157 @@
+{# src/DoninfoBundle/Resources/views/Site/annonce.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+    
+    <div class="lien-retour"></div>
+    
+    <div class="bloc-annonce">
+       
+        <div class="bloc-annonce-titre">
+            <h1>
+                {{ annonce.titre }}
+            </h1>
+        </div>
+            
+        <div class="bloc-annonce-etiquettes">
+            {% for objet in objets %}
+                <span class="etiquettes">
+                    {{ objet.categorie.groupe }}
+                </span>         
+            {% endfor %}  
+        </div>
+
+        <div class="container container-info-desc">
+            <div class="row">
+               
+                <div class="bloc-annonce-description col-sm-7"> 
+                    <p>{{ annonce.description }}</p>
+                </div>
+
+                <div class="bloc-annonce-info col-sm-offset-1 col-sm-4">
+                   
+                    <div class="bloc-annonce-info-owner">
+                        <h4>Numéro d'annonce</h4>
+                        <div>{{ annonce.numero }}</div>
+                        <h4>Annonce publiée par</h4>   
+                        <div>{{ nom }}</div>
+                        <h4>Contacter l'auteur</h4> 
+                        <div>{{ courriel }}</div>
+                    </div>
+
+                    <div class="bloc-annonce-info-type">
+                        <h4>Type d'annonce</h4>
+                        <div>{{ annonce.type }}</div> 
+                        <h4>Statut de l'annonce</h4>
+                        <div>{{ annonce.statut }}</div>
+                        <h4>Publiée le</h4>
+                        <div>{{ annonce.datecreation|date("d/m/Y") }}</div>
+                        <h4>Expire le</h4>
+                        <div>{{ annonce.datelimite|date("d/m/Y") }}</div>
+                    </div>        
+
+                    <div class="bloc-annonce-adresse">
+                        <h4>Ville</h4>
+                        <div>{{ annonce.ville }}</div>
+                        <h4>Code postal</h4>
+                        <div>{{ annonce.codepostal }}</div>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="bloc-annonce-objet">
+           
+            <h2>Détails</h2>
+
+            {% for objet in objets %}
+                <div class="bloc-annonce-objet-container container"> 
+                              
+                    <div class="row">
+                       
+                        <span class="etiquettes">
+                            {{ objet.categorie.groupe }}
+                        </span>
+                           
+                        <span class="categorie">
+                            {{ objet.categorie.nom }}
+                        </span>
+                        
+                    </div>
+                    
+                    <div class="eta-qte row">
+                        
+                        <div class="quantite col-sm-2 col-xs-4">
+                            <div class="eta-qte-label">Quantité : </div>
+                            <div class="eta-qte-val">  
+                                {{ objet.quantite }}
+                            </div>
+                        </div>
+                        
+                        <div class="etat col-sm-10 col-xs-8"> 
+                            <div class="eta-qte-label">État : </div>
+                            <div class="eta-qte-val"> 
+                                {{ objet.etat }}
+                            </div>
+                        </div>
+  
+                    </div>   
+                       
+                    <div class="description row">
+                        <h4>Description</h4>    
+                        <p>{{ objet.description }}</p>
+                    </div>
+                       
+                </div>          
+            {% endfor %} 
+              
+        </div>
+        
+        <div id="carousel-photo" class="carousel slide bloc-annonce-img" data-ride="carousel">
+           
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-photo" data-slide-to="0" class="active"> </li>
+                <li data-target="#carousel-photo" data-slide-to="1"> </li>
+                <li data-target="#carousel-photo" data-slide-to="2"> </li>
+            </ol>
+            
+            <div class="carousel-inner">
+                
+                
+                <div class="item active">
+                   
+                    {% if images[0] is defined %}
+                        <img src="{{ asset(images[0].webPath) }}" alt="image.alt" class="img-responsive"/>
+                    {% endif %}
+                    
+                    {% if images[0] is not defined %}
+                        <img src="{{ asset('/uploads/img/placeholder.png') }}" alt="placeholder" class="img-responsive"/>
+                    {% endif %}
+                    
+                </div>
+
+                {% for image in images[1:] %}
+                   
+                    <div class="item">
+                        <img src="{{ asset(image.webPath) }}" alt="image.alt" class="img-responsive"/>
+                    </div>
+                
+                {% endfor %}
+                
+            </div>
+        
+            <a class="left carousel-control" href="#carousel-photo" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-photo" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        
+        </div>
+        
+    </div>
+ 
+{% endblock %}

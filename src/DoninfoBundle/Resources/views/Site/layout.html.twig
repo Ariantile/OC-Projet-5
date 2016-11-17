@@ -9,12 +9,16 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/jquery-jvectormap-2.0.3.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-layout.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-accueil.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-form.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-index.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-infos.css') }}" />
-            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/jquery-jvectormap-2.0.3.css') }}" />          
+            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-membre.css') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-annonce.css') }}" />
+                    
         {% endblock %}
     </head>
     
@@ -36,10 +40,10 @@
 	                
 	                <div class="collapse navbar-collapse navbar-ex1-collapse">
 		                <ul class="nav navbar-nav">
-                            <li><a href="{{ path('doninfo_index_demandes') }}" class="liens lien1">Besoins</a></li>
-                            <li><a href="{{ path('doninfo_index_donations') }}" class="liens lien2">Donations</a></li>
-                            <li><a href="{{ path('doninfo_post') }}" class="liens lien3">Poster</a></li>
                             {% if is_granted('ROLE_USER') %}
+                                <li><a href="{{ path('doninfo_index_demandes') }}" class="liens lien1">Besoins</a></li>
+                                <li><a href="{{ path('doninfo_index_donations') }}" class="liens lien2">Donations</a></li>
+                                <li><a href="{{ path('doninfo_post') }}" class="liens lien3">Poster</a></li>
                             {% endif %}
 		                </ul>
 		                <form class="navbar-form navbar-left" role="search">
@@ -56,8 +60,16 @@
 				                </a>
 				                <ul class="dropdown-menu">
                                     {% if not is_granted('ROLE_USER') %}
-                                    <li><a href="{{ path('doninfo_inscription') }}" class="liens">Inscription</a></li>
-                                    <li><a href="{{ path('doninfo_connexion') }}" class="liens">Connexion</a></li>
+                                        <li><a href="{{ path('doninfo_inscription') }}" class="liens">Inscription</a></li>
+                                        <li><a href="{{ path('doninfo_connexion') }}" class="liens">Connexion</a></li>
+                                    {% endif %}
+                                    {% if is_granted('ROLE_USER') %}
+                                        <li>
+                                            <a href="{{ path('doninfo_membre', { 'id': app.user.id }) }}" class="liens">Espace membre</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('doninfo_logout')}}" class="liens">Déconnexion</a>
+                                        </li>
                                     {% endif %}
 				                </ul>
 			                </li>
@@ -82,7 +94,8 @@
         </div>
              
         {% block javascripts %}
-            <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script src="{{ asset('bundles/doninfobundle/js/jquery-jvectormap-2.0.3.min.js') }}"></script>
             <script src="{{ asset('bundles/doninfobundle/js/jquery-jvectormap-fr-mill.js') }}"></script>

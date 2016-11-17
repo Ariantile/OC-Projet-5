@@ -1,0 +1,47 @@
+# src/DoninfoBundle/Ressources/translations/validators.fr.yml
+
+validation:
+    annonce:
+        titre:
+            blank:      Titre requis.
+            min:        Votre titre doit comporter au moins {{ limit }} caractères.
+            max:        Votre titre ne doit pas excéder {{ limit }} caractères.
+        description:
+            blank:      Description requise.
+            min:        Votre description doit comporter au moins {{ limit }} caractères.
+            max:        Votre description ne doit pas excéder {{ limit }} caractères.
+        date:
+            format:     Veuillez saisir une date valide (format jj/mm/aaa).
+        adresse:
+            blank:      Adresse d'enlèvement requise.
+            min:        Votre adresse doit comporter au moins {{ limit }} caractères.
+            max:        Votre adresse ne doit pas excéder {{ limit }} caractères.
+        ville:
+            blank:      Ville d'enlèvement requise.
+            min:        Votre ville doit comporter au moins {{ limit }} caractères.
+            max:        Votre ville ne doit pas excéder {{ limit }} caractères.
+        postal:
+            blank:      Code postal requis.
+            min:        Votre code postal doit comporter au moins {{ limit }} caractères.
+            max:        Votre code postal ne doit pas excéder {{ limit }} caractères.
+        image:
+            type:       Format d'image incorrect. Les formats jpeg, png et gif sont acceptés.
+            size:       Image trop lourde, le poid ne doit pas dépasser 1Mo.
+            minw:       Image pas assez large, largeur minimum {{ limit }}.
+            minh:       Image pas assez haute, hauteur minimum {{ limit }}.
+    message:
+        titre:
+            blank:      Titre requis.
+            min:        Votre titre doit comporter au moins {{ limit }} caractères.
+            max:        Votre titre ne doit pas excéder {{ limit }} caractères.
+        contenu:
+            blank:      Titre requis.
+            min:        Votre titre doit comporter au moins {{ limit }} caractères.
+            max:        Votre titre ne doit pas excéder {{ limit }} caractères.    
+    objet:
+        qte:
+            blank:      La quantité ne peut être nulle.
+            min:        La quantité ne peut être nulle.
+        description:
+            min:        Votre description doit comporter au moins {{ limit }} caractères.
+            max:        Votre description ne doit pas excéder {{ limit }} caractères.

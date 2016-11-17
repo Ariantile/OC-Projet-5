@@ -3,13 +3,27 @@
 {% extends "DoninfoBundle:Site:layout.html.twig" %}
 
 {% block contenu %}
-
-    {% if error %}
-        <div class="alert alert-danger">{{ error.message }}</div>
-    {% endif %}
-    
+        
     <div class="bloc-form">
+       
+        {% for flashMessage in app.session.flashbag.get('erreur') %}
+            <div class="flash-messages">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
     
+        {% for flashMessage in app.session.flashbag.get('message') %}
+            <div class="flash-messages">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        
+        {% if error %}
+            <div class="flash-messages">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+        
         <div class="form-connexion-info">
                 
             <h4>Connectez-vous</h4>
@@ -20,38 +34,44 @@
                 
         </div> 
     
-    <form action="{{ path('login_check') }}" method="post" class="form-connexion">
+        <form action="{{ path('login_check') }}" method="post" class="form-connexion">
     
-        <h4>Connectez-vous</h4>
+            <h4>Connectez-vous</h4>
         
-        <br />
+            <br/>
         
-        <div class="input-group input-form-box">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-user"></span>
-            </span>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Nom d'utilisateur" class="form-control"/>
+            <div class="input-group input-form-box">
+                <span class="input-group-addon back-connexion-ico">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Nom d'utilisateur" class="form-control"/>
+            </div>
+        
+            <br/>
+        
+            <div class="input-group input-form-box">
+                <span class="input-group-addon back-connexion-ico">
+                    <span class="glyphicon glyphicon-lock"></span>
+                </span>
+                <input type="password" id="password" name="_password" placeholder="Mot de passe" class="form-control"/>
+            </div>
+        
+            <br/>
+        
+            <div class="form-group has-feedback button-container">
+                <input type="submit" value="Connexion" class="button form-control" />
+                <i class="glyphicon glyphicon-chevron-right form-control-feedback button-icon"></i>
+            </div>
+            
+        </form>
+        
+        <div class="form-connexion-inscription">
+            <p>
+                Vous souhaitez utiliser notre plateforme mais vous n'avez pas encore de compte? <a href="{{ path('doninfo_inscription') }}">Cliquez ici</a> pour accéder au formulaire d'inscription.
+            </p>
         </div>
         
-        <br />
         
-        <div class="input-group input-form-box">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-lock"></span>
-            </span>
-            <input type="password" id="password" name="_password" placeholder="Mot de passe" class="form-control"/>
-        </div>
-        
-        <br />
-        
-        <div class="form-group has-feedback button-container">
-            <input type="submit" value="Connexion" class="button form-control" />
-            <i class="glyphicon glyphicon-chevron-right form-control-feedback button-icon"></i>
-        </div>
-        
-        
-        
-    </form>
     </div>
 
 {% endblock %}

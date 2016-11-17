@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class ObjetAnnonceType extends AbstractType
+class ObjetType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -19,25 +19,42 @@ class ObjetAnnonceType extends AbstractType
     {
         $builder
             ->add('categorie', EntityType::class, array(
+                'required'      => true,
+                'label'         => 'doninfo.objet.label.categorie',
                 'class'         => 'DoninfoBundle:Categorie',
-                'choice_label'  => 'nom'
-                ))
+                'choice_label'  => 'nom',
+                'group_by'      => 'groupe',
+                'attr'          => array(
+                    'class'         => 'input-form-box form-control'
+                )
+            ))
             ->add('etat', ChoiceType::class, array(
-                'required'  => true,
-                'choices'   => array(
+                'required'      => true,
+                'label'         => 'doninfo.objet.label.etat',
+                'choices'       => array(
                     'Opérationnel'      => 'Opérationnel',
-                    'Ne fonctionne pas' => 'Ne fonctionne pas'
+                    'Ne fonctionne pas'   => 'Ne fonctionne pas'
+                ),
+                'attr'          => array(
+                    'class'         => 'input-form-box form-control'
                 )
             ))
             ->add('quantite', IntegerType::class, array(
-                'required'  => true,
+                'required'      => true,
+                'label'         => 'doninfo.objet.label.qte',
                 'attr'          => array(
                     'min'           => 1,
-                    'max'           => 99
+                    'max'           => 99,
+                    'class'         => 'input-form-box form-control'
                 )
             ))
             ->add('description', TextareaType::class, array(
-                'required'  => false,
+                'required'      => false,
+                'label'         => 'doninfo.objet.label.description',
+                'attr'          => array(
+                    'class'         => 'input-form-box form-control',
+                    'rows'          => 3
+                )
             ))     
         ;
     }
@@ -48,7 +65,7 @@ class ObjetAnnonceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'DoninfoBundle\Entity\ObjetAnnonce'
+            'data_class' => 'DoninfoBundle\Entity\Objet'
         ));
     }
 
@@ -57,7 +74,7 @@ class ObjetAnnonceType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'doninfobundle_objetannonce';
+        return 'doninfobundle_objet';
     }
 
 

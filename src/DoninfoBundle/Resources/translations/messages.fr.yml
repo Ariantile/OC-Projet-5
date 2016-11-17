@@ -1,0 +1,26 @@
+# src/DoninfoBundle/Ressources/translations/messages.fr.yml
+
+doninfo:
+
+    #Formulaire pour poster une annonce
+    annonce:
+        placeholder:
+            titre:          Titre de votre annonce
+            description:    Description de votre annonce
+            date:           jj/mm/aaaa
+            adresse:        Adresse de retrait
+            ville:          Ville
+            postal:         Code postal
+    objet:
+        label:
+            categorie:      Type de matériel
+            etat:           État de fonctionnement
+            qte:            Quantité
+            submit:         Publier
+            description:    Description
+    image:
+        label:
+            photo:          Photo
+            
+    #Page du formulaire pour poster une annonce
+    

@@ -10,4 +10,5 @@ namespace DoninfoBundle\Repository;
  */
 class AnnonceRepository extends \Doctrine\ORM\EntityRepository
 {
+    
 }

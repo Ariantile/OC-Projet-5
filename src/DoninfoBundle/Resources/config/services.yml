@@ -10,3 +10,11 @@ services:
         arguments:
             - "@doctrine"
             
+    doninfo.send_mail:
+        class: DoninfoBundle\SendMail\DoninfoSendMail
+        arguments:
+            - "@mailer"
+            - "@twig"
+            - "@doctrine"
+            - "@service_container"
+            

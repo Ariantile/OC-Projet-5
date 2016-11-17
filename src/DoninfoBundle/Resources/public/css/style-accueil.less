@@ -2,10 +2,15 @@
 ---------------------- COULEURS ------------------------------------------
 ------------------------------------------------------------------------*/
 
-@bloc-slide-pair: #D09DFF;
-@bloc-slide-imp: #9093FF;
+@bloc-slide-pair: #9093FF;
+@bloc-slide-imp: #D09DFF;
 @bloc-pair: #FFFFFF;
 @bordures: #EDEDED;
+@bordure-slider-texte: #B5B5B5;
+@slider-texte: #000000;
+@banner-boutons: #FFFFFF;
+@back-banner: #25264F;
+@text-blanc: #FFFFFF;
 
 /*------------------------------------------------------------------------
 ---------------------- FONCTIONS ET CLASS --------------------------------
@@ -31,21 +36,140 @@
     filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
 }
 
+.degrade-vert
+{
+    background: #50DBC3;
+    background: -moz-linear-gradient(135deg, #50DBC3, #92DBC3); 
+    background: -webkit-linear-gradient(135deg, #50DBC3, #92DBC3); 
+    background: linear-gradient(135deg, #50DBC3, #92DBC3); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#50DBC3', endColorstr='#92DBC3',GradientType=0 );
+}
+
+.degrade-jaune
+{
+    background: #F0D887;
+    background: -moz-linear-gradient(135deg, #F0D848, #F0D868); 
+    background: -webkit-linear-gradient(135deg, #F0D848, #F0D868); 
+    background: linear-gradient(135deg, #F0D848, #F0D868); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F0D848', endColorstr='#F0D868',GradientType=0 );
+}
+
+.degrade-rose
+{
+    background: @bloc-slide-imp;
+    background: -moz-linear-gradient(135deg, #D162D4, #AD9DFF); 
+    background: -webkit-linear-gradient(135deg, #D162D4, #AD9DFF); 
+    background: linear-gradient(135deg, #D162D4, #AD9DFF); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#D162D4', endColorstr='#AD9DFF',GradientType=0 );
+}
+
+.degrade-bleu
+{
+    background: @bloc-slide-pair;
+    background: -moz-linear-gradient(135deg, #3F4188, #5D5FC7); 
+    background: -webkit-linear-gradient(135deg, #3F4188, #5D5FC7); 
+    background: linear-gradient(135deg, #3F4188, #5D5FC7); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3F4188', endColorstr='#5D5FC7',GradientType=0 );
+}
+
+/*------------------------------------------------------------------------
+---------------------- TESTS ---------------------------------------------
+------------------------------------------------------------------------*/
+
+/*.test
+{
+    height: 50px;
+    width: 50px;
+    background: #000000;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transform: rotate(45deg);
+}*/
+
+/*div.accueil_p:before
+{
+    content: "";
+    width: 0; 
+    height: 0;
+    border: 10px solid;
+    border-left-color: transparent; 
+    border-top-color: transparent; 
+    border-right-color: transparent; 
+    border-bottom-color: red;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}*/
+
+
 /*------------------------------------------------------------------------
 ---------------------- SLIDER --------------------------------------------
 ------------------------------------------------------------------------*/
+
+.banner
+{
+    width: 100%;
+    height: 500px;
+    background: url(../images/fond1d.jpg) no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    .shadow-leger;
+    
+    p 
+    {
+        font-size: 1.5em;
+    }
+}
+
+.banner-liens
+{
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+    width: 120px;
+    border-radius: 15px;
+    background-color: @back-banner;
+    color: @text-blanc;
+}
+
+.banner-donner, .banner-besoin
+{
+    width: 300px;
+    text-align: center;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    background-color: @banner-boutons;
+    margin-top: 300px;
+}
+
+.banner-donner
+{
+    float: right;
+}
+
+.banner-besoin
+{
+    float: left;
+}
 
 .bloc_slider
 {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    .shadow-leger
+    .shadow-leger;
 }
 
 .slider-contenu
 {
     max-width: 1000px;
+    height: 500px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -61,28 +185,30 @@
 
 .img-acceuil 
 {
-    max-width: 500px;
+    padding: 10px;
 }
 
 #accueil_b1, #accueil_b3, #accueil_b2
 {
-    
     .blocs-accueil;
-    img 
+    p 
     {
-        float: left;
+        border: 2px solid @bordure-slider-texte;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
         padding: 10px;
+        color: @slider-texte;
+        background: #FFFFFF;
     }
 }
 
-#accueil_b1, #accueil_b3
+#accueil_b1, #accueil_b3, #accueil_b2
 {
-    background-color: @bloc-slide-pair;
-}
-
-#accueil_b2
-{
-    background-color: @bloc-slide-imp;
+    background: url(../images/fond1.jpg) no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 /*------------------------------------------------------------------------
@@ -109,7 +235,7 @@
 ---------------------- MEDIA QUERIES -------------------------------------
 ------------------------------------------------------------------------*/
 
-@media screen and (max-width: 780px) 
+@media screen and (max-width: 769px) 
 {
 
 }    

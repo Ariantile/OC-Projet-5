@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 
-class MessageAnnonceType extends AbstractType
+class MessageType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -36,7 +36,7 @@ class MessageAnnonceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'DoninfoBundle\Entity\MessageAnnonce'
+            'data_class' => 'DoninfoBundle\Entity\Message'
         ));
     }
 
@@ -45,7 +45,7 @@ class MessageAnnonceType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'doninfobundle_messageannonce';
+        return 'doninfobundle_message';
     }
 
 

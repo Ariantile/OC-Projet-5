@@ -6,15 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * MessageAnnonce
+ * Message
  *
- * @ORM\Table(name="message_annonce")
- * @ORM\Entity(repositoryClass="DoninfoBundle\Repository\MessageAnnonceRepository")
+ * @ORM\Table(name="message")
+ * @ORM\Entity(repositoryClass="DoninfoBundle\Repository\MessageRepository")
  */
-class MessageAnnonce
+class Message
 {
     /**
-     * @ORM\ManyToOne(targetEntity="DoninfoBundle\Entity\Annonce", inversedBy="messageannonce")
+     * @ORM\ManyToOne(targetEntity="DoninfoBundle\Entity\Annonce", inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */
@@ -40,6 +40,14 @@ class MessageAnnonce
      * @var string
      *
      * @ORM\Column(name="contenumessage", type="text")
+     *
+     * @Assert\NotBlank(message = "validation.message.contenu.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 2000,
+     *      minMessage = "validation.message.contenu.min",
+     *      maxMessage = "validation.message.contenu.max"
+     * )
      */
     private $contenumessage;
 
@@ -47,6 +55,14 @@ class MessageAnnonce
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.message.titre.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 100,
+     *      minMessage = "validation.message.titre.min",
+     *      maxMessage = "validation.message.titre.max"
+     * )
      */
     private $titre;
 
@@ -66,7 +82,7 @@ class MessageAnnonce
      *
      * @param string $contenumessage
      *
-     * @return MessageAnnonce
+     * @return Message
      */
     public function setContenumessage($contenumessage)
     {
@@ -90,7 +106,7 @@ class MessageAnnonce
      *
      * @param string $titre
      *
-     * @return MessageAnnonce
+     * @return Message
      */
     public function setTitre($titre)
     {
@@ -114,9 +130,9 @@ class MessageAnnonce
      *
      * @param \DoninfoBundle\Entity\Annonce $annonce
      *
-     * @return MessageAnnonce
+     * @return Message
      */
-    public function setAnnonce(\DoninfoBundle\Entity\Annonce $annonce)
+    public function setAnnonce(Annonce $annonce)
     {
         $this->annonce = $annonce;
 
@@ -138,9 +154,9 @@ class MessageAnnonce
      *
      * @param \DoninfoBundle\Entity\User $user
      *
-     * @return MessageAnnonce
+     * @return Message
      */
-    public function setUser(\DoninfoBundle\Entity\User $user)
+    public function setUser(User $user)
     {
         $this->user = $user;
 

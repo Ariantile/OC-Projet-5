@@ -5,10 +5,10 @@ namespace DoninfoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * categorie
+ * Categorie
  *
  * @ORM\Table(name="categorie")
- * @ORM\Entity(repositoryClass="DoninfoBundle\Repository\categorieRepository")
+ * @ORM\Entity(repositoryClass="DoninfoBundle\Repository\CategorieRepository")
  */
 class Categorie
 {        

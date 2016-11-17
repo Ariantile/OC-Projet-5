@@ -20,6 +20,16 @@ doninfo_inscription:
     defaults:
         _controller:    DoninfoBundle:Site:inscription
         
+doninfo_inscription_done:
+    path:       /inscription-remerciement
+    defaults:
+        _controller:    DoninfoBundle:Site:inscriptiondone
+        
+doninfo_activation:
+    path:       /activation/{active_code}
+    defaults:
+        _controller:    DoninfoBundle:Site:activation
+        
 doninfo_contact_public:
     path:       /contact
     defaults:
@@ -32,6 +42,9 @@ doninfo_mentions:
   
 #Connection obligatoire  
 
+doninfo_logout:
+    path:       /logout
+
 doninfo_infos:
     path:       /infos
     defaults:
@@ -41,19 +54,23 @@ doninfo_post:
     path:       /post
     defaults:
         _controller:    DoninfoBundle:Site:postAnnonce
-
-doninfo_index_donations:
-    path:       /donations
-    defaults:
-        _controller:    DoninfoBundle:Site:donations
         
 doninfo_annonce:
     path:       /annonce/{id}
     defaults:
         _controller:    DoninfoBundle:Site:annonce
         
+doninfo_list_don:
+    path:  /don/list/{page}
+    defaults: { _controller: DoninfoBundle:Site:list, page: 1 }
+    
+doninfo_index_donations:
+    path:       /donations
+    defaults:
+        _controller:    DoninfoBundle:Site:donations
+        
 doninfo_index_demandes:
-    path:       /demandes
+    path:       /besoins
     defaults:
         _controller:    DoninfoBundle:Site:demandes
         
@@ -73,6 +90,8 @@ doninfo_membre:
     path:       /membre/{id}
     defaults:
         _controller:    DoninfoBundle:Site:membre
+    requirements:
+        id: \d+
         
 doninfo_membre_informations:
     path:       /membre/{id}/informations

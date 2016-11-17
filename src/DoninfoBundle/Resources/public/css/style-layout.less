@@ -5,12 +5,22 @@
 @liens: #FFFFFF;
 @liensHover: #FFFFFF;
 @liensHoverFooter: #A8E2FF;
-@back_header: #262625;
-@back_footer: #262625;
-@back_top_footer: #40403E;
-@back_button: #2444AD;
-@button_hover: #3564FF;
+@back_header: #25264F;
+@back_bottom_header: #3D3F82;
+@back_footer: #25264F;
+@back_top_footer: #393A7A;
 @back_body: #F8F7FF;
+@button-icon-back: #78789C;
+@button-icon-back-hover: #3F3F52;
+@button-icon-color: #FFFFFF;
+@button-back: #B7B8EE;
+@button-back-hover: #8586AD;
+@button-text-color: #FFFFFF;
+@button-hover: #3564FF;
+@background-flash: rgba(255, 255, 255, 0.7);
+@text-flash: #C95F5D;
+@text-erreurs: #FF7976;
+
 
 /*------------------------------------------------------------------------
 ---------------------- FONCTIONS ET CLASS --------------------------------
@@ -20,10 +30,13 @@
 ---------------------- POLICE --------------------------------------------
 ------------------------------------------------------------------------*/
 
+body
+{
+    font-family: Source Sans Pro;
+}
+
 p
 {
-    font-family: Oswald;
-    font-weight: bold;
     text-align: justify;
     font-size: 1em;
 }
@@ -38,25 +51,55 @@ a, h1, h2, h3, h4
 ---------------------- BOUTONS / LIENS -----------------------------------
 ------------------------------------------------------------------------*/
 
-.button
+.button-container
 {
-    background-color: @back_button;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
+    max-width: 110px;
+    
+    button
+    {
+        border-radius: 0px!important;
+    }
+    input
+    {
+        border-radius: 0px!important;
+    }
 }
 
-.button:hover
+.button-container:hover
 {
-    background-color: @button_hover;
+    .button
+    {
+        background: @button-back-hover;
+    }
+    
+    .button-icon
+    {
+        background: @button-icon-back-hover;
+    }
+}
+
+.button
+{
+    background: @button-back;
+    color: @button-text-color;
+    font-family: lato;
+    font-size: 14px;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.button-icon
+{
+    background: @button-icon-back;
+    color: @button-icon-color;
 }
 
 .liens
 {
-    color: @liens;
+    color: @liens!important;
 }
 
 /*------------------------------------------------------------------------
@@ -80,33 +123,71 @@ body
 
 header
 {
-    border-bottom: 2px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+
+.logo
+{
+    max-height: 20px;
+}
+
+.navbar
+{
+    margin-bottom: 0px!important;
+    padding-bottom: 0px!important;
+    border-radius: 0px;
 }
 
 .bloc_header
 {
-    height: 60px;
-    width: 100%;
-    line-height: 60px;
-    white-space: nowrap;
     background: @back_header;
-    text-align: center;
-    a
+        
+    .liens:hover
     {
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        border-top-left-radius: 15px;
-        border-bottom-right-radius: 15px;
+        color: @liensHoverFooter!important;
+        background-color: @back_bottom_header;
     }
     
-    a:hover
+    .btn-recherche:hover
     {
-        background-color: @liensHover;
-        text-decoration: none;
+        background-color: @liensHoverFooter;
     }
     
+    .lien-logo
+    {
+        vertical-align: middle;
+    }
+    
+    .dropdown-menu
+    {
+        background: @back_header!important;
+    }
+    
+    .navbar-toggle
+    {
+        background-color: @liens;
+    }
+    
+    .dropdown-toggle:focus
+    {
+        background-color: @back_bottom_header!important;
+    }
+}
+
+a.lien1:hover
+{
+    background-color: #D162D4;
+}
+
+a.lien2:hover
+{
+    background-color: #F0D887;   
+}
+
+a.lien3:hover
+{
+    background-color: #50DBC3;
 }
 
 /*------------------------------------------------------------------------
@@ -148,3 +229,28 @@ footer
 {
     display: block;
 }
+
+/*------------------------------------------------------------------------
+---------------------- MESSAGES FLASH & ERREURS---------------------------
+------------------------------------------------------------------------*/
+
+.flash-messages
+{
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    padding: 15px;
+    background-color: @background-flash;
+    color: @text-flash;
+}
+
+.bloc-erreurs
+{
+    width: 100%;
+    color: @text-erreurs;
+    font-size: 1.2em;
+    font-style: italic;
+    display: block!important;
+}
+

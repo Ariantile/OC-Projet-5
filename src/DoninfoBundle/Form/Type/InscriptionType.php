@@ -107,7 +107,9 @@ class InscriptionType extends AbstractType
                     'attr'              => array(
                         'placeholder'       => 'Confirmation mot de passe'))
             ))
-            ->add('recaptcha', EWZRecaptchaType::class)
+            ->add('recaptcha', EWZRecaptchaType::class, array(
+                'label'             => false
+            ))
             ->add('envoyer', SubmitType::class, array(
                 'label'       => 'Inscription'
             ))

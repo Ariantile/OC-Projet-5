@@ -1,0 +1,25 @@
+{# DoninfoBundle/src/Resources/views/Site/template #}
+
+{% block form_widget_compound %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }} >
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_rows') }}
+        {{ form_rest(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_widget_compound %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+        <div class="bloc-erreurs">
+            {% for error in errors %}
+                <div>{{ error.message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

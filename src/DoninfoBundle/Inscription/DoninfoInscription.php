@@ -29,8 +29,9 @@ class DoninfoInscription
         $user->setStatut('Inscrit');
         $user->setDateinscription($date);
         $user->setUsername($user->getCourriel());
-        $user->setSalt('');
+        $user->setSalt(md5(uniqid()));
         $user->setRoles(array('ROLE_USER'));
+        $user->setActivation(sha1($user->getCourriel() + microtime()));
         
         $password = $user->getPassword();
         $password_encode = $this->encoder->encodePassword($user, $password);
@@ -39,4 +40,5 @@ class DoninfoInscription
         $em->persist($user);
         $em->flush();
     }
+    
 }

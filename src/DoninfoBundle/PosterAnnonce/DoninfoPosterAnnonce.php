@@ -24,18 +24,23 @@ class DoninfoPosterAnnonce
         $em = $this->doctrine->getManager();
         $date = new \DateTime('now');
         $annonce->setDatecreation($date);
-        $annonce->setNumero(uniqid().$annonce->getId());
+        $annonce->setNumero(uniqid());
         $annonce->setStatut('En cours');
         $annonce->setUser($user);
+        $annonce->setType('Donation');
         
-        $annonce->setType('Don');
+        $images = $annonce->getImages();
+        $objets = $annonce->getObjets();
         
-        $objets = $annonce->getObjetAnnonce();
-            
-        foreach ($objets as $objet) {
+        foreach ($images as $image)
+        {
+            $image->setAnnonce($annonce);
+        }
+
+        foreach ($objets as $objet)
+        {
             $objet->setAnnonce($annonce);
         }
-        
         
         $em->persist($annonce);
         $em->flush();

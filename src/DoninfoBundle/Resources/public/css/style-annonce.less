@@ -1,0 +1,313 @@
+/*------------------------------------------------------------------------
+---------------------- COULEURS ------------------------------------------
+------------------------------------------------------------------------*/
+
+@back-titre: #B7B8EE;
+@back-etiquettes: #D9DBFF;
+@border-etiquettes: #818DA8;
+@back-categorie: #BCCDF4;
+
+/*------------------------------------------------------------------------
+---------------------- FONCTIONS ET CLASS --------------------------------
+------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------
+----------------------- BLOC PAGE ANNONCE --------------------------------
+------------------------------------------------------------------------*/
+
+.bloc-annonce
+{
+    width: 100%;
+    padding: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    background: url(../images/fond.png) no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/*------------------------------------------------------------------------
+----------------------- BLOC TITRE ET DESCRIPTION ------------------------
+------------------------------------------------------------------------*/
+
+.bloc-annonce-titre
+{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    h1
+    {
+        color: #FFFFFF;
+        font-style: italic;
+        background: @back-titre;
+        border-bottom: 6px solid #8586AD;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+}
+
+.container-info-desc
+{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bloc-annonce-description
+{
+    
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #4E4F66;
+    font-style: italic;
+    padding: 10px;
+    
+    p 
+    { 
+        background-color: rgba(255, 255, 255, 0.7);
+        margin: 0px;
+        padding: 5px;
+    }
+}
+
+.bloc-annonce-etiquettes
+{
+    color: #4E4F66;
+    font-style: italic;
+    background-color: rgba(255, 255, 255, 0.7);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/*------------------------------------------------------------------------
+------------------------ ETIQUETTES ET CATEGORIE -------------------------
+------------------------------------------------------------------------*/
+
+.etiquettes, .categorie
+{
+    display: inline-block;
+    margin: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid @border-etiquettes;
+}
+
+.etiquettes
+{
+    background: @back-etiquettes;
+    
+}
+
+.categorie
+{
+    background: @back-categorie;
+}
+
+/*------------------------------------------------------------------------
+--------------------------- BLOC INFORMATIONS ----------------------------
+------------------------------------------------------------------------*/
+
+
+
+.bloc-annonce-info
+{
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #4E4F66;
+    font-style: italic;
+    padding: 10px;
+    text-align: center;
+    
+    h4 
+    {
+        background: #C4C5FF;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-top: 5px;
+        color: #FFFFFF;
+        
+    }
+}
+
+.bloc-annonce-info-owner, .bloc-annonce-info-type, .bloc-annonce-adresse
+{
+    background-color: rgba(255, 255, 255, 0.7);
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 1.2em;
+}
+
+.bloc-annonce-info-owner
+{ 
+    margin-bottom: 5px;
+}
+
+.bloc-annonce-info-type
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.bloc-annonce-adresse
+{
+    margin-top: 5px;
+}
+
+/*------------------------------------------------------------------------
+------------------------------- BLOC OBJETS ------------------------------
+------------------------------------------------------------------------*/
+
+.bloc-annonce-objet
+{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 10px;
+    
+    h2
+    {
+        color: #FFFFFF;
+        font-style: italic;
+        background: @back-titre;
+        border-bottom: 6px solid #8586AD;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+}
+
+.bloc-annonce-objet-container
+{
+    color: #4E4F66;
+    font-style: italic;
+    margin-top: 20px;
+    border-bottom: 2px solid #8586AD;
+    border-top: 2px solid #8586AD;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+}
+
+.eta-qte
+{
+    background: #B7B8EE;
+    h4
+    {
+        color: #FFFFFF;
+    }
+}
+
+.eta-qte-label, .eta-qte-val
+{
+    display: inline-block;
+}
+
+.eta-qte-label
+{
+    color: #FFFFFF;
+}
+
+.eta-qte-val
+{
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.etat, .quantite
+{
+    display: inline-block;
+    padding: 10px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.quantite
+{
+    border-right: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.description
+{
+    h4
+    {
+        background: #C4C5FF;
+        color: #FFFFFF;
+        margin-top: 0px;
+        padding: 10px;
+        border-top: 2px solid rgba(255, 255, 255, 0.7);
+    }
+    
+    p
+    {
+        padding: 10px;
+    }
+}
+
+/*------------------------------------------------------------------------
+-------------------------------- BLOC IMAGES -----------------------------
+------------------------------------------------------------------------*/
+
+.bloc-annonce-img
+{
+    background-color: rgba(255, 255, 255, 0.4);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding: 10px;
+    border-bottom: 2px solid #8586AD;
+    border-top: 2px solid #8586AD;
+    
+    .carousel-inner
+    {
+        .item
+        {
+            max-width: 100%;
+            max-height: 400px;
+        }
+        
+        img 
+        {
+            max-height: 400px;
+            width: auto;
+            margin: 0 auto;
+        }
+    }
+}
+
+.left, .right
+{
+    color: #B7B8EE;
+    opacity: 0.9;
+}
+
+.left:hover, .right:hover
+{
+    color: #4E4F66;
+}
+
+.carousel-control.left, .carousel-control.right
+{
+    background-image: none!important;
+}
+
+.carousel-control
+{
+    
+}

@@ -10,4 +10,16 @@ namespace DoninfoBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findUserByActivationCode($active_code)
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        $qb
+        ->where('u.activation = :active_code')
+        ->setParameter('active_code', $active_code);
+
+        return $qb
+        ->getQuery()
+        ->getOneOrNullResult();
+    }
 }

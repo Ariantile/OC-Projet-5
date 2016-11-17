@@ -1,0 +1,33 @@
+{# src/DoninfoBundle/Resources/views/Site/listannonce.html.twig #}
+  
+    {# total items count #}
+    <div class="count">
+        {{ pagination.getTotalItemCount }}
+    </div>
+    
+    <div class="list-annonce">
+        <table>
+            <tr class="list-annonce-th">
+                {# sorting of properties based on query components #}
+                <th{% if pagination.isSorted('a.titre') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'titre', 'a.titre') }}
+                </th>
+                <th>
+                    {{ knp_pagination_sortable(pagination, 'Release', ['a.datecreation']) }}
+                </th>
+            </tr>
+
+            {# table body #}
+            {% for annonce in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ annonce.titre }}</td>
+                <td>{{ annonce.datecreation | date('d-m-Y') }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
