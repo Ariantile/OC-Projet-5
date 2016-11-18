@@ -23,95 +23,123 @@ class InscriptionType extends AbstractType
         $builder
             ->add('nomstructure', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.inscription.label.structure',
                 'attr'      => array(
-                    'placeholder'   => 'Nom de votre structure'
+                    'placeholder'   => 'doninfo.inscription.placeholder.structure',
+                    'maxlength'     => '150'
                 )
             ))
             ->add('sirenrna', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.inscription.label.sirenrna',
                 'attr'      => array(
-                    'placeholder'   => 'Numéro Siren / Siret / RNA'
+                    'placeholder'   => 'doninfo.inscription.placeholder.sirenrna',
+                    'maxlength'     => '14'
                 )
             ))
             ->add('activite', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.inscription.label.activite',
                 'attr'      => array(
-                    'placeholder'   => 'Votre secteur d\'activité'
+                    'placeholder'   => 'doninfo.inscription.placeholder.activite',
+                    'maxlength'     => '150'
                 )
             ))
             ->add('ape', TextType::class, array(
+                'label'     => 'doninfo.inscription.label.ape',
                 'attr'      => array(
-                    'placeholder'   => 'Numéro APE'
+                    'placeholder'   => 'doninfo.inscription.placeholder.ape',
+                    'maxlength'     => '5'
                 )
             ))
             ->add('adresse', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.inscription.label.adresse',
                 'attr'      => array(
-                    'placeholder'   => 'Adresse de votre structure'
+                    'placeholder'   => 'doninfo.inscription.placeholder.adresse',
+                    'maxlength'     => '150'
                 )
             ))
             ->add('ville', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.inscription.label.ville',
                 'attr'      => array(
-                    'placeholder'   => 'Ville'
+                    'placeholder'   => 'doninfo.inscription.placeholder.ville',
+                    'maxlength'     => '80'
                 )
             ))
             ->add('codepostal', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.inscription.label.postal',
                 'attr'      => array(
-                    'placeholder'   => 'Code postal'
+                    'placeholder'   => 'doninfo.inscription.placeholder.postal',
+                    'maxlength'     => '12'
                 )
             ))
             ->add('siteweb', UrlType::class, array(
+                'label'     => 'doninfo.inscription.label.siteweb',
                 'attr'      => array(
-                    'placeholder'   => 'Site web'
+                    'placeholder'   => 'doninfo.inscription.placeholder.siteweb',
+                    'maxlength'     => '150'
                 )
             ))
             ->add('telephone', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.inscription.label.tel',
                 'attr'      => array(
-                    'placeholder'   => 'Numéro de téléphone'
+                    'placeholder'   => 'doninfo.inscription.placeholder.tel',
+                    'maxlength'     => '20'
                 )
             ))
             ->add('courriel', RepeatedType::class, array(
                 'type'      => EmailType::class,
                 'required'  => true,
-                'invalid_message'   => 'Les champs courriel doivent correspondre',
+                'invalid_message'   => 'doninfo.inscription.courriel.invalid',
                 'first_options'     => array(
+                    'label'             => 'doninfo.inscription.label.courriel',
                     'attr'              => array(
-                        'placeholder'       => 'Adresse courriel')),
+                        'placeholder'       => 'doninfo.inscription.placeholder.courriel',
+                        'maxlength'         => '150')),
                 'second_options'    => array(
+                    'label'             => 'doninfo.inscription.label.courriel_conf',
                     'attr'              => array(
-                        'placeholder'       => 'Confirmation courriel'))
+                        'placeholder'       => 'doninfo.inscription.placeholder.courriel_conf',
+                        'maxlength'         => '150'))
             ))
             ->add('nomuser', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.inscription.label.nom',
                 'attr'      => array(
-                    'placeholder'   => 'Votre nom'
+                    'placeholder'   => 'doninfo.inscription.placeholder.nom',
+                    'maxlength'     => '150'
                 )
             ))
             ->add('prenomuser', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.inscription.label.prenom',
                 'attr'      => array(
-                    'placeholder'   => 'Votre prénom'
+                    'placeholder'   => 'doninfo.inscription.placeholder.prenom',
+                    'maxlength'     => '150'
                 )
             ))
             ->add('password', RepeatedType::class, array(
                 'type'              => PasswordType::class,
                 'required'          => true,
-                'invalid_message'   => 'Les champs du mot de passe doivent correspondre',
+                'invalid_message'   => 'doninfo.inscription.pass.invalid',
                 'first_options'     => array(
+                    'label'     => 'doninfo.inscription.label.pass',
                     'attr'              => array(
-                        'placeholder'       => 'Mot de passe')),
+                        'placeholder'       => 'doninfo.inscription.placeholder.pass')),
                 'second_options'    => array(
+                    'label'     => 'doninfo.inscription.label.pass_conf',
                     'attr'              => array(
-                        'placeholder'       => 'Confirmation mot de passe'))
+                        'placeholder'       => 'doninfo.inscription.placeholder.pass_conf'))
             ))
             ->add('recaptcha', EWZRecaptchaType::class, array(
                 'label'             => false
             ))
             ->add('envoyer', SubmitType::class, array(
-                'label'       => 'Inscription'
+                'label'       => 'doninfo.inscription.label.send'
             ))
         ;
     }

@@ -4,28 +4,30 @@
 
 {% block contenu %}
       
-       {{ form_start(contactmembre) }}
+    {{ form_start(contactmembre) }}
+               
+    {% form_theme contactmembre 'DoninfoBundle:Template:formulaires.html.twig' %}
                 
-            <div class="form-contact">
+        <div class="form-contact">
                 
-                <h4>Votre structure</h4>
+            <h4>Votre structure</h4>
                 
-                {{ form_row(contactmembre.sujet, 
-                    {'attr': {'class' : 'form-control input-form-box'}}
-                )}}
-                {{ form_row(contactmembre.titre, 
-                    {'attr': {'class' : 'form-control input-form-box'}}
-                )}}
-                {{ form_row(contactmembre.message, 
-                    {'attr': {'class' : 'form-control input-form-box'}}
-                )}}
-                {{ form_row(contactmembre.recaptcha)}}
-                {{ form_row(contactmembre.envoyer, 
-                    {'attr': {'class' : 'button'}}
-                )}}
+            {{ form_row(contactmembre.sujet, 
+                {'attr': {'class' : 'form-control input-form-box'}}
+            )}}
+            {{ form_row(contactmembre.titre, 
+                {'attr': {'class' : 'form-control input-form-box'}}
+            )}}
+            {{ form_row(contactmembre.message, 
+                {'attr': {'class' : 'form-control input-form-box'}}
+            )}}
+            {{ form_row(contactmembre.recaptcha)}}
+            {{ form_row(contactmembre.envoyer, 
+                {'attr': {'class' : 'button'}}
+            )}}
                 
-            </div>
+        </div>
                 
-        {{ form_end(contactmembre) }}
+    {{ form_end(contactmembre) }}
  
 {% endblock %}

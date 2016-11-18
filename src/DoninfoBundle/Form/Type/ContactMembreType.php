@@ -21,6 +21,7 @@ class ContactMembreType extends AbstractType
         $builder
             ->add('sujet', ChoiceType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.contactm.label.sujet',
                 'choices'   => array(
                     'remarque'  => 'Remarque ou commentaire',
                     'technique' => 'Problème technique',
@@ -29,25 +30,33 @@ class ContactMembreType extends AbstractType
             ))
             ->add('titre', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.contactm.label.titre',
                 'attr'      => array(
-                    'placeholder'   => 'Veuillez donner un titre à votre message'
+                    'placeholder'   => 'doninfo.contactm.placeholder.titre',
+                    'maxlength'     => '100'
                 )
             ))
             ->add('message', TextareaType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.contactm.label.msg',
                 'attr'      => array(
-                    'placeholder'   => 'Votre message...'
+                    'placeholder'   => 'doninfo.contactm.placeholder.msg',
+                    'maxlength'     => '2000'
                 )
             ))
             ->add('numannonce', TextType::class, array(
                 'required'  => false,
+                'label'     => 'doninfo.contactm.label.num',
                 'attr'      => array(
-                    'placeholder'   => 'Veuillez indiquer le numéro de l`\annonce'
+                    'placeholder'   => 'doninfo.contactm.placeholder.num',
+                    'maxlength'     => '100'
                 )
             ))
-            ->add('recaptcha', EWZRecaptchaType::class)
+            ->add('recaptcha', EWZRecaptchaType::class,array(
+                'label'     => false
+            ))
             ->add('envoyer',      SubmitType::class, array(
-                  'label'       => 'Envoyer'
+                  'label'       => 'doninfo.contactm.label.send'
             ))
         ;
     }

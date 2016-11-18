@@ -7,6 +7,8 @@
         <div class="bloc-form">
         
         {{ form_start(inscription) }}
+              
+        {% form_theme inscription 'DoninfoBundle:Template:formulaires.html.twig' %}
                
             <div class="form-inscription-info">
                 
@@ -26,7 +28,7 @@
                 
             <div class="form-inscription">
                 
-                <h4>Votre structure</h4>
+                <h4>STRUCTURE</h4>
                 
                 {{ form_row(inscription.nomstructure, 
                     {'attr': {'class' : 'form-control input-form-box'}}
@@ -45,7 +47,7 @@
             
             <div class="form-inscription">
                 
-                <h4>Coordonées de votre structure</h4>
+                <h4>COORDONNÉES</h4>
                 
                 {{ form_row(inscription.siteweb, 
                     {'attr': {'class' : 'form-control input-form-box'}}
@@ -73,7 +75,7 @@
             
             <div class="form-inscription">  
                 
-                <h4>Représentant de la structure</h4>
+                <h4>UTILISATEUR</h4>
                 
                 {{ form_row(inscription.nomuser, 
                     {'attr': {'class' : 'form-control input-form-box'}}
@@ -86,7 +88,7 @@
             
             <div class="form-inscription bottom-inscription">
             
-                <h4>Informations de compte</h4>
+                <h4>COMPTE</h4>
                 {{ form_row(inscription.password.first, 
                     {'attr': {'class' : 'form-control input-form-box'}}
                 )}}

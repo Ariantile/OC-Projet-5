@@ -45,3 +45,99 @@ validation:
         description:
             min:        Votre description doit comporter au moins {{ limit }} caractères.
             max:        Votre description ne doit pas excéder {{ limit }} caractères.
+    user:
+        pass:
+            blank:      Veuillez indiquer un mot de passe.
+            reg:        Votre mot de passe doit contenir au moins un chiffre, une lettre et au minimum 8 caractères.
+        structure:
+            blank:      Veuillez indiquer le nom de votre structure.
+            min:        Le nom de votre structure doit comporter au moins {{ limit }} caractères.
+            max:        Le nom de votre structure ne doit pas excéder {{ limit }} caractères.
+        sirenrna:
+            blank:      Veuillez indiquer un numéro Siren / Siret / RNA.
+            min:        Votre numéro doit comporter au moins {{ limit }} caractères.
+            max:        Votre numéro ne doit pas excéder {{ limit }} caractères.
+        activite:
+            blank:      Veuillez indiquer le domaine d'activité de votre structure.
+            min:        Votre domaine d'activité doit comporter au moins {{ limit }} caractères.
+            max:        Votre domaine d'activité ne doit pas excéder {{ limit }} caractères.   
+        ape:
+            min:        Un numéro APE est composé de 4 chiffres et une lettre.
+            max:        Un numéro APE est composé de 4 chiffres et une lettre.
+        adresse:
+            blank:      Veuillez indiquer l'adresse de domiciliation votre structure.
+            min:        Votre adresse doit comporter au moins {{ limit }} caractères.
+            max:        Votre adresse ne doit pas excéder {{ limit }} caractères.
+        ville:
+            blank:      Veuillez indiquer la ville de domiciliation de votre structure.
+            min:        Votre ville doit comporter au moins {{ limit }} caractères.
+            max:        Votre ville ne doit pas excéder {{ limit }} caractères.
+        postal:
+            blank:      Veuillez indiquer le code postal de votre structure.
+            min:        Votre code postal doit comporter au moins {{ limit }} caractères.
+            max:        Votre code postal ne doit pas excéder {{ limit }} caractères.
+        siteweb:
+            url:        Format de l'adresse web invalide (http(s)://site.com)
+            max:        Votre site web ne doit pas excéder {{ limit }} caractères.
+        tel:
+            blank:      Veuillez indiquer le numéro de téléphone votre structure.
+            min:        Votre numéro de téléphone doit comporter au moins {{ limit }} caractères.
+            max:        Votre numéro de téléphone ne doit pas excéder {{ limit }} caractères.
+            reg:        Seul les chiffres sont autorisés.
+        courriel:
+            blank:      Veuillez indiquer votre adresse courriel.
+            valid:      Format de l'adresse courriel incorrect (adresse@mail.com).
+            min:        Votre adresse courriel doit comporter au moins {{ limit }} caractères.
+            max:        Votre adresse courriel ne doit pas excéder {{ limit }} caractères.
+        nom:
+            blank:      Veuillez indiquer votre nom.
+            min:        Votre nom doit comporter au moins {{ limit }} caractères.
+            max:        Votre nom ne doit pas excéder {{ limit }} caractères.
+        prenom:
+            blank:      Veuillez indiquer votre prenom.
+            min:        Votre prenom doit comporter au moins {{ limit }} caractères.
+            max:        Votre prenom ne doit pas excéder {{ limit }} caractères.
+    contactp:
+        titre:
+            blank:      Titre requis.
+            min:        Votre titre doit comporter au moins {{ limit }} caractères.
+            max:        Votre titre ne doit pas excéder {{ limit }} caractères.
+        msg:
+            blank:      Description requise.
+            min:        Votre description doit comporter au moins {{ limit }} caractères.
+            max:        Votre description ne doit pas excéder {{ limit }} caractères.
+        courriel:
+            blank:      Veuillez indiquer votre adresse courriel.
+            valid:      Format de l'adresse courriel incorrect (adresse@mail.com).
+            min:        Votre adresse courriel doit comporter au moins {{ limit }} caractères.
+            max:        Votre adresse courriel ne doit pas excéder {{ limit }} caractères.
+        nom:
+            blank:      Veuillez indiquer votre nom.
+            min:        Votre nom doit comporter au moins {{ limit }} caractères.
+            max:        Votre nom ne doit pas excéder {{ limit }} caractères.
+        prenom:
+            blank:      Veuillez indiquer votre prenom.
+            min:        Votre prenom doit comporter au moins {{ limit }} caractères.
+            max:        Votre prenom ne doit pas excéder {{ limit }} caractères.
+    contactm:
+        titre:
+            blank:      Titre requis.
+            min:        Votre titre doit comporter au moins {{ limit }} caractères.
+            max:        Votre titre ne doit pas excéder {{ limit }} caractères.
+        msg:
+            blank:      Description requise.
+            min:        Votre description doit comporter au moins {{ limit }} caractères.
+            max:        Votre description ne doit pas excéder {{ limit }} caractères.
+        num:
+            min:        Votre description doit comporter au moins {{ limit }} caractères.
+            max:        Votre description ne doit pas excéder {{ limit }} caractères.
+    contactp:
+        titre:
+            blank:      Titre requis.
+            min:        Votre titre doit comporter au moins {{ limit }} caractères.
+            max:        Votre titre ne doit pas excéder {{ limit }} caractères.
+        msg:
+            blank:      Description requise.
+            min:        Votre description doit comporter au moins {{ limit }} caractères.
+            max:        Votre description ne doit pas excéder {{ limit }} caractères.
+        

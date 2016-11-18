@@ -53,7 +53,8 @@ class ObjetType extends AbstractType
                 'label'         => 'doninfo.objet.label.description',
                 'attr'          => array(
                     'class'         => 'input-form-box form-control',
-                    'rows'          => 3
+                    'rows'          => 3,
+                    'maxlength'     => '2000'
                 )
             ))     
         ;

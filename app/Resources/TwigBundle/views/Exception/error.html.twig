@@ -1,0 +1,19 @@
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+<div class="bloc-annonce">
+    <div class="bloc-page-erreur">
+        
+        <div class="img-erreur">
+            <img src="{{ asset('bundles/doninfobundle/images/404.png') }}" alt="404" />
+        </div>
+        
+        <h1>Oops! Une erreur s'est produite</h1>
+        <h2>Le serveur a retourné une erreur "{{ status_code }} {{ status_text }}".</h2>
+        
+        <p>
+            Quelque chose semble ne plus fonctionné. Nous allons régler le problème le plus rapidement possible. Veuillez nous excuser pour la gête occasionnée.
+        </p>
+    </div>
+</div>
+{% endblock %}

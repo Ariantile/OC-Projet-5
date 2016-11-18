@@ -21,6 +21,67 @@ doninfo:
     image:
         label:
             photo:          Photo
+    inscription:
+        label:
+            structure:      Nom de votre structure
+            sirenrna:       Numéro Siren / Siret / RNA
+            activite:       Votre secteur d'activité
+            ape:            Numéro APE (facultatif)
+            adresse:        Adresse de votre structure
+            ville:          Ville
+            postal:         Code postal
+            siteweb:        Site internet (facultatif)
+            tel:            Numéro de téléphone
+            courriel:       Adresse courriel
+            courriel_conf:  Confirmation courriel
+            nom:            Nom
+            prenom:         Prénom
+            pass:           Mot de passe
+            pass_conf:      Confirmation mot du passe
+            send:           Inscription
+        placeholder:
+            structure:      Structure
+            sirenrna:       Siren / Siret / RNA
+            activite:       Secteur d'activité
+            ape:            APE
+            adresse:        Adresse structure
+            ville:          Ville
+            postal:         Code postal
+            siteweb:        URL
+            tel:            Téléphone
+            courriel:       Courriel
+            courriel_conf:  Confirmation
+            nom:            Nom
+            prenom:         Prénom
+            pass:           Mot de passe
+            pass_conf:      Confirmation
+        pass:
+            invalid:        Les champs du mot de passe doivent correspondre
+        courril:
+            invalid:        Les champs du courriel doivent correspondre
+    contactp:
+        label:
+            nom:            Votre nom
+            prenom:         Votre prénom
+            courriel:       Votre adresse courriel 
+            titre:          Choisissez un titre à votre message
+            msg:            Votre message
+            send:           Envoyer
+        placeholder:
+            nom:            Nom
+            prenom:         Prénom
+            courriel:       Courriel
+            titre:          Titre
+            msg:            Message
+    contactm:
+        label:
+            sujet:          Quel est la nature de votre demande?
+            titre:          Choisissez un titre à votre message
+            msg:            Votre message
+            num:            Le numéro de la commande concernée
+            send:           Envoyer
+        placeholder:
+            titre:          Choisissez un titre à votre message
+            msg:            Votre message
+            num:            Votre prénom
             
-    #Page du formulaire pour poster une annonce
-    

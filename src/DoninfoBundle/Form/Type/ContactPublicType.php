@@ -21,40 +21,50 @@ class ContactPublicType extends AbstractType
         $builder
             ->add('nom', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.contactp.label.nom',
                 'attr'      => array(
-                    'placeholder'   => 'Nom'
+                    'placeholder'   => 'doninfo.contactp.placeholder.nom',
+                    'maxlength'     => '150'
                 )
             ))
             ->add('prenom', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.contactp.label.prenom',
                 'attr'      => array(
-                    'placeholder'   => 'Prénom'
+                    'placeholder'   => 'doninfo.contactp.placeholder.prenom',
+                    'maxlength'     => '150'
                 )
             ))
             ->add('courriel', EmailType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.contactp.label.courriel',
                 'attr'      => array(
-                    'placeholder'   => 'Courriel'
+                    'placeholder'   => 'doninfo.contactp.placeholder.courriel',
+                    'maxlength'     => '150'
                 )
             ))
             ->add('titre', TextType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.contactp.label.titre',
                 'attr'      => array(
-                    'placeholder'   => 'Veuillez donner un titre à votre message'
+                    'placeholder'   => 'doninfo.contactp.placeholder.titre',
+                    'maxlength'     => '100'
                 )
             ))
             ->add('message', TextareaType::class, array(
                 'required'  => true,
+                'label'     => 'doninfo.contactp.label.msg',
                 'attr'      => array(
-                    'placeholder'   => 'Votre message...',
-                    'rows'          => 3
+                    'placeholder'   => 'doninfo.contactp.placeholder.msg',
+                    'rows'          => 3,
+                    'maxlength'     => '2000'
                 )
             ))
             ->add('recaptcha', EWZRecaptchaType::class, array(
                 'label'     => false
             ))
             ->add('envoyer',      SubmitType::class, array(
-                  'label'       => 'Envoyer'    
+                  'label'       => 'doninfo.contactp.label.send'    
             ))
         ;
     }

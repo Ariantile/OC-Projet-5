@@ -34,6 +34,15 @@ class ContactMembre
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.contactm.titre.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 100,
+     *      minMessage = "validation.contactm.titre.min",
+     *      maxMessage = "validation.contactm.titre.max"
+     * )
+     *
      */
     private $titre;
 
@@ -41,6 +50,15 @@ class ContactMembre
      * @var string
      *
      * @ORM\Column(name="message", type="text")
+     *
+     * @Assert\NotBlank(message = "validation.contactm.msg.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 2000,
+     *      minMessage = "validation.contactm.msg.min",
+     *      maxMessage = "validation.contactm.msg.max"
+     * )
+     *
      */
     private $message;
 
@@ -55,6 +73,14 @@ class ContactMembre
      * @var string
      *
      * @ORM\Column(name="numannonce", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 100,
+     *      minMessage = "validation.contactm.num.min",
+     *      maxMessage = "validation.contactm.num.max"
+     * )
+     *
      */
     private $numannonce;
     

@@ -27,6 +27,15 @@ class ContactPublic
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.contactp.titre.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 100,
+     *      minMessage = "validation.contactp.titre.min",
+     *      maxMessage = "validation.contactp.titre.max"
+     * )
+     *
      */
     private $titre;
 
@@ -34,6 +43,15 @@ class ContactPublic
      * @var string
      *
      * @ORM\Column(name="message", type="text")
+     *
+     * @Assert\NotBlank(message = "validation.contactp.msg.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 2000,
+     *      minMessage = "validation.contactp.msg.min",
+     *      maxMessage = "validation.contactp.msg.max"
+     * )
+     *
      */
     private $message;
 
@@ -41,6 +59,15 @@ class ContactPublic
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.contactp.nom.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 150,
+     *      minMessage = "validation.contactp.nom.min",
+     *      maxMessage = "validation.contactp.nom.max"
+     * )
+     *
      */
     private $nom;
 
@@ -48,6 +75,15 @@ class ContactPublic
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.contactp.prenom.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 150,
+     *      minMessage = "validation.contactp.prenom.min",
+     *      maxMessage = "validation.contactp.prenom.max"
+     * )
+     *
      */
     private $prenom;
 
@@ -55,6 +91,18 @@ class ContactPublic
      * @var string
      *
      * @ORM\Column(name="courriel", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.contactp.courriel.blank")
+     * @Assert\Email(
+     *     message = "validation.contactp.courriel.valid",
+     *     checkMX = true
+     * )
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 150,
+     *      minMessage = "validation.contactp.courriel.min",
+     *      maxMessage = "validation.contactp.courriel.max",
+     * )
      */
     private $courriel;
     

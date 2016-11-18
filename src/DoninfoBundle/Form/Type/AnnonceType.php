@@ -37,7 +37,8 @@ class AnnonceType extends AbstractType
                 'label'         => false,
                 'attr'          => array(
                     'placeholder'   => 'doninfo.annonce.placeholder.description',
-                    'rows'          => 10
+                    'rows'          => 10,
+                    'maxlength'     => '2000'
                 )
             ))
             ->add('datelimite', DateType::class, array(
@@ -56,6 +57,7 @@ class AnnonceType extends AbstractType
                 'label'         => false,
                 'attr'          => array(
                     'placeholder'   => 'doninfo.annonce.placeholder.adresse',
+                    'maxlength'     => '100'
                 )
             ))
             ->add('ville', TextType::class, array(
@@ -63,6 +65,7 @@ class AnnonceType extends AbstractType
                 'label'         => false,
                 'attr'          => array(
                     'placeholder'   => 'doninfo.annonce.placeholder.ville',
+                    'maxlength'     => '80'
                 )
             ))
             ->add('codepostal', TextType::class, array(
@@ -70,6 +73,7 @@ class AnnonceType extends AbstractType
                 'label'         => false,
                 'attr'          => array(
                     'placeholder'   => 'doninfo.annonce.placeholder.postal',
+                    'maxlength'     => '12'
                 )
             ))
             ->add('images', CollectionType::class, array(

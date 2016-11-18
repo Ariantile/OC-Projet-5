@@ -4,6 +4,7 @@ namespace DoninfoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
@@ -30,6 +31,17 @@ class User implements AdvancedUserInterface
 
     /**
      * @ORM\Column(name="password", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.user.pass.blank")
+     * @Assert\Length(
+     *      min = 8,
+     *      minMessage = "validation.user.pass.reg",
+     * )
+     * @Assert\Regex(
+     *     pattern= "/^(?=.*[A-z])(?=.*[0-9])(?=.{8,})/",
+     *     message= "validation.user.pass.reg",
+     * )
+     *
      */
     private $password;
 
@@ -54,6 +66,14 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="nomstructure", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.user.structure.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 150,
+     *      minMessage = "validation.user.structure.min",
+     *      maxMessage = "validation.user.structure.max",
+     * )
      */
     private $nomstructure;
 
@@ -61,6 +81,7 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="typestructure", type="string", length=255)
+     *
      */
     private $typestructure;
 
@@ -68,6 +89,14 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="sirenrna", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.user.sirenrna.blank")
+     * @Assert\Length(
+     *      min = 9,
+     *      max = 14,
+     *      minMessage = "validation.user.sirenrna.min",
+     *      maxMessage = "validation.user.sirenrna.max",
+     * )
      */
     private $sirenrna;
 
@@ -75,6 +104,14 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="activite", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.user.activite.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 150,
+     *      minMessage = "validation.user.activite.min",
+     *      maxMessage = "validation.user.activite.max",
+     * )
      */
     private $activite;
 
@@ -82,6 +119,13 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="ape", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 5,
+     *      minMessage = "validation.user.ape.max",
+     *      maxMessage = "validation.user.ape.max",
+     * )
      */
     private $ape;
 
@@ -89,6 +133,14 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.user.adresse.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 150,
+     *      minMessage = "validation.user.adresse.min",
+     *      maxMessage = "validation.user.adresse.max",
+     * )
      */
     private $adresse;
 
@@ -96,6 +148,14 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.user.ville.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 80,
+     *      minMessage = "validation.user.ville.min",
+     *      maxMessage = "validation.user.ville.max",
+     * )
      */
     private $ville;
 
@@ -103,6 +163,14 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="codepostal", type="string", length=12)
+     *
+     * @Assert\NotBlank(message = "validation.user.postal.blank")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 12,
+     *      minMessage = "validation.user.postal.min",
+     *      maxMessage = "validation.user.postal.max",
+     * )
      */
     private $codepostal;
 
@@ -110,6 +178,14 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="siteweb", type="string", length=255, nullable=true)
+     *
+     * @Assert\Url(
+     *    message = "validation.user.siteweb.url",
+     * )
+     * @Assert\Length(
+     *      max = 150,
+     *      maxMessage = "validation.user.siteweb.max",
+     * )
      */
     private $siteweb;
 
@@ -117,13 +193,37 @@ class User implements AdvancedUserInterface
      * @var int
      *
      * @ORM\Column(name="telephone", type="integer")
+     *
+     * @Assert\NotBlank(message = "validation.user.tel.blank")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 20,
+     *      minMessage = "validation.user.tel.min",
+     *      maxMessage = "validation.user.tel.max",
+     * )
+     * @Assert\Regex(
+     *     pattern= "/^[0-9]*$/",
+     *     message= "validation.user.tel.reg",
+     * )
      */
     private $telephone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="courriel", type="string", length=255)
+     * @ORM\Column(name="courriel", type="string", length=255, unique=true)
+     *
+     * @Assert\NotBlank(message = "validation.user.courriel.blank")
+     * @Assert\Email(
+     *     message = "validation.user.courriel.valid",
+     *     checkMX = true
+     * )
+    * @Assert\Length(
+     *      min = 4,
+     *      max = 150,
+     *      minMessage = "validation.user.courriel.min",
+     *      maxMessage = "validation.user.courriel.max",
+     * )
      */
     private $courriel;
 
@@ -131,6 +231,14 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="nomuser", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.user.nom.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 150,
+     *      minMessage = "validation.user.nom.min",
+     *      maxMessage = "validation.user.nom.max",
+     * )
      */
     private $nomuser;
 
@@ -138,6 +246,14 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="prenomuser", type="string", length=255)
+     *
+     * @Assert\NotBlank(message = "validation.user.prenom.blank")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 150,
+     *      minMessage = "validation.user.prenom.min",
+     *      maxMessage = "validation.user.prenom.max",
+     * )
      */
     private $prenomuser;
     

@@ -1,0 +1,23 @@
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block erreur %}
+<div class="bloc-annonce">
+    <div class="bloc-page-erreur">
+        
+        <div class="img-erreur">
+            <img src="{{ asset('bundles/doninfobundle/images/404.png') }}" alt="404" />
+        </div>
+        
+        <h1>Oops! Une erreur s'est produite</h1>
+        <h2>Le serveur a retourné une erreur "{{ status_code }} {{ status_text }}".</h2>
+
+        <p>
+            La page demandée n'a pas pu être trouvée. Veuillez vérifier l'URL ou 
+            <a href="{{ url('doninfo_acceuil') }}">cliquez ici </a>pour revenir à la page d'accueil.
+        </p>
+
+    </div>
+</div>       
+
+    
+{% endblock %}
