@@ -2,6 +2,9 @@
 
 namespace DoninfoBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+
 /**
  * AnnonceRepository
  *
@@ -10,5 +13,27 @@ namespace DoninfoBundle\Repository;
  */
 class AnnonceRepository extends \Doctrine\ORM\EntityRepository
 {
-    
+    public function getAnnonce ($id)
+    {
+        $qb = $this
+            ->createQueryBuilder('a')
+            ->leftJoin('a.images', 'img')
+            ->leftJoin('a.objets', 'obj')
+            ->leftJoin('a.messages', 'msg')
+            ->leftJoin('a.user', 'use')
+            ->leftJoin('a.departement', 'dep')
+            ->leftJoin('obj.categorie', 'cat')
+            ->addSelect('img')
+            ->addSelect('obj')
+            ->addSelect('msg')
+            ->addSelect('use')
+            ->addSelect('dep')
+            ->addSelect('cat')
+            ->where('a.id = :id')
+                ->setParameter('id', $id);
+
+        return $qb
+            ->getQuery()
+            ->getSingleResult();
+    }
 }

@@ -17,7 +17,7 @@ use DoninfoBundle\Form\Type\ObjetType;
 use DoninfoBundle\Form\Type\ImageType;
 
 class AnnonceType extends AbstractType
-{
+{    
     /**
      * {@inheritdoc}
      */
@@ -73,7 +73,7 @@ class AnnonceType extends AbstractType
                 'label'         => false,
                 'attr'          => array(
                     'placeholder'   => 'doninfo.annonce.placeholder.postal',
-                    'maxlength'     => '12'
+                    'maxlength'     => '5'
                 )
             ))
             ->add('images', CollectionType::class, array(

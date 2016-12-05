@@ -38,13 +38,6 @@ class Recherche
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=255)
-     */
-    private $region;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="departement", type="string", length=255)
      */
     private $departement;
@@ -113,30 +106,6 @@ class Recherche
     public function getMotcle()
     {
         return $this->motcle;
-    }
-
-    /**
-     * Set region
-     *
-     * @param string $region
-     *
-     * @return Recherche
-     */
-    public function setRegion($region)
-    {
-        $this->region = $region;
-
-        return $this;
-    }
-
-    /**
-     * Get region
-     *
-     * @return string
-     */
-    public function getRegion()
-    {
-        return $this->region;
     }
 
     /**

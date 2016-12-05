@@ -5,133 +5,37 @@
 {% block contenu %}
         
     <div class="bloc-form">
+       
+        <div class="form-post-info">
+                
+            <h4>Poster un 
+                {% if app.user.typestructure == 'Entreprise' %}
+                    don 
+                {% endif %}
+                {% if app.user.typestructure == 'Association' %}
+                    besoin
+                {% endif %}
+                
+            </h4>
+                
+            <p>
+                Si vous souhaitez
+                    
+                {% if app.user.typestructure == 'Entreprise' %}
+                    poster un don,
+                {% endif %}
+                {% if app.user.typestructure == 'Association' %}
+                    poster un besoin,
+                {% endif %}
+                    
+                veuillez remplir le formulaire ci-dessous pour poster votre 
+                annonce
+            </p>
+                
+        </div>
+            
+        {{ include("DoninfoBundle:Site:formannonce.html.twig") }}   
         
-        {{ form_start(annonce) }}
-              
-        {% form_theme annonce 'DoninfoBundle:Template:formulaires.html.twig' %}
-               
-            <div class="form-post-info">
-                
-                <h4>Poster un don ou un besoin</h4>
-                
-                <p>
-                    Si vous souhaitez proposer un don ou répondre à un besoin, 
-                    veuillez remplir le formulaire ci-dessous pour poster votre 
-                    annonce
-                </p>
-                
-            </div>
-                
-            <div class="form-post">
-                
-                <h4>Titre</h4>
-                
-                <p>
-                    Veuillez choisir un titre pour votre annonce. Celui-ci doit refléter au mieux la nature de votre besoin ou le contenu de votre donation. Soyez bref et choisissez les bon mots clés.
-                </p>
-                
-                {{ form_row(annonce.titre, 
-                    {'attr': {'class' : 'form-control input-form-box'}}
-                )}}
-                
-                <h4>Description</h4>
-                
-                <p>
-                    Veuillez décrire le contenu de votre annonce le plus clairement possible. Votre description doit être détaillée mais suffisament courte pour ne pas rebuter les futurs lecteurs.
-                </p>
-                
-                {{ form_row(annonce.description, 
-                    {'attr': {'class' : 'form-control input-form-box'}}
-                )}}
-                
-                <h4>Date limite (facultatif)</h4>
-                
-                <p>
-                    Si vous le souhaitez, vous pouvez indiquer une date limite de validité pour votre annonce. Celle-ci est facultative.
-                </p>
-                
-                {{ form_row(annonce.datelimite, 
-                    {'attr': {'class' : 'form-control input-form-box datelimite'}}
-                )}}
-            </div>
-            
-            <div class="form-post">
-                
-                <h4>Adresse d'enlèvement</h4>
-                
-                <p>
-                    Veuillez indiquer l'adresse à laquelle votre donation pourra être retiré par le futur donataire. Les champs ont été pré-remplis avec l'adresse fournie lors de votre inscription. Si l'adresse d'enlèvement est différente, veuillez modifier les champs avec les bonnes informations.
-                </p>
-                
-                <div class="bloc-adresse">
-                    {{ form_row(annonce.adresse, 
-                        {'attr': {'class' : 'form-control input-form-box adresse-input'},
-                         'value': app.user.adresse
-                        }
-                    )}}
-                    {{ form_row(annonce.ville, 
-                        {'attr': {'class' : 'form-control input-form-box ville-input'},
-                         'value': app.user.ville
-                        }
-                    )}}
-                    {{ form_row(annonce.codepostal, 
-                        {'attr': {'class' : 'form-control input-form-box codepostal-input'},
-                         'value': app.user.codepostal
-                        }
-                    )}}
-                </div>
-                
-            </div>
-            
-            <div class="form-post">
-                
-                <h4>Photos (facultatif)</h4>
-                
-                <p>
-                    Vous avez la possibilité de joindre trois photos à votre annonce. L'ajout de photo(s) est facultatif mais recommandé pour une meilleur appréciation par les futurs lecteurs.
-                </p>
-                                
-                {{ form_row(annonce.images,
-                    {'attr': {'class' : 'bloc-photo-container row'}}
-                )}}         
-                
-                <div class="liste-fichier">
-                    <p class="chemin-photo doninfobundle_annonce_images_0_file">Aucune image selectionnée</p>
-                    <p class="chemin-photo doninfobundle_annonce_images_1_file">Aucune image selectionnée</p>
-                    <p class="chemin-photo doninfobundle_annonce_images_2_file">Aucune image selectionnée</p>    
-                </div>
-                
-            </div>
-            
-            {% if app.user.typestructure == 'Entreprise' %}
-            
-            <div class="form-post">
-               
-                <h4>Contenu de la donation</h4>
-                <p>
-                    Pour chaque type de matériel donné, veuillez préciser le type, l'état et la quantité. Si vous le souhaitez, vous pouvez également donner une description plus précise par type de matériel.  
-                </p>
-                
-                <div class="bloc-objet-post">
-                    {{ form_row(annonce.objets)}}
-                    <div class="bloc-button">
-                        <button id="addObjet" class="button-add"><i class="glyphicon glyphicon-plus"></i></button>
-                    </div>
-                </div>
-                
-                <div class="form-group has-feedback button-container bt-send-annonce">
-                    {{ form_row(annonce.envoyer, 
-                        {'attr': {'class' : 'button form-control'}}
-                    )}}
-                    <i class="glyphicon glyphicon-chevron-right form-control-feedback button-icon"></i>
-                </div>
-                
-            </div>    
-            
-            {% endif %}
-            
-            {{ form_row(annonce.recaptcha)}}
-            
-        {{ form_end(annonce) }}
     </div>
+    
 {% endblock %}

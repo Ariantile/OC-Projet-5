@@ -43,6 +43,33 @@ class DoninfoSendMail
             
         $this->mailer->send($mail);
     }
+    
+    /**
+     * Génération et envoi de mail en cas de message
+     *
+     */
+    public function sendMailMessage($courriel, $message)
+    {
+        $image = $this->container->get('kernel')->getRootDir().'/../web/bundles/doninfobundle/images/logo.png';
+        
+        $mail = \Swift_Message::newInstance();
+            
+        $logo = $mail->embed(\Swift_Image::fromPath($image));
+            
+        $mail->setSubject('Don Info - Activation de compte')
+             ->setFrom('activation@doninfo.com')
+             ->setTo($courriel)
+             ->setBody(
+                    $this->twig->render(
+                        'DoninfoBundle:Mail:activationcourriel.html.twig',
+                        array('courriel' => $courriel, 'logo' => $logo, 'messsage' => $message)
+                    ),
+                    'text/html'
+                );
+            
+        $this->mailer->send($mail);
+    }
+    
     /*
     public function sendContact($courriel, $titre, $message, $nom)
     {

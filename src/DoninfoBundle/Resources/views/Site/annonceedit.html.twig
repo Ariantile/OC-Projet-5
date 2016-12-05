@@ -1,0 +1,23 @@
+{# src/DoninfoBundle/Resources/views/Site/postannonce.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+        
+    <div class="bloc-form">
+       
+        <div class="form-post-info">
+                
+            <h4>Editez votre annonce</h4>
+                
+            <p>
+                Si vous souhaitez apporter des modifications à votre annonce, veuillez editer le formulaire ci-dessous.
+            </p>
+                
+        </div>
+            
+        {{ include("DoninfoBundle:Site:formannonce.html.twig") }}   
+        
+    </div>
+    
+{% endblock %}

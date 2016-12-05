@@ -19,7 +19,7 @@ class ImageType extends AbstractType
             ->add('file', FileType::class, array(
                 'required'      => false,
                 'label'         => 'doninfo.image.label.photo',
-                'by_reference'  => false
+                'by_reference'  => false,
             ))
         ;
     }

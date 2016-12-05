@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -73,10 +74,11 @@ class InscriptionType extends AbstractType
                 'label'     => 'doninfo.inscription.label.postal',
                 'attr'      => array(
                     'placeholder'   => 'doninfo.inscription.placeholder.postal',
-                    'maxlength'     => '12'
+                    'maxlength'     => '5'
                 )
             ))
             ->add('siteweb', UrlType::class, array(
+                'required'  => false,
                 'label'     => 'doninfo.inscription.label.siteweb',
                 'attr'      => array(
                     'placeholder'   => 'doninfo.inscription.placeholder.siteweb',
@@ -120,6 +122,15 @@ class InscriptionType extends AbstractType
                 'attr'      => array(
                     'placeholder'   => 'doninfo.inscription.placeholder.prenom',
                     'maxlength'     => '150'
+                )
+            ))
+            ->add('typestructure', ChoiceType::class, array(
+                'required'      => true,
+                'label'         => 'doninfo.inscription.label.type',
+                'placeholder'   => '',
+                'choices'       => array(
+                    'Entreprise'    => 'Entreprise',
+                    'Association'   => 'Association',
                 )
             ))
             ->add('password', RepeatedType::class, array(

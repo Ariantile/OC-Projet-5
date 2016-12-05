@@ -4,14 +4,24 @@
 
 {% block contenu %}
     
-    <div class="lien-retour"></div>
-    
     <div class="bloc-annonce">
        
+        {% for flashMessage in app.session.flashbag.get('message') %}
+            <div class="flash-messages-annonce">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+       
         <div class="bloc-annonce-titre">
-            <h1>
+            <h1 class="col-xs-12">
                 {{ annonce.titre }}
             </h1>
+            <h4 class="col-xs-12">
+                N° : {{ annonce.numero }}
+                {% if app.user.id == annonce.user.id %}
+                -  <a href="{{ path('doninfo_annonce_edit', { 'id': annonce.id }) }}" class="lien-edit">EDITER</a>
+                {% endif %}
+            </h4>
         </div>
             
         <div class="bloc-annonce-etiquettes">
@@ -21,45 +31,131 @@
                 </span>         
             {% endfor %}  
         </div>
-
-        <div class="container container-info-desc">
-            <div class="row">
-               
-                <div class="bloc-annonce-description col-sm-7"> 
-                    <p>{{ annonce.description }}</p>
-                </div>
-
-                <div class="bloc-annonce-info col-sm-offset-1 col-sm-4">
-                   
-                    <div class="bloc-annonce-info-owner">
-                        <h4>Numéro d'annonce</h4>
-                        <div>{{ annonce.numero }}</div>
-                        <h4>Annonce publiée par</h4>   
-                        <div>{{ nom }}</div>
-                        <h4>Contacter l'auteur</h4> 
-                        <div>{{ courriel }}</div>
-                    </div>
-
-                    <div class="bloc-annonce-info-type">
-                        <h4>Type d'annonce</h4>
-                        <div>{{ annonce.type }}</div> 
-                        <h4>Statut de l'annonce</h4>
-                        <div>{{ annonce.statut }}</div>
-                        <h4>Publiée le</h4>
-                        <div>{{ annonce.datecreation|date("d/m/Y") }}</div>
-                        <h4>Expire le</h4>
-                        <div>{{ annonce.datelimite|date("d/m/Y") }}</div>
-                    </div>        
-
-                    <div class="bloc-annonce-adresse">
-                        <h4>Ville</h4>
-                        <div>{{ annonce.ville }}</div>
-                        <h4>Code postal</h4>
-                        <div>{{ annonce.codepostal }}</div>
-                    </div>
-
-                </div>
+        
+        <div class="bloc-annonce-info-type row">
+            <div class="type-1 col-sm-3 col-xs-6">
+                <h4>Type</h4>
+                <div>{{ annonce.type }}</div> 
+            </div>
+            <div class="type-2 col-sm-3 col-xs-6">
+                <h4>Statut</h4>
+                <div>{{ annonce.statut }}</div>
+            </div>
+            <div class="type-3 col-sm-3 col-xs-6">
+                <h4>Publiée le</h4>
+                <div>{{ annonce.datecreation|date("d/m/Y") }}</div>
+            </div>
+            <div class="type-4 col-sm-3 col-xs-6">
+                <h4>Expire le</h4>
                 
+                {% if annonce.datelimite == null %}
+                    <div>
+                        NC
+                    </div>
+                {% endif %}
+                
+                {% if annonce.datelimite != null %}
+                    <div>
+                        {{ annonce.datelimite|date("d/m/Y") }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>  
+        
+        <div class="row container-info-desc">
+
+            <div class="bloc-annonce-description col-sm-7"> 
+                <p>{{ annonce.description }}</p>
+            </div>
+
+            <div class="bloc-annonce-info col-sm-offset-1 col-sm-4">
+                    
+                <div class="bloc-annonce-info-owner">
+                    <h4>Auteur</h4>   
+                    <div>
+                        <a href="#"> {{ nom }} </a>
+                    </div>
+                    <h4>Localisation</h4>
+                    <div>{{ departement }}</div>
+                    <div>{{ annonce.ville }}</div>              
+                </div>
+                    
+                {% if formfav is defined %}
+                
+                <div class="bloc-annonce-favoris">
+                    
+                    {% if formfav.ajouter is defined %}
+                       
+                        <h4>Favoris</h4>
+                        
+                        {{ form_start(formfav, 
+                            {'attr' : {'class' : ''}}
+                        )}}
+                            
+                        <div class="button-fav-add">
+                            {{ form_row(formfav.ajouter, 
+                                {
+                                    'attr': {'class' : 'button-msg form-control glyphicon glyphicon-star'},
+                                    'label': ' ',
+                                }
+                            )}}
+                        </div>
+                            
+                        {{ form_end(formfav) }}
+                        
+                    {% endif %}
+                        
+                    {% if formfav.retirer is defined %}
+                       
+                        <h4>Favoris</h4>
+                        
+                        {{ form_start(formfav, 
+                            {'attr' : {'class' : ''}}
+                        )}}
+                            
+                        <div class="button-fav-del">
+                            {{ form_row(formfav.retirer, 
+                                {
+                                    'attr': {'class' : 'button-msg form-control glyphicon glyphicon-star'},
+                                    'label': ' ',
+                                }
+                            )}}
+                        </div>
+
+                        {{ form_end(formfav) }}
+                        
+                    {% endif %}   
+                </div> 
+                   
+                {% endif %}
+                    
+                <div class="bloc-annonce-message">
+                        
+                    <h4>Contacter l'auteur</h4> 
+                        
+                    {{ form_start(message, 
+                        {'attr' : {'class' : 'form-message'}}
+                    )}}
+                          
+                    {% form_theme message 'DoninfoBundle:Template:formulaires.html.twig' %}
+                           
+                        {{ form_row(message.titre, 
+                            {'attr': {'class' : 'form-control input-form-box'}}
+                        )}}
+                            
+                        {{ form_row(message.contenumessage, 
+                            {'attr': {'class' : 'form-control input-form-box'}}
+                        )}}
+                            
+                        <div class="button-msg-container">
+                            {{ form_row(message.envoyer, 
+                                {'attr': {'class' : 'button-msg form-control'}}
+                            )}}
+                        </div>
+                            
+                    {{ form_end(message) }}
+
+                </div>     
             </div>
         </div>
 
@@ -124,7 +220,7 @@
                 <div class="item active">
                    
                     {% if images[0] is defined %}
-                        <img src="{{ asset(images[0].webPath) }}" alt="image.alt" class="img-responsive"/>
+                        <img src="{{ asset(images[0].webPath) }}" alt="{{ images[0].alt }}" class="img-responsive"/>
                     {% endif %}
                     
                     {% if images[0] is not defined %}
@@ -136,7 +232,7 @@
                 {% for image in images[1:] %}
                    
                     <div class="item">
-                        <img src="{{ asset(image.webPath) }}" alt="image.alt" class="img-responsive"/>
+                        <img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}" class="img-responsive"/>
                     </div>
                 
                 {% endfor %}

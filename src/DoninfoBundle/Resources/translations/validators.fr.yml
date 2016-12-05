@@ -32,12 +32,12 @@ validation:
     message:
         titre:
             blank:      Titre requis.
-            min:        Votre titre doit comporter au moins {{ limit }} caractères.
-            max:        Votre titre ne doit pas excéder {{ limit }} caractères.
+            min:        Au moins {{ limit }} caractères requis.
+            max:        Maximum de {{ limit }} caractères dépassé.
         contenu:
-            blank:      Titre requis.
-            min:        Votre titre doit comporter au moins {{ limit }} caractères.
-            max:        Votre titre ne doit pas excéder {{ limit }} caractères.    
+            blank:      Description requise.
+            min:        Au moins {{ limit }} caractères requis.
+            max:        Maximum de {{ limit }} caractères dépassé. 
     objet:
         qte:
             blank:      La quantité ne peut être nulle.
@@ -88,7 +88,7 @@ validation:
             blank:      Veuillez indiquer votre adresse courriel.
             valid:      Format de l'adresse courriel incorrect (adresse@mail.com).
             min:        Votre adresse courriel doit comporter au moins {{ limit }} caractères.
-            max:        Votre adresse courriel ne doit pas excéder {{ limit }} caractères.
+            max:        Votre adresse courriel ne doit pas excéder {{ limit }} caractères. 
         nom:
             blank:      Veuillez indiquer votre nom.
             min:        Votre nom doit comporter au moins {{ limit }} caractères.

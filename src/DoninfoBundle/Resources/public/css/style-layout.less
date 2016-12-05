@@ -30,6 +30,58 @@
 ---------------------- POLICE --------------------------------------------
 ------------------------------------------------------------------------*/
 
+@font-face 
+{
+    font-family: 'open_sansbold_italic';
+    src: url('../fonts/opensansbold/OpenSans-BoldItalic-webfont.eot');
+    src: url('../fonts/opensansbold/OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/opensansbold/OpenSans-BoldItalic-webfont.woff') format('woff'),
+         url('../fonts/opensansbold/OpenSans-BoldItalic-webfont.ttf') format('truetype'),
+         url('../fonts/opensansbold/OpenSans-BoldItalic-webfont.svg#open_sansbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face 
+{
+    font-family: 'open_sansbold';
+    src: url('../fonts/opensansbold/OpenSans-Bold-webfont.eot');
+    src: url('../fonts/opensansbold/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/opensansbold/OpenSans-Bold-webfont.woff') format('woff'),
+         url('../fonts/opensansbold/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('../fonts/opensansbold/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face 
+{
+    font-family: 'open_sansitalic';
+    src: url('../fonts/opensans/OpenSans-Italic-webfont.eot');
+    src: url('../fonts/opensans/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/opensans/OpenSans-Italic-webfont.woff') format('woff'),
+         url('../fonts/opensans/OpenSans-Italic-webfont.ttf') format('truetype'),
+         url('../fonts/opensans/OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face 
+{
+    font-family: 'open_sansregular';
+    src: url('../fonts/opensans/OpenSans-Regular-webfont.eot');
+    src: url('../fonts/opensans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/opensans/OpenSans-Regular-webfont.woff') format('woff'),
+         url('../fonts/opensans/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/opensans/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
 body
 {
     font-family: Source Sans Pro;
@@ -37,14 +89,26 @@ body
 
 p
 {
+    font-family: 'open_sansitalic', Arial, serif;
     text-align: justify;
     font-size: 1em;
 }
 
-a, h1, h2, h3, h4
+a, h1, h2, h3,
 {
     font-family: Lato;
     font-weight: bold;
+}
+
+h4
+{
+    font-family: 'open_sansregular', Arial, serif;
+    font-size: 1.8em;
+}
+
+label
+{
+    font-family: 'open_sansitalic', Arial, serif;
 }
 
 /*------------------------------------------------------------------------
@@ -58,6 +122,7 @@ a, h1, h2, h3, h4
     button
     {
         border-radius: 0px!important;
+        font-style: italic;
     }
     input
     {
@@ -243,14 +308,68 @@ footer
     padding: 15px;
     background-color: @background-flash;
     color: @text-flash;
+    text-align: center;
 }
 
 .bloc-erreurs
 {
     width: 100%;
     color: @text-erreurs;
-    font-size: 1.2em;
+    font-size: 1em;
     font-style: italic;
     display: block!important;
 }
+
+.error
+{
+    border: 1px solid @text-erreurs!important;
+}
+
+.bloc-page-erreur
+{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin-top: 10%;
+    margin-bottom: 10%;
+
+    h1
+    {
+        margin-top: 0px;
+        margin-bottom: 20px;
+        color: #9B9CC9;
+        border-bottom: 1px solid rgba(183, 184, 238, 0.7);
+        border-top: 1px solid rgba(183, 184, 238, 0.7);
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        text-align: center;
+    }
+    
+    h2
+    {
+        margin-top: 0px;
+        margin-bottom: 20px;
+        color: #4E4F66;
+        text-align: center;
+    }
+    
+    p 
+    {
+        text-align: center;
+        color: #4E4F66;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    .img-erreur 
+    {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 

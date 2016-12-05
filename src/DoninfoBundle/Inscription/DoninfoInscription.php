@@ -25,7 +25,6 @@ class DoninfoInscription
         $em = $this->doctrine->getManager();
         $date = new \DateTime('now');
         
-        $user->setTypestructure('Entreprise');
         $user->setStatut('Inscrit');
         $user->setDateinscription($date);
         $user->setUsername($user->getCourriel());

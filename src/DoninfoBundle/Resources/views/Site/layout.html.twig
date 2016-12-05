@@ -41,19 +41,13 @@
 	                <div class="collapse navbar-collapse navbar-ex1-collapse">
 		                <ul class="nav navbar-nav">
                             {% if is_granted('ROLE_USER') %}
-                                <li><a href="{{ path('doninfo_index_demandes') }}" class="liens lien1">Besoins</a></li>
+                                <li><a href="{{ path('doninfo_index_besoins') }}" class="liens lien1">Besoins</a></li>
                                 <li><a href="{{ path('doninfo_index_donations') }}" class="liens lien2">Donations</a></li>
                                 <li><a href="{{ path('doninfo_post') }}" class="liens lien3">Poster</a></li>
                             {% endif %}
 		                </ul>
-		                <form class="navbar-form navbar-left" role="search">
-			                <div class="form-group">
-				                <input type="text" class="form-control" placeholder="Recherche...">
-			                </div>
-			                <button type="submit" class="btn btn-default btn-recherche">Chercher</button>
-		                </form>
 		                <ul class="nav navbar-nav navbar-right">
-			                <li><a href="#" class="liens">Link</a></li>
+			                <li><a href="#" class="liens">Contact membre</a></li>
 			                <li class="dropdown">
 				                <a href="#" class="dropdown-toggle liens" data-toggle="dropdown">
 				                    <span class="glyphicon glyphicon-user"></span> Compte</b>

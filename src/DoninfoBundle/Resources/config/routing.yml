@@ -59,20 +59,25 @@ doninfo_annonce:
     path:       /annonce/{id}
     defaults:
         _controller:    DoninfoBundle:Site:annonce
+    requirements:
+        id: \d+
         
-doninfo_list_don:
-    path:  /don/list/{page}
-    defaults: { _controller: DoninfoBundle:Site:list, page: 1 }
+doninfo_annonce_edit:
+    path:       /annonce/edit/{id}
+    defaults:
+        _controller:    DoninfoBundle:Site:editAnnonce
+    requirements:
+        id: \d+
     
 doninfo_index_donations:
     path:       /donations
     defaults:
         _controller:    DoninfoBundle:Site:donations
         
-doninfo_index_demandes:
+doninfo_index_besoins:
     path:       /besoins
     defaults:
-        _controller:    DoninfoBundle:Site:demandes
+        _controller:    DoninfoBundle:Site:besoins
         
 doninfo_tuto:
     path:       /tutoriel
@@ -87,18 +92,13 @@ doninfo_contact_membre:
 #Espace membre
 
 doninfo_membre:
-    path:       /membre/{id}
+    path:       /membre/
     defaults:
         _controller:    DoninfoBundle:Site:membre
-    requirements:
-        id: \d+
         
-doninfo_membre_informations:
-    path:       /membre/{id}/informations
-    defaults:
-        _controller:    DoninfoBundle:Site:infomembre
-        
-doninfo_membre_suivi:
+doninfo_membre_favoris:
     path:       /membre/{id}/suivi
     defaults:
-        _controller:    DoninfoBundle:Site:suivi
+        _controller:    DoninfoBundle:Site:favoris
+    requirements:
+        id: \d+

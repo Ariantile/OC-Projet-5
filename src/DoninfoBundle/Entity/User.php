@@ -6,15 +6,26 @@ use Doctrine\ORM\Mapping as ORM;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use DoninfoBundle\Validator\Codepostal;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="DoninfoBundle\Repository\UserRepository")
+ *
+ * @UniqueEntity(fields="courriel", message="Un compte existe déjà avec l'adresse courriel choisie.")
+ *
  */
 class User implements AdvancedUserInterface
-{
+{ 
+    /**
+     * @ORM\OneToMany(targetEntity="DoninfoBundle\Entity\Favoris", mappedBy="user", cascade={"persist", "remove"})
+     * @Assert\Valid()
+     */
+    private $favoris;
+    
     /**
      * @var int
      *
@@ -162,15 +173,16 @@ class User implements AdvancedUserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="codepostal", type="string", length=12)
+     * @ORM\Column(name="codepostal", type="string", length=5)
      *
      * @Assert\NotBlank(message = "validation.user.postal.blank")
      * @Assert\Length(
-     *      min = 3,
-     *      max = 12,
+     *      min = 5,
+     *      max = 5,
      *      minMessage = "validation.user.postal.min",
      *      maxMessage = "validation.user.postal.max",
      * )
+     * @Codepostal()
      */
     private $codepostal;
 
@@ -275,7 +287,27 @@ class User implements AdvancedUserInterface
      * @Recaptcha\IsTrue
      */
     public $recaptcha;
+    
+    public function __construct()
+    {
+        $this->favoris = new ArrayCollection();
+    }
+    
+    public function addApplication(Favoris $favoris)
+    {
+        $this->favoris[] = $favoris;
+    }
 
+    public function removeApplication(Favoris $favoris)
+    {
+        $this->favoris->removeElement($favoris);
+    }
+
+    public function getFavoris()
+    {
+        return $this->favoris;
+    }
+    
     /**
      * Get id
      *
@@ -591,7 +623,7 @@ class User implements AdvancedUserInterface
     {
         return $this->codepostal;
     }
-
+    
     /**
      * Set siteweb
      *

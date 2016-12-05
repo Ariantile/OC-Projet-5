@@ -11,6 +11,8 @@ doninfo:
             adresse:        Adresse de retrait
             ville:          Ville
             postal:         Code postal
+        label:
+            departement:    Departement
     objet:
         label:
             categorie:      Type de matériel
@@ -39,6 +41,7 @@ doninfo:
             pass:           Mot de passe
             pass_conf:      Confirmation mot du passe
             send:           Inscription
+            type:           Type de structure
         placeholder:
             structure:      Structure
             sirenrna:       Siren / Siret / RNA
@@ -55,10 +58,27 @@ doninfo:
             prenom:         Prénom
             pass:           Mot de passe
             pass_conf:      Confirmation
+            type:           Type
         pass:
             invalid:        Les champs du mot de passe doivent correspondre
         courril:
             invalid:        Les champs du courriel doivent correspondre
+    message:
+        label:
+            submit:         Envoyer
+        placeholder:
+            titre:          Titre de votre message
+            description:    Contenu de votre message
+    recherche:
+        label:
+            motcle:         Mot(s) clé(s)
+            submit:         Chercher
+        placeholder:
+            motcle:         Chercher...
+    favoris:
+        label:
+            submit:         Ajouter aux Favoris
+            remove:         Retirer des favoris
     contactp:
         label:
             nom:            Votre nom
@@ -84,4 +104,6 @@ doninfo:
             titre:          Choisissez un titre à votre message
             msg:            Votre message
             num:            Votre prénom
-            
+
+Next:                       Suivant
+Previous:                   Précédent

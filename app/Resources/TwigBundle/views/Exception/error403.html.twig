@@ -1,0 +1,18 @@
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block erreur %}
+<div class="bloc-annonce">
+    <div class="bloc-page-erreur">
+        
+        <h1>Oops! Une erreur s'est produite</h1>
+        <h2>Le serveur a retourné une erreur "{{ status_code }} {{ status_text }}".</h2>
+
+        <p>
+            Vous n'êtes pas autorisé à accéder à cette page, <a href="{{ url('doninfo_acceuil') }}">cliquez ici </a>pour revenir à la page d'accueil.
+        </p>
+
+    </div>
+</div>       
+
+    
+{% endblock %}

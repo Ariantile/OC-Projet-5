@@ -1,0 +1,42 @@
+{# src/DoninfoBundle/Resources/views/Site/listannonce.html.twig #}
+    
+    <div class="bloc-list">
+        <div class="list-annonce">
+            {% if pagination.getTotalItemCount == 0 %}
+                Aucune annonce trouvée...
+            {% endif %}
+            {% for annonce in pagination %}
+            <div class="list-bloc row">
+                <div class="list-bloc-img col-sm-5 col-xs-12">
+                    <a href="{{ path('doninfo_annonce', { 'id': annonce.id }) }}" class="liens">
+                        {% if annonce.images[0] is defined %}
+                            <img src="{{ asset(annonce.images[0].webPath) }}" alt="annonce.images[0].alt" class=""/>
+                        {% endif %}
+                        {% if annonce.images[0] is not defined %}
+                            <img src="{{ asset('/uploads/img/placeholder.png') }}" alt="placeholder" class=""/>
+                        {% endif %}
+                    </a>
+                </div>  
+
+                <div class="list-bloc-desc col-sm-7 col-xs-12">            
+                    <div  class="list-annonce-titre">
+                        <a href="{{ path('doninfo_annonce', { 'id': annonce.id }) }}" class="liens">
+                            <h2>
+                                {{ annonce.annonce.titre }}
+                            </h2>
+                        </a>
+                    </div>
+                    <div  class="list-annonce-desc">
+                        {{ annonce.annonce.description|truncate(250, true) }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div> 
+    
+    <div class="bloc-list bloc-pagi">
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>

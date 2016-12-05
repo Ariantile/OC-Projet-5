@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
+use DoninfoBundle\Validator\Codepostal;
 
 /**
  * Annonce
@@ -39,6 +40,12 @@ class Annonce
      * @Assert\Valid()
      */
     private $user;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Departement")
+     * @ORM\JoinColumn(referencedColumnName="departement_id", nullable=false)
+     */
+    private $departement;
     
     /**
      * @var int
@@ -82,7 +89,7 @@ class Annonce
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datelimite", type="datetime")
+     * @ORM\Column(name="datelimite", type="datetime", nullable=true)
      *
      */
     private $datelimite;
@@ -128,18 +135,19 @@ class Annonce
     /**
      * @var string
      *
-     * @ORM\Column(name="codepostal", type="string", length=12)
+     * @ORM\Column(name="codepostal", type="string", length=5)
      *
      * @Assert\NotBlank(message = "validation.annonce.postal.blank")
      * @Assert\Length(
-     *      min = 3,
-     *      max = 12,
+     *      min = 5,
+     *      max = 5,
      *      minMessage = "validation.annonce.postal.min",
      *      maxMessage = "validation.annonce.postal.max"
      * )
+     * @Codepostal()
      */
     private $codepostal;
-    
+        
     /**
      * @var string
      *
@@ -160,7 +168,7 @@ class Annonce
      * @ORM\Column(name="statut", type="string", length=255)
      */
     private $statut;
-    
+        
     /**
      * @Recaptcha\IsTrue
      */
@@ -352,6 +360,30 @@ class Annonce
     }
     
     /**
+     * Set departement
+     *
+     * @param \DoninfoBundle\Entity\Departement $departement
+     *
+     * @return Objet
+     */
+    public function setDepartement(Departement $departement)
+    {
+        $this->departement = $departement;
+
+        return $this;
+    }
+
+    /**
+     * Get departement
+     *
+     * @return \DoninfoBundle\Entity\Departement
+     */
+    public function getDepartement()
+    {
+        return $this->departement;
+    }
+    
+    /**
      * Set type
      *
      * @param string $type
@@ -527,7 +559,7 @@ class Annonce
     {
         $this->images[] = $image;
 
-        $images->setAnnonce($this);
+        $image->setAnnonce($this);
     }
 
     /**

@@ -1,0 +1,24 @@
+{# src/DoninfoBundle/Resources/views/Site/membre.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+
+<div class="bloc-annonce">
+       
+    {% for flashMessage in app.session.flashbag.get('erreur') %}
+        <div class="flash-messages">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}   
+    
+    <div class="infos-membre-annonce">
+        <div class="bloc-membre-annonce">
+            <h4 class="titre-membre">Annonces favorites<span class="glyphicon glyphicon-list"></span></h4>
+            {{ include("DoninfoBundle:Site:listannoncefav.html.twig") }}
+        </div>
+    </div>
+
+</div>
+ 
+{% endblock %}

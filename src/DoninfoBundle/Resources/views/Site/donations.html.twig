@@ -1,27 +1,9 @@
 {% extends "DoninfoBundle:Site:layout.html.twig" %}
 
-{% block title %}
-    {{ parent() }}
-{% endblock %}
-
 {% block contenu %}
-    <div class="index-donateur">
-        <h2 class="titre-donateur">Donations disponibles</h2>
-        <div class="index-liste-don">
-            <div class="index-liste-ligne index-imp row">
-                <span class="td-date col-sm-1 col-xs-12">
-                    
-                </span>
-                <span class="td-titre col-sm-3 col-xs-12">
-                    
-                </span>
-                <span class="td-description col-sm-8 col-xs-12">
-                
-                </span>
-            </div>
-        </div>
-    </div>
-    
+
+<div class="bloc-annonce">
+       
     <div class="index-recherche">
         
         <div class="bloc-recherche">
@@ -29,24 +11,37 @@
             <h4 class="titre-recherche">Rechercher <span class="glyphicon glyphicon-search"></span></h4>
         
             {{ form_start(recherche, 
-                {'attr' : {'class' : 'form-recherche'}}
+                {'attr' : {'class' : 'form-recherche row'}}
             )}}
-
-                {{ form_row(recherche.motcle, 
-                    {'attr': {'class' : 'form-control input-form-box input-recherche'}}
-                )}}
-                {{ form_row(recherche.region, 
-                    {'attr': {'class' : 'form-control input-form-box'}}
-                )}}
-                {{ form_row(recherche.departement, 
-                    {'attr': {'class' : 'form-control input-form-box'}}
-                )}}
-                {{ form_row(recherche.categorie, 
-                    {'attr': {'class' : 'form-control input-form-box '}}
-                )}}
-                {{ form_row(recherche.chercher, 
-                    {'attr': {'class' : 'boutton-recherche'}}
-                )}}
+                
+            {% form_theme recherche 'DoninfoBundle:Template:formulaires.html.twig' %}
+                
+                <div class="col-sm-3">
+                    {{ form_row(recherche.motcle, 
+                        {'attr': {'class' : 'form-control input-form-box input-recherche'}}
+                    )}}
+                </div>
+               
+                <div class="col-sm-3">
+                    {{ form_row(recherche.departement, 
+                        {'attr': {'class' : 'form-control input-form-box'}}
+                    )}}
+                </div>
+                
+                <div class="col-sm-3">
+                    {{ form_row(recherche.categorie, 
+                        {'attr': {'class' : 'form-control input-form-box '}}
+                    )}}
+                </div>
+                
+                <div class="col-sm-3">
+                    <div class="form-group has-feedback button-container button-recherche-container">
+                        {{ form_row(recherche.chercher, 
+                            {'attr': {'class' : 'button form-control button-recherche'}}
+                        )}}
+                    <i class="glyphicon glyphicon-chevron-right form-control-feedback button-icon"></i>
+                    </div>
+                </div>
         
             {{ form_end(recherche) }}
             
@@ -56,4 +51,6 @@
     
     {{ include("DoninfoBundle:Site:listannonce.html.twig") }}
     
+</div> 
+
 {% endblock %}

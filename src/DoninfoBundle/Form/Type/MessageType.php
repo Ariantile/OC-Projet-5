@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
 class MessageType extends AbstractType
@@ -18,14 +19,24 @@ class MessageType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class, array(
-                'attr'      => array(
-                    'placeholder'   => 'Veuillez donner un titre à votre message'
+                'required'      => true,
+                'label'         => false,
+                'attr'          => array(
+                    'placeholder'   => 'doninfo.message.placeholder.titre',
+                    'maxlength'     => '100'
                 )
             ))
-            ->add('contenumessage' TextareaType::class, array(
-                'attr'      => array(
-                    'placeholder'   => 'Votre message'
+            ->add('contenumessage', TextareaType::class, array(
+                'required'      => true,
+                'label'         => false,
+                'attr'          => array(
+                    'placeholder'   => 'doninfo.message.placeholder.description',
+                    'maxlength'     => '2000',
+                    'rows'          => 5,
                 )
+            ))
+            ->add('envoyer',      SubmitType::class, array(
+                  'label'       => 'doninfo.message.label.submit'
             ))
        ;
     }

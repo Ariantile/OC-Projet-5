@@ -3,160 +3,134 @@
 {% extends "DoninfoBundle:Site:layout.html.twig" %}
 
 {% block contenu %}
-        
-    <div class="bloc-form">
-      
-        {% for flashMessage in app.session.flashbag.get('erreur') %}
-            <div class="flash-messages">
-                {{ flashMessage }}
-            </div>
-        {% endfor %}
 
+<div class="bloc-annonce">
        
-        <div class="bloc-membre-compte">
-           
-            <h4>Informations du compte</h4>
-            
-            <p class="membre-label">
-                Type de compte
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.typestructure }}
-            </p>
-            
-            <p class="membre-label">
-                Statut du compte
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.statut }}
-            </p>
-            
-            <p class="membre-label">
-                Date d'inscription
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.dateinscription|date("d/m/Y") }}
-            </p>
-            
+    {% for flashMessage in app.session.flashbag.get('erreur') %}
+        <div class="flash-messages">
+            {{ flashMessage }}
         </div>
+    {% endfor %}   
+       
+    <div class="infos-membre">
         
-        <div class="bloc-membre-structure">
-          
-            <h4>Informations de la structure</h4>
+        <div class="bloc-membre">
             
-            <p class="membre-label">
-                Nom
-            </p>
+            <h4 class="titre-membre">{{ app.user.nomstructure }}<span class="glyphicon glyphicon-user"></span></h4>
             
-            <p  class="membre-infos">
-                {{ app.user.nomstructure }}
-            </p>
-            
-            <p class="membre-label">
-                Numéro siren / siret / rna
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.sirenrna }}
-            </p>
-            
-            <p class="membre-label">
-                Secteur d'activité
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.activite }}
-            </p>
-            
-            <p class="membre-label">
-                Numéro ape
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.ape }}
-            </p>
-            
+            <div class="bloc-membre-row">
+                
+                <div class="sous-bloc-membre-row row">
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Secteur d'activité</h5>
+                        <div>
+                            {{ app.user.activite }}
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Numéro Siren / Siret / RNA</h5>
+                        <div>
+                            {{ app.user.sirenrna }}
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Numéro APE</h5>
+                        <div>
+                            {% if app.user.ape is not defined %}
+                                NC
+                            {% endif %}
+                            {% if app.user.ape is defined %}
+                                {{ app.user.ape }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="sous-bloc-membre-row row">
+
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Adresse</h5>
+                        <div>
+                            {{ app.user.adresse }}
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Ville</h5>
+                        <div>
+                            {{ app.user.ville }}
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Code postal</h5>
+                        <div>
+                            {{ app.user.codepostal }}
+                        </div>
+                    </div>   
+                </div>
+                
+                <div class="sous-bloc-membre-row row">
+
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Type de compte</h5>
+                        <div>
+                            {{ app.user.typestructure }}
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Nom et prénom</h5>
+                        <div>
+                            {{ app.user.nomuser }} {{ app.user.prenomuser }}
+                        </div> 
+                    </div>
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Date d'inscription</h5>
+                        <div>
+                            {{ app.user.dateinscription|date("d/m/Y") }}
+                        </div>                        
+                    </div>
+                </div>
+                
+                <div class="sous-bloc-membre-row row">
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Adresse courriel</h5>
+                        <div>
+                            {{ app.user.courriel }}
+                        </div>                        
+                    </div>
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Site internet</h5>
+                        <div>
+                            {% if app.user.siteweb is not defined %}
+                                NC
+                            {% endif %}
+                            {% if app.user.siteweb is defined %}
+                                {{ app.user.siteweb }}
+                            {% endif %} 
+                        </div>                        
+                    </div>
+                    <div class="col-sm-4 col-xs-12 bloc-membre-infos">
+                        <h5>Numéro de téléphone</h5>
+                        <div>
+                            {{ app.user.telephone }}
+                        </div>                        
+                    </div>
+
+                </div>
+            </div>
         </div>
-        
-        <div class="bloc-membre-contact">
-          
-            <h4>Informations de contact</h4>
-           
-            <p class="membre-label">
-                Adresse
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.adresse }}
-            </p>
-            
-            <p class="membre-label">
-                Ville
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.ville }}
-            </p>
-            
-            <p class="membre-label">
-                Code postal
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.codepostal }}
-            </p>
-            
-            <p class="membre-label">
-                Site internet
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.siteweb }}
-            </p>
-            
-            <p class="membre-label">
-                Numéro de téléphone
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.telephone }}
-            </p>
-            
-            <p class="membre-label">
-                Adresse courriel
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.courriel }}
-            </p>
-            
-        </div>
-        
-        <div class="bloc-membre-nom">
-            
-            <h4>Informations utilisateur</h4>
-            
-            <p class="membre-label">
-                Nom
-            </p>
-           
-            <p  class="membre-infos">
-                {{ app.user.nomuser }}
-            </p>
-            
-            <p class="membre-label">
-                Prénom
-            </p>
-            
-            <p  class="membre-infos">
-                {{ app.user.prenomuser }}
-            </p>
-            
-        </div>
-        
+         
     </div>
+    
+    <div class="infos-membre-annonce">
+        <div class="bloc-membre-annonce">
+            <h4 class="titre-membre">Annonces en cours<span class="glyphicon glyphicon-list"></span></h4>
+            {{ include("DoninfoBundle:Site:listannonce.html.twig") }}
+            <h4 class="titre-membre">Annonces terminées<span class="glyphicon glyphicon-folder-close"></span></h4>
+            {{ include("DoninfoBundle:Site:listannonceoff.html.twig") }}
+        </div>
+    </div>
+
+</div>
  
 {% endblock %}
