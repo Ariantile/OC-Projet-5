@@ -104,6 +104,8 @@ doninfo:
             titre:          Choisissez un titre à votre message
             msg:            Votre message
             num:            Votre prénom
-
+    editmembre:
+        label:
+            submit:         Envoyer
 Next:                       Suivant
 Previous:                   Précédent

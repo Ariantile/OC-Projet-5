@@ -1,0 +1,17 @@
+{# src/DoninfoBundle/Resources/views/Membre/membrefavoris.html.twig #}
+
+{% extends "DoninfoBundle:Membre:membre.html.twig" %}
+
+{% block contenumembre %}
+    
+    <div class="infos-membre-annonce">
+        <div class="bloc-membre-annonce">
+            <h4 class="titre-membre">
+                <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                Annonces favorites
+            </h4>
+            {{ include("DoninfoBundle:Site:listannoncefav.html.twig") }}
+        </div>
+    </div>
+ 
+{% endblock %}

@@ -1,0 +1,146 @@
+{# src/DoninfoBundle/Resources/views/Membre/membreinfos.html.twig #} 
+
+{% extends "DoninfoBundle:Membre:membre.html.twig" %} 
+
+{% block contenumembre %}
+
+<div class="infos-membre">
+    <div class="bloc-membre">
+
+        <h4 class="titre-membre">
+            <span><i class="fa fa-info-circle" aria-hidden="true"></i></span> {{ app.user.nomstructure }}
+        </h4>
+
+        <div class="bloc-membre-row row">
+
+            <div class="col-xs-12 bloc-membre-infos">
+                <div class="sous-bloc-membre-infos">
+                    <div class="sous-bloc-membre-titre">
+                        <i class="fa fa-tag" aria-hidden="true"></i>
+                        <div>
+                            {{ app.user.typestructure }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 bloc-membre-infos">
+                <div class="sous-bloc-membre-infos">
+                    <div class="sous-bloc-membre-titre">
+                        <i class="fa fa-university" aria-hidden="true"></i>
+                        <div>
+                            {{ app.user.activite }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 bloc-membre-infos">
+                <div class="sous-bloc-membre-infos">
+                    <div class="sous-bloc-membre-titre">
+                        <i class="fa fa-id-card" aria-hidden="true"></i>
+                        <div>
+                            Siren/RNA - {{ app.user.sirenrna }}
+                        </div>
+                        <div>
+                            {% if app.user.ape is not defined %} APE - NC {% endif %} {% if app.user.ape is defined %} APE - {{ app.user.ape }} {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 bloc-membre-infos">
+                <div class="sous-bloc-membre-infos">
+                    <div class="sous-bloc-membre-titre">
+                        <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                        <div>
+                            {{ app.user.adresse }}
+                        </div>
+                        <div>
+                            {{ app.user.codepostal }}
+                        </div>
+                        <div>
+                            {{ app.user.ville }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 bloc-membre-infos">
+                <div class="sous-bloc-membre-infos">
+                    <div class="sous-bloc-membre-titre">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        <div>
+                            {{ app.user.nomuser }} {{ app.user.prenomuser }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 bloc-membre-infos">
+                <div class="sous-bloc-membre-infos">
+                    <div class="sous-bloc-membre-titre">
+                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                        <span>
+                                {{ app.user.dateinscription|date("d/m/Y") }}
+                            </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 bloc-membre-infos">
+                <div class="sous-bloc-membre-infos">
+                    <div class="sous-bloc-membre-titre">
+                        <i class="fa fa-envelope-square" aria-hidden="true"></i>
+                        <span>
+                                {{ app.user.courriel }}
+                            </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 bloc-membre-infos">
+                <div class="sous-bloc-membre-infos">
+                    <div class="sous-bloc-membre-titre">
+                        <i class="fa fa-link" aria-hidden="true"></i>
+                        <span>
+                                {% if app.user.siteweb is not defined %}
+                                    NC
+                                {% endif %}
+                                {% if app.user.siteweb is defined %}
+                                    {{ app.user.siteweb }}
+                                {% endif %} 
+                            </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 bloc-membre-infos">
+                <div class="sous-bloc-membre-infos">
+                    <div class="sous-bloc-membre-titre">
+                        <i class="fa fa-phone-square" aria-hidden="true"></i>
+                        <span>{{ app.user.telephone }}</span>
+                    </div>
+                </div>
+            </div>
+            
+
+
+            
+        </div>
+        
+        <div class="col-xs-12 membre-bt-container">
+            <a href="{{ path('doninfo_membre_edit')}}" class="membre-bt-edit">
+                <div class="bloc-membre-infos bloc-membre-infos-bt">
+                    <div class="sous-bloc-membre-infos sous-bloc-membre-bt">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+    </div>
+
+</div>
+
+{% endblock %}

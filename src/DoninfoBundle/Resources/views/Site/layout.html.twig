@@ -17,9 +17,9 @@
             <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-index.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-infos.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-membre.css') }}" />
-            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-annonce.css') }}" />
-                    
+            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-annonce.css') }}" />    
         {% endblock %}
+        <script src="https://use.fontawesome.com/238fc2f7ad.js"></script>
     </head>
     
     <body>
@@ -59,7 +59,7 @@
                                     {% endif %}
                                     {% if is_granted('ROLE_USER') %}
                                         <li>
-                                            <a href="{{ path('doninfo_membre', { 'id': app.user.id }) }}" class="liens">Espace membre</a>
+                                            <a href="{{ path('doninfo_membre')}}" class="liens">Espace membre</a>
                                         </li>
                                         <li>
                                             <a href="{{ path('doninfo_logout')}}" class="liens">Déconnexion</a>
@@ -81,13 +81,41 @@
             
             <footer class="row">
                 <div class="bloc_footer">
-                    <a href="{{ path('doninfo_contact_public') }}" class="liens liens-footer">Contact</a>
-                    <a href="{{ path('doninfo_mentions') }}" class="liens liens-footer">Mentions légales</a>
-                    <p class="liens">Doninfo © {{ 'now'|date('Y') }}</p> 
+                    <div class="container-foot">
+                        
+                        <div class="bloc-footer-button-contact col-sm-4 col-xs-6">
+                            <h5>Contact et mentions</h5>
+                            <a href="{{ path('doninfo_contact_public') }}">
+                                <span><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></span>
+                            </a>
+                            <a href="{{ path('doninfo_mentions') }}">
+                                <span><i class="fa fa-gavel fa-2x" aria-hidden="true"></i></span>
+                            </a>
+                        </div>
+                       
+                        <div class="bloc-footer-button-social col-sm-4 col-xs-6">
+                            <h5>Réseaux sociaux</h5>
+                            <a href="#">
+                                <span><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></span>
+                            </a>
+                            <a href="#">
+                                <span><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></span>
+                            </a>
+                            <a href="#">
+                                <span><i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i></span>
+                            </a>
+                        </div>
+                            
+                        <div class="liens copy col-sm-4 col-xs-12">
+                            <h5>
+                                Doninfo © {{ 'now'|date('Y') }}
+                            </h5>
+                        </div>
+                    
+                    </div>
                 </div>
             </footer>
             
-        </div>
              
         {% block javascripts %}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -1,0 +1,14 @@
+{# src/DoninfoBundle/Resources/views/Membre/membreacc.html.twig #}
+
+{% extends "DoninfoBundle:Membre:membre.html.twig" %}
+
+{% block contenumembre %}
+   
+    <div class="infos-membre-annonce">
+        <div class="bloc-membre-annonce">
+            <h4 class="titre-membre"><span class="glyphicon glyphicon-list"></span>Annonces en cours</h4>
+            {{ include("DoninfoBundle:Site:listannonce.html.twig") }}
+        </div>
+    </div>
+ 
+{% endblock %}

@@ -95,10 +95,30 @@ doninfo_membre:
     path:       /membre/
     defaults:
         _controller:    DoninfoBundle:Site:membre
+
+doninfo_membre_infos:
+    path:       /membre/infos
+    defaults:
+        _controller:    DoninfoBundle:Site:membreinfos
         
+doninfo_membre_edit:
+    path:       /membre/edit
+    defaults:
+        _controller:    DoninfoBundle:Site:membreedit
+
 doninfo_membre_favoris:
-    path:       /membre/{id}/suivi
+    path:       /membre/favoris
     defaults:
         _controller:    DoninfoBundle:Site:favoris
-    requirements:
-        id: \d+
+        
+        
+
+doninfo_membre_terminee:
+    path:       /membre/archive
+    defaults:
+        _controller:    DoninfoBundle:Site:membrearchive
+       
+doninfo_membre_messages:
+    path:       /membre/messages
+    defaults:
+        _controller:    DoninfoBundle:Site:membremessages

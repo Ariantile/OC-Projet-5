@@ -40,4 +40,15 @@ class DoninfoInscription
         $em->flush();
     }
     
+    
+    /**
+     * Update d'un utilisateur
+     *
+     */
+    public function updateUser($user)
+    {
+        $em = $this->doctrine->getManager();
+        $em->flush();
+    }
+    
 }

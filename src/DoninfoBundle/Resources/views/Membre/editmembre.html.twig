@@ -1,0 +1,80 @@
+{# src/DoninfoBundle/Resources/views/Membre/editmembre.html.twig #}
+
+{% extends "DoninfoBundle:Membre:membre.html.twig" %}
+
+{% block contenumembre %}
+   
+<div class="infos-membre">
+    <div class="bloc-membre bloc-membre-edit">
+
+        <h4 class="titre-membre">
+            <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span> Editez votre profile
+        </h4>
+    
+                
+        {{ form_start(editmembre) }}
+              
+        {% form_theme editmembre 'DoninfoBundle:Template:formulaires.html.twig' %}
+                
+            <div class="form-inscription">
+                
+                <h4>STRUCTURE</h4>
+                
+                {{ form_row(editmembre.nomstructure, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                
+            </div>
+            
+            <div class="form-inscription">
+                
+                <h4>COORDONNÉES</h4>
+                
+                {{ form_row(editmembre.siteweb, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(editmembre.adresse, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(editmembre.ville, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(editmembre.codepostal, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(editmembre.telephone, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                
+            </div>
+            
+            <div class="form-inscription bottom-inscription">  
+                
+                <h4>UTILISATEUR</h4>
+                
+                {{ form_row(editmembre.nomuser, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(editmembre.prenomuser, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                
+                {{ form_row(editmembre.recaptcha) }}
+                
+                <div class="form-group has-feedback button-container">
+                    {{ form_row(editmembre.envoyer, 
+                        {
+                            'attr': {'class' : 'button form-control'},
+                            'label': 'doninfo.editmembre.label.submit'
+                        }
+                    )}}
+                    <i class="glyphicon glyphicon-chevron-right form-control-feedback button-icon"></i>
+                </div>
+                
+            </div>         
+                
+        {{ form_end(editmembre) }}
+        
+    </div>    
+</div> 
+{% endblock %}

@@ -181,7 +181,7 @@ class SiteController extends Controller
             $mail->sendContactPublic($contact);
         }
         
-        return $this->render('DoninfoBundle:Site:contact.html.twig', array(
+        return $this->render('DoninfoBundle:Contact:contact.html.twig', array(
                 'contact'   => $form->createView()
         ));
     }
@@ -197,7 +197,7 @@ class SiteController extends Controller
             $mail->sendContactMembre($contact);
         }
         
-        return $this->render('DoninfoBundle:Site:contactmembre.html.twig', array(
+        return $this->render('DoninfoBundle:Contact:contactmembre.html.twig', array(
                 'contactmembre' => $form->createView()
         ));
     }
@@ -398,19 +398,55 @@ class SiteController extends Controller
         $annonces   = $this->container->get('doninfo.list_annonce');
         $limit      = 5;
         $statutOn   = 'En cours';
-        $statutOff  = 'Terminee';
+        //$statutOff  = 'Terminee';
         $pageOn     = 'ongoing';
-        $pageOff    = 'over';
+        //$pageOff    = 'over';
         $paginationOn   = $annonces->listerAnnonceMembre($user, $limit, $statutOn, $pageOn);
-        $paginationOff  = $annonces->listerAnnonceMembre($user, $limit, $statutOff, $pageOff);
+        //$paginationOff  = $annonces->listerAnnonceMembre($user, $limit, $statutOff, $pageOff);
         
-        return $this->render('DoninfoBundle:Site:membre.html.twig', array(
+        return $this->render('DoninfoBundle:Membre:membreacc.html.twig', array(
                 'pagination'    => $paginationOn,
-                'paginationOff' => $paginationOff
+                //'paginationOff' => $paginationOff
+        ));
+    }
+    
+    public function membreEditAction(Request $request)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!$user) 
+        {
+            throw new AccessDeniedException("Vous devez être authentifié pour accéder à cette page.");
+        }
+        
+        $userid     = $user->getId();
+        $em         = $this->getDoctrine()->getManager();
+        
+        $edituser   = $em->getRepository('DoninfoBundle:User')->findOneById($userid);
+        $form       = $this->get('form.factory')->create(InscriptionType::class, $edituser); 
+        
+        $form->remove('typestructure')
+             ->remove('activite')
+             ->remove('sirenrna')
+             ->remove('ape')
+             ->remove('courriel')
+             ->remove('password');
+        
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
+        {     
+            $updater = $this->container->get('doninfo.inscription');
+            $updater->updateUser($edituser);
+            
+            $request->getSession()->getFlashBag()->add('message', 'Modifications enregistrées.');
+            return $this->redirectToRoute('doninfo_membre');
+        }
+        
+        return $this->render('DoninfoBundle:Membre:editmembre.html.twig', array(
+            'editmembre' => $form->createView(),
         ));
     }
  
-    public function favorisAction($id)
+    public function favorisAction()
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         
@@ -424,30 +460,24 @@ class SiteController extends Controller
         
         $pagination = $annonces->listerAnnonceMembreFavoris($user, $limit);
         
-        return $this->render('DoninfoBundle:Site:membrefavoris.html.twig', array(
+        return $this->render('DoninfoBundle:Membre:membrefavoris.html.twig', array(
             'pagination'    => $pagination
         ));
     }
     
-    
-    public function infosAction()
+    public function membreinfosAction()
     {
-        return $this->render('DoninfoBundle:Site:plusinfos.html.twig');
-    }
-     
-    public function demandeAction($id)
-    {
-        return $this->render('DoninfoBundle:Site:demande.html.twig');
+        return $this->render('DoninfoBundle:Membre:membreinfos.html.twig');
     }
     
-    public function tutorielAction()
+    public function membremessagesAction()
     {
-        return $this->render('DoninfoBundle:Site:tutoriel.html.twig');
+        return $this->render('DoninfoBundle:Membre:membremessages.html.twig');
     }
     
-    public function infomembreAction($id)
+    public function membrearchiveAction()
     {
-        return $this->render('DoninfoBundle:Site:infomembre.html.twig');
+        return $this->render('DoninfoBundle:Membre:membrearchive.html.twig');
     }
     
 }
