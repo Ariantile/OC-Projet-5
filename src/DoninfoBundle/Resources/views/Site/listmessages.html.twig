@@ -1,0 +1,28 @@
+{# src/DoninfoBundle/Resources/views/Site/listmessages.html.twig #}
+    
+    <div class="bloc-list">
+        <div class="list-annonce">
+            {% if pagination.getTotalItemCount == 0 %}
+                Aucun message trouvé...
+            {% endif %}
+            {% for message in pagination %}
+            <div class="list-bloc list-bloc-off row">
+                <div class="titre-annonce-off col-sm-6 col-xs-12">
+                    <a href="{{ path('doninfo_membre_message', { 'id': message.id }) }}">
+                        {{ message.titre|truncate(35, true) }}
+                    </a>
+                </div>
+                <div class="desc-annonce-off col-sm-6 col-xs-12">            
+                    {{ message.contenumessage|truncate(35, true) }}
+                </div>
+                
+            </div>
+            {% endfor %}
+        </div>
+    </div> 
+    
+    <div class="bloc-list bloc-pagi">
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>

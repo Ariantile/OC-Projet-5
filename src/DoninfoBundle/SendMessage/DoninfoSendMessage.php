@@ -3,6 +3,8 @@
 
 namespace DoninfoBundle\SendMessage;
 
+use \DateTime;
+
 class DoninfoSendMessage
 {
     private $doctrine;
@@ -19,9 +21,12 @@ class DoninfoSendMessage
     public function createMessage($message, $annonce, $user)
     {
         $em = $this->doctrine->getManager();
+        $date = new \DateTime('now');
         
         $message->setAnnonce($annonce);
         $message->setUser($user);
+        $message->setDatemsg($date);
+        $message->setNewm(0);
         
         $em->persist($message);
         $em->flush();

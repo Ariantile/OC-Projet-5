@@ -1,0 +1,20 @@
+{# src/DoninfoBundle/Resources/views/Membre/membremessages.html.twig #}
+
+{% extends "DoninfoBundle:Membre:messages.html.twig" %}
+
+{% block contenumembre %}
+    
+    <div class="infos-membre-annonce">
+        <div class="bloc-membre-annonce">
+            <h4 class="titre-membre">
+                <span>
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <i class="fa fa-exclamation" aria-hidden="true" style=""></i>
+                </span>
+                Message(s) non lu(s)
+            </h4>
+            {{ include("DoninfoBundle:Site:listmessages.html.twig") }}
+        </div>
+    </div>
+ 
+{% endblock %}

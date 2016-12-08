@@ -8,6 +8,17 @@
         <div class="bloc-membre-annonce">
             <h4 class="titre-membre"><span class="glyphicon glyphicon-list"></span>Annonces en cours</h4>
             {{ include("DoninfoBundle:Site:listannonce.html.twig") }}
+            
+            <div class="col-xs-12 membre-bt-container">
+                <span class="col-xs-12">Pour visionner les annonces terminées, veuillez cliquer sur le bouton.</span>
+                <a href="{{ path('doninfo_membre_terminee')}}" class="membre-bt-edit">
+                    <div class="bloc-membre-infos bloc-membre-infos-bt">
+                        <div class="sous-bloc-membre-infos sous-bloc-membre-bt">
+                            <i class="fa fa-archive" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
  

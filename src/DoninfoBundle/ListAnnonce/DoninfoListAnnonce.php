@@ -1,10 +1,9 @@
 <?php
-// src/DoninfoBundle/PosterAnnonce/DoninfoPosterAnnonce.php
+// src/DoninfoBundle/ListMessages/DoninfoListMessages.php
 
 namespace DoninfoBundle\ListAnnonce;
 
 use Knp\Bundle\PaginatorBundle\Definition\PaginatorAware;
-use \DateTime;
 
 class DoninfoListAnnonce extends PaginatorAware
 {
@@ -21,7 +20,7 @@ class DoninfoListAnnonce extends PaginatorAware
      * Lister les annonces du membre identifié
      *
      */
-    public function listerAnnonceMembre($user, $limit, $statut, $page)
+    public function listerAnnonceMembre($user, $limit, $statut)
     {
         $em         = $this->doctrine->getManager();
         

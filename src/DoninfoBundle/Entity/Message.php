@@ -65,7 +65,22 @@ class Message
      * )
      */
     private $titre;
-
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datemsg", type="datetime")
+     *
+     */
+    private $datemsg;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="new", type="integer")
+     *
+     */
+    private $newm;
 
     /**
      * Get id
@@ -124,7 +139,55 @@ class Message
     {
         return $this->titre;
     }
+    
+    /**
+     * Set datemsg
+     *
+     * @param \DateTime $datemsg
+     *
+     * @return Message
+     */
+    public function setDatemsg($datemsg)
+    {
+        $this->datemsg = $datemsg;
 
+        return $this;
+    }
+
+    /**
+     * Get datemsg
+     *
+     * @return \DateTime
+     */
+    public function getDatemsg()
+    {
+        return $this->datemsg;
+    }
+    
+    /**
+     * Get newm
+     *
+     * @return int
+     */
+    public function getNewm()
+    {
+        return $this->newm;
+    }
+    
+    /**
+     * Set newm
+     *
+     * @param int $newm
+     *
+     * @return Message
+     */
+    public function setNewm($newm)
+    {
+        $this->newm = $newm;
+
+        return $this;
+    }
+    
     /**
      * Set annonce
      *

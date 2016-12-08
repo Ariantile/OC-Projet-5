@@ -1,0 +1,50 @@
+{# src/DoninfoBundle/Resources/views/Membre/membre.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+
+<div class="bloc-annonce">
+    
+    {% for flashMessage in app.session.flashbag.get('erreur') %}
+        <div class="flash-messages">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+      
+    {% for flashMessage in app.session.flashbag.get('message') %}
+        <div class="flash-messages-annonce">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    
+    <div class="bloc-menu-membre">
+        
+        <a href="{{ path('doninfo_membre_messages')}}">
+            <div class="bloc-menu-membre-bt col-xs-4">
+                <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-exclamation fa-2x" aria-hidden="true" style=""></i>
+            </div>
+        </a>
+        
+        <a href="{{ path('doninfo_membre_messages_archive')}}">
+            <div class="bloc-menu-membre-bt col-xs-4">
+                <i class="fa fa-envelope-open fa-2x" aria-hidden="true"></i>
+            </div>
+        </a>
+        
+        <a href="{{ path('doninfo_membre_messages_send')}}">
+            <div class="bloc-menu-membre-bt col-xs-4">
+                <i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i>
+            </div>
+        </a>
+        
+    </div>   
+    
+    {% block contenumembre %}
+    
+    {% endblock %}
+
+</div>
+ 
+{% endblock %}

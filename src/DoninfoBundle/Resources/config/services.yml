@@ -30,6 +30,14 @@ services:
             - "@request_stack"
         tags:
             - { name: knp_paginator.injectable, paginator: knp_paginator }
+            
+    doninfo.list_messages:
+        class: DoninfoBundle\ListMessages\DoninfoListMessages
+        arguments:
+            - "@doctrine"
+            - "@request_stack"
+        tags:
+            - { name: knp_paginator.injectable, paginator: knp_paginator }
     
     doninfo.validator_cp:
         class: DoninfoBundle\Validator\CodepostalValidator

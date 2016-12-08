@@ -220,6 +220,8 @@ class SiteController extends Controller
         if ($user !== $annonce->getUser())
         {
             $favorisuser    = $em->getRepository('DoninfoBundle:Favoris')->findOneByAnnonce($id);
+            $form           = $this->get('form.factory')->create(MessageType::class, $message);
+            $messages       = $annonce->getMessages();
             
             if (!$favorisuser)
             {
@@ -230,15 +232,11 @@ class SiteController extends Controller
                 $formfav = $this->get('form.factory')->create(RemoveFavorisType::class, $favoris);
             }
         }
-
-        $form    = $this->get('form.factory')->create(MessageType::class, $message);
         
         $images         = $annonce->getImages();
         $objets         = $annonce->getObjets();
-        $messages       = $annonce->getMessages();
         $nom            = $annonce->getUser()->getNomstructure();
-        $departement    = $annonce->getDepartement()->getNom();
-        
+        $departement    = $annonce->getDepartement()->getNom();        
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
         {
@@ -247,9 +245,7 @@ class SiteController extends Controller
             
             $poster->createMessage($message, $annonce, $user);
             $session->getFlashBag()->add('message', 'Votre message a été envoyé avec succès.');
-        }
-   
-        
+        } 
         
         if (isset($formfav))
         {
@@ -293,14 +289,10 @@ class SiteController extends Controller
                 'annonce'       => $annonce,
                 'images'        => $images,
                 'objets'        => $objets,
-                'messages'      => $messages,
                 'nom'           => $nom,
-                'departement'   => $departement,
-                'message'       => $form->createView()
+                'departement'   => $departement, 
             ));
         }
-        
-
     }
     
     public function editAnnonceAction(Annonce $annonce, Request $request)
@@ -312,6 +304,10 @@ class SiteController extends Controller
             throw new AccessDeniedException('Vous devez être authentifié pour effectuer cette action.');
         } else if ($user !== $annonce->getUser()) {
             throw new AccessDeniedException('Édition impossible.');
+        } else if ($annonce->getStatut() === 'Terminee') {
+            $request->getSession()->getFlashBag()->add('message', 'Impossible d\'éditer une annonce terminée.');
+            $referer = $request->headers->get('referer');
+            return $this->redirect($referer);
         }
         
         $form = $this->get('form.factory')->create(AnnonceType::class, $annonce);
@@ -328,7 +324,7 @@ class SiteController extends Controller
             $updater = $this->container->get('doninfo.poster_annonce');
             $updater->updateAnnonce($annonce, $user);
             
-            //$request->getSession()->getFlashBag()->add('notice', 'Annonce bien modifiée.');
+            $request->getSession()->getFlashBag()->add('message', 'Modifications enregistrée.');
             return $this->redirectToRoute('doninfo_annonce', array('id' => $annonce->getId()));
         }
         
@@ -398,15 +394,11 @@ class SiteController extends Controller
         $annonces   = $this->container->get('doninfo.list_annonce');
         $limit      = 5;
         $statutOn   = 'En cours';
-        //$statutOff  = 'Terminee';
-        $pageOn     = 'ongoing';
-        //$pageOff    = 'over';
-        $paginationOn   = $annonces->listerAnnonceMembre($user, $limit, $statutOn, $pageOn);
-        //$paginationOff  = $annonces->listerAnnonceMembre($user, $limit, $statutOff, $pageOff);
+        
+        $paginationOn   = $annonces->listerAnnonceMembre($user, $limit, $statutOn);
         
         return $this->render('DoninfoBundle:Membre:membreacc.html.twig', array(
                 'pagination'    => $paginationOn,
-                //'paginationOff' => $paginationOff
         ));
     }
     
@@ -465,19 +457,113 @@ class SiteController extends Controller
         ));
     }
     
+    public function membrearchiveAction()
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!$user) 
+        {
+            throw new AccessDeniedException("Vous devez être authentifié pour accéder à cette page.");
+        }
+        
+        $annonces   = $this->container->get('doninfo.list_annonce');
+        $limit      = 5;
+        $statutOff  = 'Terminee';
+        
+        $paginationOff  = $annonces->listerAnnonceMembre($user, $limit, $statutOff);
+        
+        return $this->render('DoninfoBundle:Membre:membrearchive.html.twig', array(
+            'paginationOff' => $paginationOff
+        ));
+    }
+    
     public function membreinfosAction()
     {
         return $this->render('DoninfoBundle:Membre:membreinfos.html.twig');
     }
     
-    public function membremessagesAction()
+    public function messageviewAction($id, Request $request)
     {
-        return $this->render('DoninfoBundle:Membre:membremessages.html.twig');
+        $em         = $this->getDoctrine()->getManager();
+        $session    = $this->container->get('session');
+        $user       = $this->get('security.token_storage')->getToken()->getUser();
+        
+        $message    = $em->getRepository('DoninfoBundle:Message')->getMessage($id);
+        
+        if (!$message) 
+        {
+            throw new NotFoundHttpException("Le message d'id ".$id." n'existe pas.");
+        } else if ($message->getAnnonce()->getUser() !== $user && $message->getUser() !== $user) {
+            throw new AccessDeniedException("vous n'etes pas autorise a accéder a la page requise");
+        }
+        
+        if ($message->getNewm() === 0) {
+            $message->setNewm(1);
+            $em->flush();
+        }
+
+        return $this->render('DoninfoBundle:Membre:messageview.html.twig', array (
+            'message' => $message
+        ));
     }
     
-    public function membrearchiveAction()
+    public function membremessagesAction()
     {
-        return $this->render('DoninfoBundle:Membre:membrearchive.html.twig');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!$user) 
+        {
+            throw new AccessDeniedException("Vous devez être authentifié pour accéder à cette page.");
+        }
+        
+        $messages   = $this->container->get('doninfo.list_messages');
+        $limit      = 10;
+        $new        = 0;
+        
+        $pagination  = $messages->listerMessages($user, $limit, $new);
+        
+        return $this->render('DoninfoBundle:Membre:membremessages.html.twig', array (
+            'pagination' => $pagination
+        ));
+    }
+    
+    public function membremessagesoldAction()
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!$user) 
+        {
+            throw new AccessDeniedException("Vous devez être authentifié pour accéder à cette page.");
+        }
+        
+        $messages   = $this->container->get('doninfo.list_messages');
+        $limit      = 10;
+        $new        = 1;
+        
+        $pagination  = $messages->listerMessages($user, $limit, $new);
+        
+        return $this->render('DoninfoBundle:Membre:membremessagesold.html.twig', array (
+            'pagination' => $pagination
+        ));
+    }
+    
+    public function membremessagessendAction()
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!$user) 
+        {
+            throw new AccessDeniedException("Vous devez être authentifié pour accéder à cette page.");
+        }
+        
+        $messages   = $this->container->get('doninfo.list_messages');
+        $limit      = 10;
+        
+        $pagination  = $messages->listerMessagesSend($user, $limit);
+        
+        return $this->render('DoninfoBundle:Membre:membremessagessend.html.twig', array (
+            'pagination' => $pagination
+        ));
     }
     
 }

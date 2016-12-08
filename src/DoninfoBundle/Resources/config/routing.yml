@@ -111,14 +111,29 @@ doninfo_membre_favoris:
     defaults:
         _controller:    DoninfoBundle:Site:favoris
         
-        
-
 doninfo_membre_terminee:
     path:       /membre/archive
     defaults:
         _controller:    DoninfoBundle:Site:membrearchive
        
+doninfo_membre_message:
+    path:       /membre/message/{id}
+    defaults:
+        _controller:    DoninfoBundle:Site:messageview
+    requirements:
+        id: \d+
+       
 doninfo_membre_messages:
     path:       /membre/messages
     defaults:
         _controller:    DoninfoBundle:Site:membremessages
+        
+doninfo_membre_messages_archive:
+    path:       /membre/messages/archive
+    defaults:
+        _controller:    DoninfoBundle:Site:membremessagesold
+        
+doninfo_membre_messages_send:
+    path:       /membre/messages/envoye
+    defaults:
+        _controller:    DoninfoBundle:Site:membremessagessend

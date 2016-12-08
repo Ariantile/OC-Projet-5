@@ -128,7 +128,9 @@
                 </div> 
                    
                 {% endif %}
-                    
+                
+                {% if message is defined %}
+                        
                 <div class="bloc-annonce-message">
                         
                     <h4>Contacter l'auteur</h4> 
@@ -155,7 +157,10 @@
                             
                     {{ form_end(message) }}
 
-                </div>     
+                </div>
+                
+                {% endif %}
+                
             </div>
         </div>
 
