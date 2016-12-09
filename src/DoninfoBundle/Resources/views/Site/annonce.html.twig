@@ -79,7 +79,38 @@
                     <div>{{ departement }}</div>
                     <div>{{ annonce.ville }}</div>              
                 </div>
+                
+                {% if formend is defined %}
+                
+                <div class="bloc-annonce-favoris">
+                       
+                    <h4>Valider votre annonce</h4>
                     
+                    <p class="desc-validation">
+                        Si vous souhaitez mettre fin à la parution de votre annonce, veuillez cliquer sur le lien ci-dessous
+                    </p>    
+                    
+                    {{ form_start(formend, 
+                        {'attr' : {'class' : ''}}
+                    )}}
+                        
+                    <div class="button-fav-add">
+                    
+                        {{ form_row(formend.terminer, 
+                            {
+                                'attr': {'class' : 'button-msg form-control glyphicon glyphicon-ok'},
+                                'label': ' ',
+                            }
+                        )}}
+                    
+                    </div>
+                        
+                    {{ form_end(formend) }}
+                        
+                </div>   
+                    
+                {% endif %}
+                            
                 {% if formfav is defined %}
                 
                 <div class="bloc-annonce-favoris">

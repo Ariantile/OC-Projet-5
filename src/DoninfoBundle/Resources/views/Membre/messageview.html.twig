@@ -13,7 +13,7 @@
                 {{ message.titre }}
             </h4>
             
-            <div class="bloc-container-message row">
+            <div class="bloc-container-message bloc-lecture row">
                 <div class="sous-bloc-message col-sm-4 col-xs-12">
                     <div class="bloc-message-infos row">
                         
@@ -52,6 +52,36 @@
                 </div>   
                 
             </div>
+            
+            {% if reponse is defined %}
+            
+                <div class="bloc-container-message bloc-reponse row">
+                   
+                    {{ form_start(reponse) }}
+                            
+                    {% form_theme reponse 'DoninfoBundle:Template:formulaires.html.twig' %}
+                           
+                        {{ form_row(reponse.titre, 
+                            {'attr': {'class' : 'form-control input-form-box'}}
+                        )}}
+                            
+                        {{ form_row(reponse.contenumessage, 
+                            {'attr': {'class' : 'form-control input-form-box'}}
+                        )}}
+                            
+                        <div class="button-msg-container">
+                            {{ form_row(reponse.envoyer,
+                                {'attr': {'class' : 'button-msg form-control'},
+                                 'label' : 'doninfo.message.label.repondre' 
+                                }
+                            )}}
+                        </div>
+                            
+                    {{ form_end(reponse) }}
+                    
+                </div>
+            
+            {% endif %}
             
         </div>
     </div>

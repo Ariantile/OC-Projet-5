@@ -85,6 +85,14 @@ class ContactMembre
     private $numannonce;
     
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_contact_m", type="datetime")
+     *
+     */
+    private $datecontactm;
+    
+    /**
      * @Recaptcha\IsTrue
      */
     public $recaptcha;
@@ -217,6 +225,30 @@ class ContactMembre
     public function getNumannonce()
     {
         return $this->numannonce;
+    }
+    
+    /**
+     * Set datecontactm
+     *
+     * @param \DateTime datecontactm
+     *
+     * @return ContactMembre
+     */
+    public function setDatecontactm($datecontactm)
+    {
+        $this->datecontactm = $datecontactm;
+
+        return $this;
+    }
+
+    /**
+     * Get datecontactm
+     *
+     * @return \DateTime
+     */
+    public function getDatecontactm()
+    {
+        return $this->datecontactm;
     }
 }
 

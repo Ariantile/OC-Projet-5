@@ -39,6 +39,11 @@ doninfo_mentions:
     path:       /mentions
     defaults:
         _controller:    DoninfoBundle:Site:mentions
+        
+doninfo_oublie:
+    path:       /pass-oublie
+    defaults:
+        _controller:    DoninfoBundle:Site:mdpoublie
   
 #Connection obligatoire  
 

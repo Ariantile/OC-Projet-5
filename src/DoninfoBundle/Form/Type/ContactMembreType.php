@@ -23,9 +23,9 @@ class ContactMembreType extends AbstractType
                 'required'  => true,
                 'label'     => 'doninfo.contactm.label.sujet',
                 'choices'   => array(
-                    'remarque'  => 'Remarque ou commentaire',
-                    'technique' => 'Problème technique',
-                    'annonce'   => 'Problème avec une annonce'
+                    'doninfo.contactm.choice.remarque'  => 'remarque',
+                    'doninfo.contactm.choice.technique' => 'technique',
+                    'doninfo.contactm.choice.annonce'   => 'annonce'
                 )
             ))
             ->add('titre', TextType::class, array(
@@ -41,6 +41,7 @@ class ContactMembreType extends AbstractType
                 'label'     => 'doninfo.contactm.label.msg',
                 'attr'      => array(
                     'placeholder'   => 'doninfo.contactm.placeholder.msg',
+                    'rows'          => 3,
                     'maxlength'     => '2000'
                 )
             ))

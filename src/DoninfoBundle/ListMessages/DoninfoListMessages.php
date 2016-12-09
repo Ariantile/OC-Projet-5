@@ -30,7 +30,7 @@ class DoninfoListMessages extends PaginatorAware
         
         $dql        = 'SELECT m FROM DoninfoBundle:Message m
                        LEFT JOIN m.annonce a
-                       WHERE a.user = :userid
+                       WHERE m.destinataire = :userid
                        AND m.newm   = :new
                        ORDER BY m.datemsg DESC';
             

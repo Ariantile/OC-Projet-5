@@ -22,6 +22,8 @@ use DoninfoBundle\Form\Type\RechercheType;
 use DoninfoBundle\Form\Type\MessageType;
 use DoninfoBundle\Form\Type\ContactPublicType;
 use DoninfoBundle\Form\Type\ContactMembreType;
+use DoninfoBundle\Form\Type\EndAnnonceType;
+use DoninfoBundle\Form\Type\MdpOublieType;
 use \DateTime;
 
 class SiteController extends Controller
@@ -41,7 +43,7 @@ class SiteController extends Controller
              
             $session->getFlashBag()->add('erreur', 'Vous êtes déjà connecté.');
             
-            return $this->redirectToRoute('doninfo_membre', array('id' => $user->getId()));
+            return $this->redirectToRoute('doninfo_membre');
         }
             
         $user = new User();
@@ -121,7 +123,7 @@ class SiteController extends Controller
             $user       = $this->get('security.token_storage')->getToken()->getUser();
             $session->getFlashBag()->add('erreur', 'Vous êtes déjà connecté.');
             
-            return $this->redirectToRoute('doninfo_membre', array('id' => $user->getId()));
+            return $this->redirectToRoute('doninfo_membre');
             
         } else if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             
@@ -177,12 +179,17 @@ class SiteController extends Controller
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
-            $mail = $this->container->get('doninfo.send_contact');
-            $mail->sendContactPublic($contact);
+            $session     = $this->container->get('session');
+            
+            $sendContact = $this->container->get('doninfo.send_contact');
+            $sendContact->sendContactPublic($contact);
+            
+            $session->getFlashBag()->add('message', 
+                                         'Merci de nous avoir contacté, nous vous réponderons dans les plus brefs délais.');
         }
         
         return $this->render('DoninfoBundle:Contact:contact.html.twig', array(
-                'contact'   => $form->createView()
+            'contact'   => $form->createView()
         ));
     }
     
@@ -193,12 +200,18 @@ class SiteController extends Controller
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
-            $mail = $this->container->get('doninfo.send_contact');
-            $mail->sendContactMembre($contact);
+            $user        = $this->get('security.token_storage')->getToken()->getUser();
+            $session     = $this->container->get('session');
+            
+            $sendContact = $this->container->get('doninfo.send_contact');
+            $sendContact->sendContactMembre($contact, $user);
+            
+            $session->getFlashBag()->add('message', 
+                                         'Merci de nous avoir contacté, nous vous réponderons dans les plus brefs délais.');
         }
         
         return $this->render('DoninfoBundle:Contact:contactmembre.html.twig', array(
-                'contactmembre' => $form->createView()
+            'contactmembre' => $form->createView()
         ));
     }
     
@@ -231,6 +244,10 @@ class SiteController extends Controller
             
                 $formfav = $this->get('form.factory')->create(RemoveFavorisType::class, $favoris);
             }
+        } else if ($user === $annonce->getUser() && $annonce->getStatut() === 'En cours') {
+            
+            $formend = $this->get('form.factory')->create(EndAnnonceType::class);
+            
         }
         
         $images         = $annonce->getImages();
@@ -238,12 +255,13 @@ class SiteController extends Controller
         $nom            = $annonce->getUser()->getNomstructure();
         $departement    = $annonce->getDepartement()->getNom();        
         
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
+        if ($request->isMethod('POST') && isset($form) && $form->handleRequest($request)->isValid()) 
         {
-            $session    = $this->container->get('session'); 
-            $poster     = $this->container->get('doninfo.send_message');
+            $session        = $this->container->get('session'); 
+            $poster         = $this->container->get('doninfo.send_message');
+            $destinataire   = $annonce->getUser()->getId();
             
-            $poster->createMessage($message, $annonce, $user);
+            $poster->createMessage($message, $annonce, $user, $destinataire);
             $session->getFlashBag()->add('message', 'Votre message a été envoyé avec succès.');
         } 
         
@@ -284,13 +302,33 @@ class SiteController extends Controller
                 'message'       => $form->createView(),
                 'formfav'       => $formfav->createView()
             ));
-        } else {
+        } else if (isset($formend)) {
+            
+            if ($request->isMethod('POST') && $formend->handleRequest($request)->isValid()) 
+            { 
+                $annonce->setStatut('Terminee');
+                $em->flush();
+
+                $session->getFlashBag()->add('message', 'Statut de l\'annonce modifié avec succés.');
+                return $this->redirectToRoute('doninfo_annonce', array('id' => $id));
+            } 
+            
             return $this->render('DoninfoBundle:Site:annonce.html.twig', array(
                 'annonce'       => $annonce,
                 'images'        => $images,
                 'objets'        => $objets,
                 'nom'           => $nom,
-                'departement'   => $departement, 
+                'departement'   => $departement,
+                'formend'       => $formend->createView()
+            ));
+        } else {
+            
+            return $this->render('DoninfoBundle:Site:annonce.html.twig', array(
+                'annonce'       => $annonce,
+                'images'        => $images,
+                'objets'        => $objets,
+                'nom'           => $nom,
+                'departement'   => $departement,
             ));
         }
     }
@@ -493,18 +531,44 @@ class SiteController extends Controller
         if (!$message) 
         {
             throw new NotFoundHttpException("Le message d'id ".$id." n'existe pas.");
-        } else if ($message->getAnnonce()->getUser() !== $user && $message->getUser() !== $user) {
+        } else if ($message->getDestinataire() !== $user->getId() && $message->getUser() !== $user) {
             throw new AccessDeniedException("vous n'etes pas autorise a accéder a la page requise");
         }
         
-        if ($message->getNewm() === 0) {
+        if ($message->getNewm() === 0 && $message->getDestinataire() === $user->getId()) 
+        {
             $message->setNewm(1);
             $em->flush();
         }
-
-        return $this->render('DoninfoBundle:Membre:messageview.html.twig', array (
-            'message' => $message
-        ));
+        
+        if ($message->getUser() !== $user)
+        {
+            $reponse = new Message();
+            $formrep = $this->get('form.factory')->create(MessageType::class, $reponse);
+            
+            if ($request->isMethod('POST') && $formrep->handleRequest($request)->isValid()) 
+            {
+                $session        = $this->container->get('session'); 
+                $repondre       = $this->container->get('doninfo.send_message');
+                $annonce        = $message->getAnnonce();
+                $destinataire   = $message->getUser()->getId();
+            
+                $repondre->createMessage($reponse, $annonce, $user, $destinataire);
+                $session->getFlashBag()->add('message', 'Votre message a été envoyé avec succès.');
+                
+                return $this->redirectToRoute('doninfo_membre_messages');
+            } 
+            
+            return $this->render('DoninfoBundle:Membre:messageview.html.twig', array (
+                'message' => $message,
+                'reponse' => $formrep->createView()
+            ));
+        } else {
+            
+            return $this->render('DoninfoBundle:Membre:messageview.html.twig', array (
+                'message' => $message
+            ));
+        }
     }
     
     public function membremessagesAction()
@@ -563,6 +627,20 @@ class SiteController extends Controller
         
         return $this->render('DoninfoBundle:Membre:membremessagessend.html.twig', array (
             'pagination' => $pagination
+        ));
+    }
+    
+    public function membrechangemdpAction()
+    {
+        
+    }
+    
+    public function mdpoublieAction()
+    {
+        $form = $this->get('form.factory')->create(MdpOublieType::class);
+        
+        return $this->render('DoninfoBundle:Security:mdpoublie.html.twig', array (
+            'form' => $form->createView()
         ));
     }
     

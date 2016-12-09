@@ -66,6 +66,7 @@ doninfo:
     message:
         label:
             submit:         Envoyer
+            repondre:       Répondre
         placeholder:
             titre:          Titre de votre message
             description:    Contenu de votre message
@@ -103,8 +104,16 @@ doninfo:
         placeholder:
             titre:          Choisissez un titre à votre message
             msg:            Votre message
-            num:            Votre prénom
+            num:            Numéro de commande
+        choice:
+            remarque:       Remarque ou commentaire
+            technique:      Problème technique
+            annonce:        Problème avec une annonce
     editmembre:
+        label:
+            submit:         Envoyer
+            
+    mdpoublie:
         label:
             submit:         Envoyer
 Next:                       Suivant

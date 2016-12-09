@@ -1,0 +1,51 @@
+{# src/DoninfoBundle/Resources/views/Security/connexion.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+        
+    <div class="bloc-form">
+       
+        {% for flashMessage in app.session.flashbag.get('erreur') %}
+            <div class="flash-messages">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    
+        {% for flashMessage in app.session.flashbag.get('message') %}
+            <div class="flash-messages">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        
+        <div class="form-connexion-info">
+                
+            <h4>Mot de passe oublié</h4>
+                
+            <p>
+                Veuillez indiquer votre adresse courriel utilisée lors de votre inscription
+            </p>
+                
+        </div> 
+        
+        <div class="form-connexion">
+        
+            {{ form_start(form) }}
+        
+                {% form_theme form 'DoninfoBundle:Template:formulaires.html.twig' %}
+                
+                {{ form_row(form.courriel, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                
+                {{ form_row(form.envoyer, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+            
+            {{ form_end(form) }}
+            
+        </div>  
+        
+    </div>
+
+{% endblock %}

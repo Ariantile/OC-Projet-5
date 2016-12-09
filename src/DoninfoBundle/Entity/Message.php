@@ -83,6 +83,14 @@ class Message
     private $newm;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="to_user_id", type="integer")
+     *
+     */
+    private $destinataire;
+    
+    /**
      * Get id
      *
      * @return int
@@ -184,6 +192,30 @@ class Message
     public function setNewm($newm)
     {
         $this->newm = $newm;
+
+        return $this;
+    }
+    
+    /**
+     * Get destinataire
+     *
+     * @return int
+     */
+    public function getDestinataire()
+    {
+        return $this->destinataire;
+    }
+    
+    /**
+     * Set destinataire
+     *
+     * @param int $destinataire
+     *
+     * @return Message
+     */
+    public function setDestinataire($destinataire)
+    {
+        $this->destinataire = $destinataire;
 
         return $this;
     }

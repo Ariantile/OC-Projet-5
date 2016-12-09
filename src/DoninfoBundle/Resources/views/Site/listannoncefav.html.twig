@@ -18,7 +18,33 @@
                     </a>
                 </div>  
 
-                <div class="list-bloc-desc col-sm-7 col-xs-12">            
+                <div class="list-bloc-desc col-sm-7 col-xs-12">
+                   
+                    <div class="bt-fav-list">
+                        {% if formfav is defined %}
+
+                            {% if formfav.retirer is defined %}
+
+                                {{ form_start(formfav, 
+                                    {'attr' : {'class' : ''}}
+                                )}}
+
+                                <div class="button-fav-del">
+                                    {{ form_row(formfav.retirer, 
+                                        {
+                                        'attr': {'class' : 'button-msg form-control glyphicon glyphicon-star'},
+                                        'label': ' ',
+                                        }
+                                    )}}
+                                </div>
+
+                                {{ form_end(formfav) }}
+
+                            {% endif %}   
+
+                        {% endif %}
+                    </div>  
+                              
                     <div  class="list-annonce-titre">
                         <a href="{{ path('doninfo_annonce', { 'id': annonce.annonce.id }) }}" class="liens">
                             <h2>

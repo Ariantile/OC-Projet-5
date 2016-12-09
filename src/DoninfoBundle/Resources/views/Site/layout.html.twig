@@ -44,7 +44,7 @@
                                 <li><a href="{{ path('doninfo_index_besoins') }}" class="liens lien1">Besoins</a></li>
                                 <li><a href="{{ path('doninfo_index_donations') }}" class="liens lien2">Donations</a></li>
                                 <li><a href="{{ path('doninfo_post') }}" class="liens lien3">Poster</a></li>
-                                <li><a href="#" class="liens">Contact membre</a></li>
+                                <li><a href="{{ path('doninfo_contact_membre') }}" class="liens">Contact membre</a></li>
                             {% endif %}
 		                </ul>
 		                <ul class="nav navbar-nav navbar-right">
@@ -131,6 +131,7 @@
             <script src="{{ asset('bundles/doninfobundle/js/jquery-jvectormap-2.0.3.min.js') }}"></script>
             <script src="{{ asset('bundles/doninfobundle/js/jquery-jvectormap-fr-mill.js') }}"></script>
             <script src="{{ asset('bundles/doninfobundle/js/script-layout.js') }}"></script>
+            <script src="{{ asset('bundles/doninfobundle/js/script-contact.js') }}"></script>
         {% endblock %}
     
     </body>

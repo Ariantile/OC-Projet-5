@@ -112,6 +112,14 @@ class ContactPublic
     public $recaptcha;
     
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_contact_p", type="datetime")
+     *
+     */
+    private $datecontactp;
+    
+    /**
      * Get id
      *
      * @return int
@@ -240,5 +248,28 @@ class ContactPublic
     {
         return $this->courriel;
     }
-}
+    
+    /**
+     * Set datecontactp
+     *
+     * @param \DateTime datecontactp
+     *
+     * @return ContactPublic
+     */
+    public function setDatecontactp($datecontactp)
+    {
+        $this->datecontactp = $datecontactp;
 
+        return $this;
+    }
+
+    /**
+     * Get datecontactp
+     *
+     * @return \DateTime
+     */
+    public function getDatecontactp()
+    {
+        return $this->datecontactp;
+    }
+}

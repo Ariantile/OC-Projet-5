@@ -4,30 +4,64 @@
 
 {% block contenu %}
       
+    <div class="bloc-form">
+    
+    {% for flashMessage in app.session.flashbag.get('message') %}
+        <div class="flash-messages-annonce">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    
     {{ form_start(contactmembre) }}
                
     {% form_theme contactmembre 'DoninfoBundle:Template:formulaires.html.twig' %}
                 
-        <div class="form-contact">
+        <div class="form-contact-info">
                 
-            <h4>Votre structure</h4>
+            <h4>Contactez-nous</h4>
+                
+            <p>
+               Si vous avez des questions ou des remarques à nous soumettre, veuillez utiliser le formulaire de contact ci-dessous, nous vous recontacterons au plus vite.
+            </p>
+                
+        </div>             
+                
+        <div class="form-contact">
                 
             {{ form_row(contactmembre.sujet, 
                 {'attr': {'class' : 'form-control input-form-box'}}
             )}}
+            
+            <div id="input-annonce" class="hide-contact">
+                {{ form_row(contactmembre.numannonce,
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+            </div>
+
+            
             {{ form_row(contactmembre.titre, 
                 {'attr': {'class' : 'form-control input-form-box'}}
             )}}
+            
             {{ form_row(contactmembre.message, 
                 {'attr': {'class' : 'form-control input-form-box'}}
             )}}
+            
             {{ form_row(contactmembre.recaptcha)}}
-            {{ form_row(contactmembre.envoyer, 
-                {'attr': {'class' : 'button'}}
-            )}}
+            
+            <div class="form-group has-feedback button-container"> 
+                {{ form_row(contactmembre.envoyer, 
+                    {'attr': {'class' : 'button form-control'}}
+                )}}
+                <i class="glyphicon glyphicon-chevron-right form-control-feedback button-icon"></i>
+            </div>
+            
+
                 
         </div>
                 
     {{ form_end(contactmembre) }}
+    
+    </div>
  
 {% endblock %}

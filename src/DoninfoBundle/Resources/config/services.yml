@@ -18,6 +18,14 @@ services:
             - "@doctrine"
             - "@service_container"
             
+    doninfo.send_contact:
+        class: DoninfoBundle\SendContact\DoninfoSendContact
+        arguments:
+            - "@mailer"
+            - "@twig"
+            - "@doctrine"
+            - "@service_container"
+            
     doninfo.send_message:
         class: DoninfoBundle\SendMessage\DoninfoSendMessage
         arguments:

@@ -18,7 +18,7 @@ class DoninfoSendMessage
      * Poster un message
      *
      */
-    public function createMessage($message, $annonce, $user)
+    public function createMessage($message, $annonce, $user, $destinataire)
     {
         $em = $this->doctrine->getManager();
         $date = new \DateTime('now');
@@ -27,6 +27,7 @@ class DoninfoSendMessage
         $message->setUser($user);
         $message->setDatemsg($date);
         $message->setNewm(0);
+        $message->setDestinataire($destinataire);
         
         $em->persist($message);
         $em->flush();
