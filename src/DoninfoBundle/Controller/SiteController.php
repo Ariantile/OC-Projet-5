@@ -14,6 +14,7 @@ use DoninfoBundle\Entity\Recherche;
 use DoninfoBundle\Entity\Message;
 use DoninfoBundle\Entity\ContactPublic;
 use DoninfoBundle\Entity\ContactMembre;
+use DoninfoBundle\Entity\MdpOublie;
 use DoninfoBundle\Form\Type\InscriptionType;
 use DoninfoBundle\Form\Type\AnnonceType;
 use DoninfoBundle\Form\Type\FavorisType;
@@ -24,6 +25,7 @@ use DoninfoBundle\Form\Type\ContactPublicType;
 use DoninfoBundle\Form\Type\ContactMembreType;
 use DoninfoBundle\Form\Type\EndAnnonceType;
 use DoninfoBundle\Form\Type\MdpOublieType;
+use DoninfoBundle\Form\Type\ChangeMdpType;
 use \DateTime;
 
 class SiteController extends Controller
@@ -353,14 +355,13 @@ class SiteController extends Controller
         $adresse    = $annonce->getAdresse();
         $ville      = $annonce->getVille();
         $codeps     = $annonce->getCodepostal();
-
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
         {
             $em = $this->getDoctrine()->getManager();
             
             $updater = $this->container->get('doninfo.poster_annonce');
-            $updater->updateAnnonce($annonce, $user);
+            $updater->updateAnnonce($annonce, $user, $form);
             
             $request->getSession()->getFlashBag()->add('message', 'Modifications enregistrée.');
             return $this->redirectToRoute('doninfo_annonce', array('id' => $annonce->getId()));
@@ -635,13 +636,110 @@ class SiteController extends Controller
         
     }
     
-    public function mdpoublieAction()
+    public function mdpoublieAction(Request $request)
     {
-        $form = $this->get('form.factory')->create(MdpOublieType::class);
+        $user       = $this->get('security.token_storage')->getToken()->getUser();
+        $session    = $this->container->get('session');
+        
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) 
+        {
+            $session->getFlashBag()->add('message', 'Vous êtes déjà connecté.');
+            return $this->redirectToRoute('doninfo_accueil');
+        }
+        
+        $recoverdata    = new MdpOublie();
+        $form = $this->get('form.factory')->create(MdpOublieType::class, $recoverdata);
+                    
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
+        {
+            $em         = $this->getDoctrine()->getManager();
+            $courriel   = $recoverdata->getCourriel();
+            
+            $checkprev  = $em->getRepository('DoninfoBundle:MdpOublie')->findOneByCourriel($courriel);
+            
+            if ($checkprev !== null)
+            {
+                $em->remove($checkprev);
+                $em->flush();
+            }
+            
+            $checkuser  = $em->getRepository('DoninfoBundle:User')->findOneByCourriel($courriel);
+            
+            $recover    = $this->container->get('doninfo.recover_mdp');
+            $recover->recoverMdp($recoverdata, $checkuser);
+            
+            $code       = $recoverdata->getMdpcode();
+            
+            $sendRecover  = $this->container->get('doninfo.send_mail');
+            $sendRecover->sendMailRecover($courriel, $code);
+            
+            return $this->redirectToRoute('doninfo_recover_done');
+        }
         
         return $this->render('DoninfoBundle:Security:mdpoublie.html.twig', array (
             'form' => $form->createView()
         ));
+    }
+    
+    public function recoverdoneAction()
+    {
+        return $this->render('DoninfoBundle:Site:recoverdone.html.twig');
+    }
+    
+    
+    
+    public function recuperationAction(Request $request, $recover_code)
+    {
+        $session = $this->container->get('session');
+        
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+             
+            $session->getFlashBag()->add('erreur', 'Activation impossible, utilisateur déjà connecté.');
+            
+            return $this->redirectToRoute('doninfo_membre', array('id' => $user->getId()));
+            
+        }
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $recover = $em->getRepository('DoninfoBundle:MdpOublie')->findOneByMdpcode($recover_code);
+        
+        if (!$recover) {
+            
+            throw new NotFoundHttpException("Aucun utilisateur trouvé.");
+            
+        }
+        
+        $user    = $recover->getUser();
+            
+        if (($user->getStatut() === 'Banni')) {
+            
+            $session->getFlashBag()->add('erreur', 'Impossible de réinitialiser le mot de passe, le compte selectionné est banni.');
+            
+            return $this->redirectToRoute('doninfo_acceuil');
+            
+        } else {
+            
+            $form = $this->get('form.factory')->create(ChangeMdpType::class, $user);
+            
+            if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+            {
+                $changemdp = $this->container->get('doninfo.inscription');
+                
+                $field = $form->get('password')->getData();
+                
+                $changemdp->changeMpd($field, $user, $recover);
+                
+                $session->getFlashBag()->add('message', 'Mot de passe modifié, veuillez vous connecter.');
+                return $this->redirectToRoute('doninfo_connexion');
+            }
+            
+            return $this->render('DoninfoBundle:Security:mdpchange.html.twig', array (
+                'form' => $form->createView()
+            ));
+        }
     }
     
 }

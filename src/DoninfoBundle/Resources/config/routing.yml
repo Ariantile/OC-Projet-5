@@ -44,6 +44,16 @@ doninfo_oublie:
     path:       /pass-oublie
     defaults:
         _controller:    DoninfoBundle:Site:mdpoublie
+        
+doninfo_recover_done:
+    path:       /recuperation-info
+    defaults:
+        _controller:    DoninfoBundle:Site:recoverdone
+        
+doninfo_recover:
+    path:       /recuperation/{recover_code}
+    defaults:
+        _controller:    DoninfoBundle:Site:recuperation
   
 #Connection obligatoire  
 

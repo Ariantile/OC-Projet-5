@@ -4,6 +4,7 @@ namespace DoninfoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use DoninfoBundle\Validator\Courrielmdp;
 
 /**
  * MdpOublie
@@ -40,6 +41,20 @@ class MdpOublie
     private $mdpcode;
     
     /**
+     * @var string
+     *
+     * @Assert\NotBlank(message = "validation.user.courriel.blank")
+     * @Assert\Email(
+     *     message = "validation.user.courriel.valid"
+     * )
+     *
+     * @Courrielmdp()
+     *
+     * @ORM\Column(name="courriel_recover", type="string", length=255)
+     */
+    private $courriel;
+    
+    /**
      * Get id
      *
      * @return int
@@ -69,6 +84,28 @@ class MdpOublie
     public function getMdpcode()
     {
         return $this->mdpcode;
+    }
+    
+    /**
+     * Set courriel
+     *
+     * @return string
+     */
+    public function setCourriel($courriel)
+    {
+        $this->courriel = $courriel;
+        
+        return $this;
+    }
+    
+    /**
+     * Get courriel
+     *
+     * @return string
+     */
+    public function getCourriel()
+    {
+        return $this->courriel;
     }
     
     /**

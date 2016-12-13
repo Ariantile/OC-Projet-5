@@ -34,7 +34,7 @@ class MdpOublieType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'DoninfoBundle\Entity\Favoris'
+            'data_class' => 'DoninfoBundle\Entity\MdpOublie'
         ));
     }
 
@@ -43,7 +43,7 @@ class MdpOublieType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'doninfobundle_favoris';
+        return 'doninfobundle_mdpoublie';
     }
 
 }

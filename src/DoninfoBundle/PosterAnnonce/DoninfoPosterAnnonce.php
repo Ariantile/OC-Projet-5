@@ -75,7 +75,7 @@ class DoninfoPosterAnnonce
      * Updater une annonce
      *
      */
-    public function updateAnnonce($annonce, $user)
+    public function updateAnnonce($annonce, $user, $form)
     {
         $em     = $this->doctrine->getManager();
                   
@@ -95,6 +95,7 @@ class DoninfoPosterAnnonce
         $images = $annonce->getImages();
         $objets = $annonce->getObjets();
         
+        /*
         foreach ($images as $image)
         {
             if (!isset($image))
@@ -113,7 +114,7 @@ class DoninfoPosterAnnonce
             } else {
                 $annonce->addObjet($objet);
             }
-        }
+        }*/
 
         $em->flush();
     }  

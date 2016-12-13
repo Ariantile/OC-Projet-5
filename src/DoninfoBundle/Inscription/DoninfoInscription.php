@@ -51,4 +51,21 @@ class DoninfoInscription
         $em->flush();
     }
     
+    /**
+     * Modification du mot de pass
+     *
+     */
+    public function changeMpd($mdp, $user, $recover)
+    {
+        $em = $this->doctrine->getManager();
+        
+        $password_encode = $this->encoder->encodePassword($user, $mdp);
+        $user->setPassword($password_encode);
+        
+        $em->remove($recover);
+        
+        $em->flush();
+    }
+     
+    
 }

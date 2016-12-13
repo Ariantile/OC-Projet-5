@@ -17,18 +17,36 @@ class DoninfoSendMail
         $this->doctrine = $doctrine;
         $this->container = $container;
     }
-
+    
+    /**
+     * Courriel de changement de mdp
+     *
+     */
+    public function sendMailRecover($courriel, $code)
+    {
+        $mail = \Swift_Message::newInstance();
+            
+        $mail->setSubject('Don Info - Réinitialiser votre mot de passe')
+             ->setFrom('activation@doninfo.com')
+             ->setTo($courriel)
+             ->setBody(
+                    $this->twig->render(
+                        'DoninfoBundle:Mail:recovercourriel.html.twig',
+                        array('courriel' => $courriel, 'code' => $code)
+                    ),
+                    'text/html'
+                );
+            
+        $this->mailer->send($mail);
+    }
+    
     /**
      * Génération et envoi de mail
      *
      */
     public function sendMailActivation($courriel, $code_active)
     {
-        $image = $this->container->get('kernel')->getRootDir().'/../web/bundles/doninfobundle/images/logo.png';
-        
         $mail = \Swift_Message::newInstance();
-            
-        $logo = $mail->embed(\Swift_Image::fromPath($image));
             
         $mail->setSubject('Don Info - Activation de compte')
              ->setFrom('activation@doninfo.com')
@@ -36,7 +54,7 @@ class DoninfoSendMail
              ->setBody(
                     $this->twig->render(
                         'DoninfoBundle:Mail:activationcourriel.html.twig',
-                        array('courriel' => $courriel, 'logo' => $logo, 'code' => $code_active)
+                        array('courriel' => $courriel, 'code' => $code_active)
                     ),
                     'text/html'
                 );
@@ -56,7 +74,7 @@ class DoninfoSendMail
             
         $logo = $mail->embed(\Swift_Image::fromPath($image));
             
-        $mail->setSubject('Don Info - Activation de compte')
+        $mail->setSubject('Don Info - Nouveau message')
              ->setFrom('activation@doninfo.com')
              ->setTo($courriel)
              ->setBody(

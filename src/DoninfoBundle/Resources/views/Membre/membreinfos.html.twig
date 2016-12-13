@@ -43,7 +43,13 @@
                             Siren/RNA - {{ app.user.sirenrna }}
                         </div>
                         <div>
-                            {% if app.user.ape is not defined %} APE - NC {% endif %} {% if app.user.ape is defined %} APE - {{ app.user.ape }} {% endif %}
+                            {% if (app.user.ape is not defined) or (app.user.ape == null) %} 
+                                APE - NC 
+                            {% endif %} 
+                            
+                            {% if app.user.ape is defined %} 
+                                APE - {{ app.user.ape }} 
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -104,7 +110,7 @@
                     <div class="sous-bloc-membre-titre">
                         <i class="fa fa-link" aria-hidden="true"></i>
                         <span>
-                                {% if app.user.siteweb is not defined %}
+                                {% if (app.user.siteweb is not defined) or (app.user.siteweb == null) %}
                                     NC
                                 {% endif %}
                                 {% if app.user.siteweb is defined %}
@@ -130,7 +136,7 @@
         </div>
         
         <div class="col-xs-12 membre-bt-container">
-            <span class="col-xs-12">Pour éditer les informations de votre profile, veuillez cliquez sur le bouton.</span>
+            <span class="col-xs-12">Pour éditer les informations de votre profil, veuillez cliquez sur le bouton.</span>
             <a href="{{ path('doninfo_membre_edit')}}" class="membre-bt-edit">
                 <div class="bloc-membre-infos bloc-membre-infos-bt">
                     <div class="sous-bloc-membre-infos sous-bloc-membre-bt">

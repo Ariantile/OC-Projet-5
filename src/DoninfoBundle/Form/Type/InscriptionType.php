@@ -96,7 +96,7 @@ class InscriptionType extends AbstractType
             ->add('courriel', RepeatedType::class, array(
                 'type'      => EmailType::class,
                 'required'  => true,
-                'invalid_message'   => 'doninfo.inscription.courriel.invalid',
+                'invalid_message'   => 'Les champs du courriel doivent correspondre',
                 'first_options'     => array(
                     'label'             => 'doninfo.inscription.label.courriel',
                     'attr'              => array(
@@ -136,7 +136,7 @@ class InscriptionType extends AbstractType
             ->add('password', RepeatedType::class, array(
                 'type'              => PasswordType::class,
                 'required'          => true,
-                'invalid_message'   => 'doninfo.inscription.pass.invalid',
+                'invalid_message'   => 'Les champs du mot de passe doivent correspondre',
                 'first_options'     => array(
                     'label'     => 'doninfo.inscription.label.pass',
                     'attr'              => array(

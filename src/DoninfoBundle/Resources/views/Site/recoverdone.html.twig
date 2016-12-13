@@ -1,0 +1,22 @@
+{# src/DoninfoBundle/Resources/views/Site/recoverdone.html.twig #}
+
+{% extends "DoninfoBundle:Site:layout.html.twig" %}
+
+{% block contenu %}
+        
+        <div class="bloc-form">
+            
+            <div class="form-inscription-info inscription-remerciement">
+                
+                <h4>Récupération effectuée</h4>
+                
+                <p class="inscription-p1">
+                    Vous recevrez sous peu un courriel vous permettant de changer votre mot de passe,
+                    <a href="{{ url('doninfo_connexion') }}">cliquez ici </a>pour accéder au formulaire de connection.
+                </p>
+                
+            </div>   
+            
+        </div>
+ 
+{% endblock %}

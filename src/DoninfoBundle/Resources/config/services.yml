@@ -26,6 +26,14 @@ services:
             - "@doctrine"
             - "@service_container"
             
+    doninfo.recover_mdp:
+        class: DoninfoBundle\RecoverMdp\DoninfoRecoverMdp
+        arguments:
+            - "@mailer"
+            - "@twig"
+            - "@doctrine"
+            - "@service_container"
+            
     doninfo.send_message:
         class: DoninfoBundle\SendMessage\DoninfoSendMessage
         arguments:
@@ -52,4 +60,10 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: validator.constraint_validator, alias: doninfo_valid_cp }
+            
+    doninfo.validator_cmdp:
+        class: DoninfoBundle\Validator\CourrielmdpValidator
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator, alias: doninfo_valid_cmdp }
  

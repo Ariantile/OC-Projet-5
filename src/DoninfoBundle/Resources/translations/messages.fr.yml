@@ -59,10 +59,6 @@ doninfo:
             pass:           Mot de passe
             pass_conf:      Confirmation
             type:           Type
-        pass:
-            invalid:        Les champs du mot de passe doivent correspondre
-        courril:
-            invalid:        Les champs du courriel doivent correspondre
     message:
         label:
             submit:         Envoyer

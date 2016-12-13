@@ -111,147 +111,53 @@ class DoninfoListAnnonce extends PaginatorAware
         $departement    = $recherche->getDepartement();
         $categorie      = $recherche->getCategorie();
         
-        if ( (!isset($motcle)       || $motcle === ''       || $motcle === null) && 
-             (!isset($departement)  || $departement === ''  || $departement === null) && 
-             (!isset($categorie)    || $categorie === ''    || $categorie === null) )
-        {
-            $dql    = "SELECT a FROM DoninfoBundle:Annonce a 
-                       LEFT JOIN a.images img
-                       WHERE a.type = :type
-                       AND a.statut = :statut
-                       ORDER BY a.datecreation DESC";
-            
-            $query  = $em->createQuery($dql)->setParameters(array('statut'  => 'En cours', 
-                                                                  'type'    => $type));
-
-
-        } else if ((isset($motcle)       || $motcle !== ''       || $motcle !== null) && 
-                   (!isset($departement) || $departement === ''  || $departement === null) && 
-                   (!isset($categorie)   || $categorie === ''    || $categorie === null) )
-        {
-            
-            $dql = "SELECT a FROM DoninfoBundle:Annonce a 
-                    LEFT JOIN a.images img
-                    WHERE a.type = :type
-                    AND a.statut = :statut
-                    AND a.titre LIKE  :motcle
-                    ORDER BY a.datecreation DESC";
-            
-            $query  = $em->createQuery($dql)->setParameters(array('statut'  => 'En cours', 
-                                                                  'type'    => $type, 
-                                                                  'motcle'  => '%'.$motcle.'%'));
-            
-        } else if ((!isset($motcle)       || $motcle === ''       || $motcle === null) && 
-                   (isset($departement)   || $departement !== ''  || $departement !== null) && 
-                   (!isset($categorie)    || $categorie === ''    || $categorie === null) )
-        {
-            
-            $dql = "SELECT a FROM DoninfoBundle:Annonce a 
-                    LEFT JOIN a.images img
-                    WHERE a.type = :type
-                    AND a.statut = :statut
-                    AND a.departement =  :departement
-                    ORDER BY a.datecreation DESC";
-            
-            $query  = $em->createQuery($dql)->setParameters(array('statut'      => 'En cours', 
-                                                                  'type'        => $type, 
-                                                                  'departement' => $departement));
-            
-        } else if ((!isset($motcle)        || $motcle === ''       || $motcle === null) && 
-                   (!isset($departement)   || $departement === ''  || $departement === null) && 
-                   (isset($categorie)      || $categorie !== ''    || $categorie !== null) )
-        {
-            
-            $dql = "SELECT a FROM DoninfoBundle:Annonce a 
-                    LEFT JOIN a.images img
-                    LEFT JOIN a.objets obj
-                    WHERE a.type = :type
-                    AND a.statut = :statut
-                    AND obj.categorie =  :categorie
-                    ORDER BY a.datecreation DESC";
-            
-            $query  = $em->createQuery($dql)->setParameters(array('statut'      => 'En cours', 
-                                                                  'type'        => $type, 
-                                                                  'categorie'   => $categorie));
-            
-        } else if ((isset($motcle)        || $motcle !== ''       || $motcle !== null) && 
-                   (isset($departement)   || $departement !== ''  || $departement !== null) && 
-                   (!isset($categorie)    || $categorie === ''    || $categorie === null) )
-        {
-            
-            $dql = "SELECT a FROM DoninfoBundle:Annonce a 
-                    LEFT JOIN a.images img
-                    WHERE a.type = :type
-                    AND a.statut = :statut
-                    AND a.titre LIKE  :motcle
-                    AND a.departement = :departement
-                    ORDER BY a.datecreation DESC";
-            
-            $query  = $em->createQuery($dql)->setParameters(array('statut'  => 'En cours', 
-                                                                  'type'    => $type, 
-                                                                  'motcle'  => '%'.$motcle.'%',
-                                                                  'departement' => $departement));
+        $query_motcle       = " AND a.titre LIKE  :motcle";
+        $query_departement  = " AND a.departement =  :departement";
+        $query_categorie    = " AND obj.categorie =  :categorie";
         
-        }  else if ((isset($motcle)        || $motcle !== ''       || $motcle !== null) && 
-                   (!isset($departement)   || $departement === ''  || $departement === null) && 
-                   (isset($categorie)      || $categorie !== ''    || $categorie !== null) )
+        $param_motcle       = 'motcle';
+        $param_departement  = 'departement';
+        $param_categorie    = 'categorie';
+        
+        
+        $criteres = array(
+                array('param' => $motcle, 'requete' => $query_motcle, 'nomparam' =>  $param_motcle),
+                array('param' => $departement, 'requete' => $query_departement, 'nomparam' => $param_departement),
+                array('param' => $categorie, 'requete' => $query_categorie, 'nomparam' => $param_categorie)
+        );
+         
+        $parameters = array ('statut'  => 'En cours',
+                             'type'    => $type
+        );
+        
+        $dqlquery = "";
+        
+        foreach($criteres as $row)
         {
-            
-            $dql = "SELECT a FROM DoninfoBundle:Annonce a 
-                    LEFT JOIN a.images img
-                    LEFT JOIN a.objets obj
-                    WHERE a.type = :type
-                    AND a.statut = :statut
-                    AND a.titre LIKE  :motcle
-                    AND obj.categorie =  :categorie
-                    ORDER BY a.datecreation DESC";
-            
-            $query  = $em->createQuery($dql)->setParameters(array('statut'  => 'En cours', 
-                                                                  'type'    => $type, 
-                                                                  'motcle'  => '%'.$motcle.'%',
-                                                                  'categorie'   => $categorie));
-            
-        } else if ((!isset($motcle)        || $motcle === ''       || $motcle === null) && 
-                   (isset($departement)    || $departement !== ''  || $departement !== null) && 
-                   (isset($categorie)      || $categorie !== ''    || $categorie !== null) )
-        {
-            
-            $dql = "SELECT a FROM DoninfoBundle:Annonce a 
-                    LEFT JOIN a.images img
-                    LEFT JOIN a.objets obj
-                    WHERE a.type = :type
-                    AND a.statut = :statut
-                    AND a.departement = :departement
-                    AND obj.categorie =  :categorie
-                    ORDER BY a.datecreation DESC";
-            
-            $query  = $em->createQuery($dql)->setParameters(array('statut'  => 'En cours', 
-                                                                  'type'    => $type, 
-                                                                  'categorie'   => $categorie,
-                                                                  'departement' => $departement));
-            
-        } else if ((isset($motcle)         || $motcle !== ''       || $motcle !== null) && 
-                   (isset($departement)    || $departement !== ''  || $departement !== null) && 
-                   (isset($categorie)      || $categorie !== ''    || $categorie !== null) )
-        {
-            $dql = "SELECT a FROM DoninfoBundle:Annonce a 
-                    LEFT JOIN a.images img
-                    LEFT JOIN a.objets obj
-                    WHERE a.type = :type
-                    AND a.statut = :statut
-                    AND a.titre LIKE  :motcle
-                    AND a.departement = :departement
-                    AND obj.categorie =  :categorie
-                    ORDER BY a.datecreation DESC";
-            
-            $query  = $em->createQuery($dql)->setParameters(array('statut'  => 'En cours', 
-                                                                  'type'    => $type,
-                                                                  'motcle'  => '%'.$motcle.'%',
-                                                                  'categorie'   => $categorie,
-                                                                  'departement' => $departement));
-            
+            if ($row['param'] !== null && $row['param'] !== '')
+            {
+                $dqlquery = $dqlquery . $row['requete'];
+                
+                if ($row['nomparam'] === 'motcle')
+                {
+                    $new_param = array($row['nomparam'] => '%'.$row['param'].'%');
+                    
+                } else {
+                    $new_param = array($row['nomparam'] => $row['param']);
+                }
+                
+                $parameters = array_merge($parameters, $new_param);
+            }
         }
+            
+        $dql    = "SELECT a FROM DoninfoBundle:Annonce a 
+                   LEFT JOIN a.images img
+                   LEFT JOIN a.objets obj
+                   WHERE a.statut = :statut
+                   AND a.type = :type ". $dqlquery ." ORDER BY a.datecreation DESC";
         
+        $query  = $em->createQuery($dql)->setParameters($parameters);
+       
         $paginator  = $this->getPaginator();
         $pagination = $paginator->paginate(
             $query, 

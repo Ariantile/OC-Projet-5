@@ -23,7 +23,7 @@
             <h4>Mot de passe oublié</h4>
                 
             <p>
-                Veuillez indiquer l'adresse courriel utilisée lors de votre inscription.
+                Veuillez choisir un nouveau mot de passe.
             </p>
                 
         </div> 
@@ -34,7 +34,10 @@
         
                 {% form_theme form 'DoninfoBundle:Template:formulaires.html.twig' %}
                 
-                {{ form_row(form.courriel, 
+                {{ form_row(form.password.first, 
+                    {'attr': {'class' : 'form-control input-form-box'}}
+                )}}
+                {{ form_row(form.password.second, 
                     {'attr': {'class' : 'form-control input-form-box'}}
                 )}}
                 
