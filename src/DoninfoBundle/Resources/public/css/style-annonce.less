@@ -22,16 +22,18 @@
     padding: 25px;
     margin-left: auto;
     margin-right: auto;
-    background: url(../images/fond.png) no-repeat top center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 
 /*------------------------------------------------------------------------
 ----------------------- BLOC TITRE ET DESCRIPTION ------------------------
 ------------------------------------------------------------------------*/
+
+.lien-edit
+{
+    color: #518FE4;
+    font-style: normal;
+    font-size: 0.8em;
+}
 
 .bloc-annonce-titre
 {
@@ -178,7 +180,6 @@
 
 .bloc-annonce-info
 {
-    
     color: #4E4F66;
     font-style: italic;
     padding-left: 0px!important;
@@ -209,7 +210,7 @@
     }
 }
 
-.bloc-annonce-info-owner, .bloc-annonce-adresse, .bloc-annonce-message
+.bloc-annonce-info-owner, .bloc-annonce-adresse, .bloc-annonce-message, .bloc-annonce-favoris
 {
     background-color: rgba(255, 255, 255, 0.7);
     padding-top: 5px;
@@ -218,7 +219,7 @@
     font-size: 1.2em;
 }
 
-.bloc-annonce-info-owner
+.bloc-annonce-info-owner, .bloc-annonce-favoris
 { 
     margin-bottom: 5px;
 }
@@ -286,6 +287,50 @@
     {
         margin-bottom: 10px;
     }
+}
+
+.button-fav-add, .button-fav-del
+{
+    //width: 40px;
+    margin-top: 5px;
+    width: 100%;
+    height: 40px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.button-fav-add
+{
+    button
+    {
+        background: #6CEB72;
+        color: #FFFFFF;
+        border: none;
+    }
+    button:hover
+    {
+        background: #429147;
+    }
+}
+
+.button-fav-del 
+{
+    button
+    {
+        background: #FA7574;
+        color: #FFFFFF;
+        border: none;
+    }
+    button:hover
+    {
+        background: #C95F5D;
+    }
+}
+
+.desc-validation
+{
+    padding-top: 5px;
+    font-size: 0.8em!important;
 }
 
 /*------------------------------------------------------------------------

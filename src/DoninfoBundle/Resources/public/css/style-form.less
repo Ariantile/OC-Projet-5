@@ -50,6 +50,11 @@
     display: none;
 }
 
+.hide-contact
+{
+    display: none;
+}
+
 /*------------------------------------------------------------------------
 ---------------------- FORM INPUTS ET BLOC -------------------------------
 ------------------------------------------------------------------------*/
@@ -72,11 +77,17 @@
     padding: 25px;
     margin-left: auto;
     margin-right: auto;
-    background: url(../images/fond.png) no-repeat top center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+}
+
+.button-recherche-container
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button-recherche
+{
+    margin-top: 25px;
 }
 
 /*------------------------------------------------------------------------
@@ -110,10 +121,6 @@
 
 .bloc-form
 {
-    .form-connexion-info
-    {
-        margin-top: 60px;
-    }
     .form-connexion-inscription
     {
         margin-bottom:  60px;
@@ -155,6 +162,19 @@
         padding-right: 15px;
         padding-bottom: 10px;
         text-align: center;
+    }
+}
+
+.lien-oublie
+{
+    a 
+    {
+        color: #B7B8EE;
+    }
+    
+    a:hover
+    {
+        color: #70BFF6;
     }
 }
 
@@ -236,11 +256,6 @@
     padding: 25px;
     margin-left: auto;
     margin-right: auto;
-    background: url(../images/fond.png) no-repeat top center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 
 .form-inscription
@@ -258,7 +273,7 @@
         margin-right: auto;
     }
     
-    input
+    input, select
     {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -473,7 +488,7 @@
         display: inline;
     }
         
-    label
+    label.inp-label
     {
         text-align: center;
         padding: 25px;
@@ -484,7 +499,7 @@
         display: inline-block;
     }
     
-    label:hover
+    .inp-label:hover
     {
         background-color: #FA7574;
         cursor: pointer;
@@ -665,7 +680,81 @@
 }
 
 /*------------------------------------------------------------------------
----------------------- FORM CONTACT -------------------------------------
+----------------------- FORM EDIT ----------------------------------------
+------------------------------------------------------------------------*/
+
+.container-img-update
+{
+    height: 150px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.list-img-edit
+{
+
+    padding: 10px;
+    height: 100%;
+    
+    img 
+    {
+        max-height: 100%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.bloc-membre-edit
+{
+    form 
+    {
+        padding-top: 20px;
+        padding-bottom: 1px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+}
+
+.del-item-on
+{
+    background: #FF9F9E!important;    
+}
+
+.del-item
+{
+    background: #FA7574;
+    text-align: center;
+    label
+    {
+        display: block;
+    }
+}
+
+.checkbox-item
+{
+    margin-top: 0px!important;
+    margin-bottom: 0px!important;
+}
+
+.checkbox-label
+{
+    color: #FFFFFF!important;
+}
+
+.del-img
+{
+    
+}
+
+.checkbox-img
+{
+    
+}
+
+/*------------------------------------------------------------------------
+---------------------- FORM CONTACT --------------------------------------
 ------------------------------------------------------------------------*/
 
 .form-contact-info
@@ -720,6 +809,12 @@
         margin-bottom: 30px;
     }
     
+    select
+    {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
     .g-recaptcha
     {
         max-width: 304px;
@@ -737,4 +832,34 @@
         font-style: italic;
         font-size: 1.1em;
     }
+}
+
+/*------------------------------------------------------------------------
+-------------------------- FORM MDP --------------------------------------
+------------------------------------------------------------------------*/
+
+.recover-form
+{
+    input
+    {
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+   
+    .form-group
+    {
+        margin-bottom: 5px!important;
+    }
+    
+    /*
+    button
+    {
+        background: #518fe4;
+    }
+    
+    button:hover
+    {
+        background: #38639E;
+    }
+    */
 }

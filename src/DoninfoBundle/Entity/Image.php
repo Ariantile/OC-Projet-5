@@ -54,80 +54,8 @@ class Image
     // On ajoute cet attribut pour y stocker le nom du fichier temporairement
     private $tempFilename;
     
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $deleteimg;
     
-    /**
-     * Set annonce
-     *
-     * @param Annonce $annonce
-     */
-    public function setAnnonce(Annonce $annonce)
-    {
-        $this->annonce = $annonce;
-        
-        return $this;
-    }
-
-    /**
-     * Get annonce
-     *
-     * @return Annonce
-     */
-    public function getAnnonce()
-    {
-        return $this->annonce;
-    }
-    
-    /**
-     * Get ext
-     *
-     * @return string
-     */
-    public function getExt()
-    {
-        return $this->ext;
-    }
-    
-    /**
-     * Get alt
-     *
-     * @return string
-     */
-    public function getAlt()
-    {
-        return $this->alt;
-    }
-    
-    /**
-     * Get file
-     *
-     */
-    public function getFile()
-    {
-        return $this->file;
-    }
-    
-    public function setFile(UploadedFile $file)
-    {
-        $this->file = $file;
-
-        if (null !== $this->ext) 
-        {
-            $this->tempFilename = $this->ext;
-            
-            $this->ext = null;
-            $this->alt = null;
-        }
-    }
-
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
@@ -143,7 +71,7 @@ class Image
         
         $this->alt = $this->file->getClientOriginalName();
     }
-
+    
     /**
      * @ORM\PostPersist()
      * @ORM\PostUpdate()
@@ -202,5 +130,121 @@ class Image
     public function getWebPath()
     {
         return $this->getUploadDir().'/'.$this->getId().'.'.$this->getExt();
+    }
+    
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+     * Set annonce
+     *
+     * @param Annonce $annonce
+     */
+    public function setAnnonce(Annonce $annonce)
+    {
+        $this->annonce = $annonce;
+        
+        return $this;
+    }
+
+    /**
+     * Get annonce
+     *
+     * @return Annonce
+     */
+    public function getAnnonce()
+    {
+        return $this->annonce;
+    }
+    
+    /**
+     * @param string $ext
+     *
+     */
+    public function setExt($ext)
+    {
+        $this->ext = $ext;
+    }
+    
+    /**
+     * Get ext
+     *
+     * @return string
+     */
+    public function getExt()
+    {
+        return $this->ext;
+    }
+    
+    /**
+     * @param string $alt
+     *
+     */
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
+    }
+    
+    /**
+     * Get alt
+     *
+     * @return string
+     */
+    public function getAlt()
+    {
+        return $this->alt;
+    }
+    
+    /**
+     * Get file
+     *
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+    
+    public function setFile(UploadedFile $file)
+    {
+        $this->file = $file;
+
+        if (null !== $this->ext) 
+        {
+            $this->tempFilename = $this->ext;
+            
+            $this->ext = null;
+            $this->alt = null;
+        }
+    }
+    
+    /**
+     * Get deleteimg
+     *
+     * @return boolean
+     */
+    public function getDeleteimg()
+    {
+        return $this->deleteimg;
+    }
+
+    /**
+     * Set deleteimg
+     *
+     * @param boolean $deleteimg
+     *
+     * @return Image
+     */
+    public function setDeleteimg($deleteimg)
+    {
+        $this->deleteimg = $deleteimg;
+
+        return $this;
     }
 }

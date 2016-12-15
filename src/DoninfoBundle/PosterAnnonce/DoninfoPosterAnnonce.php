@@ -75,7 +75,7 @@ class DoninfoPosterAnnonce
      * Updater une annonce
      *
      */
-    public function updateAnnonce($annonce, $user, $form)
+    public function updateAnnonce($annonce, $user, $form, $objetsDb)
     {
         $em     = $this->doctrine->getManager();
                   
@@ -90,32 +90,43 @@ class DoninfoPosterAnnonce
             
         $departement = $em->getRepository('DoninfoBundle:Departement')->findOneByCode($codeps_sub);
 
-        $annonce->setDepartement($departement);    
-            
-        $images = $annonce->getImages();
-        $objets = $annonce->getObjets();
+        $annonce->setDepartement($departement);
         
-        /*
-        foreach ($images as $image)
-        {
-            if (!isset($image))
+        $objetsNew  = $annonce->getObjets();
+        $imgsNew    = $annonce->getImages();
+        
+        /*foreach ($form->get('objets') as $formObjet) {
+            $checkDelete = $formObjet->get('delete')->getData();
+            if ($checkDelete === true)
             {
-                $annonce->removeImage($image);
-            } else {
-                $annonce->addImage($image);
+                $delObjet = $formObjet->getData();
+                $annonce->removeObjet($delObjet);
+                
+            }
+        }*/
+        
+        foreach ($objetsNew as $objet) 
+        {
+            if (false === $objetsDb->contains($objet)) 
+            {
+                $annonce->addObjet($objet);
+                $em->persist($objet);
+            } else if ( ($objet->getDelete() === true) && (true === $objetsDb->contains($objet)) ){
+                $annonce->removeObjet($objet);
+                $em->persist($objet);
             }
         }
         
-        foreach ($objets as $objet)
+        foreach($imgsNew as $img)
         {
-            if (!isset($objet))
+            if ($img->getDeleteimg() === true)
             {
-                $annonce->removeObjet($objet);
-            } else {
-                $annonce->addObjet($objet);
+                $annonce->removeImage($img);
+                $em->persist($img);
             }
-        }*/
+        }
 
+        $em->persist($annonce);
         $em->flush();
     }  
     

@@ -17,13 +17,13 @@ use DoninfoBundle\Validator\Codepostal;
 class Annonce
 {
     /**
-     * @ORM\OneToMany(targetEntity="DoninfoBundle\Entity\Objet", mappedBy="annonce", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="DoninfoBundle\Entity\Objet", mappedBy="annonce", cascade={"persist", "remove"}, orphanRemoval=true)
      * @Assert\Valid()
      */
     private $objets;
     
     /**
-     * @ORM\OneToMany(targetEntity="DoninfoBundle\Entity\Image", mappedBy="annonce", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="DoninfoBundle\Entity\Image", mappedBy="annonce", cascade={"persist", "remove"}, orphanRemoval=true)
      * @Assert\Valid()
      */
     private $images;
@@ -168,7 +168,7 @@ class Annonce
      * @ORM\Column(name="statut", type="string", length=255)
      */
     private $statut;
-        
+    
     /**
      * @Recaptcha\IsTrue
      */
@@ -489,9 +489,15 @@ class Annonce
      */
     public function addObjet(Objet $objet)
     {
+        if (!$this->objets->contains($objet)) {
+            $this->objets->add($objet);
+        }
+        
         $this->objets[] = $objet;
 
         $objet->setAnnonce($this);
+        
+        return $this;
     }
 
     /**
@@ -501,7 +507,7 @@ class Annonce
      */
     public function removeObjet(Objet $objet)
     {
-        $this->objetsannonce->removeElement($objet);
+        $this->objets->removeElement($objet);
     }
 
     /**
@@ -556,10 +562,12 @@ class Annonce
      * @return Annonce
      */
     public function addImage(Image $image)
-    {
+    {   
         $this->images[] = $image;
-
+        
         $image->setAnnonce($this);
+        
+        return $this;
     }
 
     /**

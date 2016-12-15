@@ -1,52 +1,20 @@
 $(function () {
-    
-    /*
-    $('#map').vectorMap({
-        map: 'fr_mill',
-        backgroundColor: '#F8F7FF',
-        regionStyle:
-            {
-                initial:
-                    {
-                        fill: '#393A7A',
-                        'fill-opacity': 1,
-                        stroke: 'none',
-                        'stroke-width': 0,
-                        'stroke-opacity': 1
-                    },
-
-                hover:
-                    {
-                        fill: '#F0D887',
-                        'fill-opacity': 0.8,
-                        cursor: 'pointer'
-                    },
-
-                selected:
-                    {
-                        fill: 'yellow'
-                    },
-                selectedHover:
-                    {
-                    }
-            }
-    });
-    */
-    
+  
 /**********************************************************************************************
 *********************** FORMULAIRE POSTER ANNONCE *********************************************
 **********************************************************************************************/
     
     $(document).ready(function () {
-        
+         
         /**********************************************************************************************
         ***************************************** VARIABLES  ******************************************
         **********************************************************************************************/
         
         var $containerImage = $('div#doninfobundle_annonce_images'),
-            indexImage = $containerImage.find(':input').length,
+            indexImage = $containerImage.find(':input.inp-file').length,
             $container = $('div#doninfobundle_annonce_objets'),
-            index = $container.find(':input').length;
+            index = $container.find('input[type="number"]').length,
+            $objload = $container.find('div').length;
         
         /**********************************************************************************************
         ***************************************** FONCTIONS  ******************************************
@@ -73,20 +41,21 @@ $(function () {
             
             var $deleteLink = $('<div class="button-container-del"><button id="delObjet" class="button-del"><i class="glyphicon glyphicon-remove"></i></button></div>');
             
-            // Ajout du lien
             $prototype.append($deleteLink);
             
-            // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
             $deleteLink.click(function (e) {
                 
-                if (index > 1) {
+                if (index > 1 && $objload === 0) {
                     
                     $prototype.remove();
                     index--;
                     
+                } else if ($objload > 0) {
+                    $prototype.remove();
+                    index--;
                 }
                 
-                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                e.preventDefault();
                 return false;
             });
         }
@@ -123,12 +92,37 @@ $(function () {
         
         /********************************** AJOUT DES 3 BLOCS IMAGE  *****************************************/
         
-        if (indexImage === 0) {
+        if ((indexImage === 0) && ($('div#doninfobundle_annonce_images').length)) 
+        {
             for (var i = 0; i <= 2; i++)
             {
                 addImage($containerImage);
             }
+        } else if ( indexImage > 0 ) {
+            
+            
+            for (var i = indexImage; i <= 2; i++)
+            {
+                addImage($containerImage);
+            }
+            
         }
+        
+        /********************************** AJOUT DE CLASS SUR CHECKBOX  *****************************************/
+        
+        $('div.sous-bloc-objet').each(function() {
+            if ( $(this).find('div').length > 4 ) {
+                $(this).children('div').last().addClass('del-item');
+            }
+        })
+        
+        $('.checkbox-item').change(function() {
+            if ($(this).is(":checked")) {
+                $(this).parent().parent().parent().addClass('del-item-on');
+            } else if (!$(this).is(":checked") && $(this).parent().parent().parent().hasClass('del-item-on')) {
+                $(this).parent().parent().parent().removeClass('del-item-on');
+            }
+        })
         
         /***************************************** AJOUT D'UN OBJET  ******************************************/
         
@@ -142,12 +136,8 @@ $(function () {
             return false;
         });
         
-        if (index == 0) {
+        if (index == 0 && $('#addObjet').length && $objload == 0) {
             addObjet($container);
-        } else {
-            $container.children('div').each(function() {
-                addDeleteLink($(this));
-            });
         }
         
         /******************************************** AJOUT/SUPP IMAGES  *******************************************/
@@ -155,8 +145,6 @@ $(function () {
         $('input[type="file"]').change(function() {
         
             var $idPhoto = $(this).attr('id');
-            
-            console.log($idPhoto);
         
             if ($(this).get(0).files.length === 1 && !$(this).prev().hasClass('loaded')){
             
@@ -195,8 +183,6 @@ $(function () {
                 $('.codepostal-input').val($('.codepostal-val').text());
                 
                 $('div.bloc-adresse > div > input').attr('readonly', true);
-
-                
             } 
             
                 

@@ -79,6 +79,7 @@ class AnnonceType extends AbstractType
             ->add('images', CollectionType::class, array(
                 'label'         => false,
                 'required'      => false,
+                'by_reference'  => false,
                 'entry_type'    => ImageType::class,
                     'allow_add'    => true,
                     'allow_delete' => true,
@@ -91,6 +92,7 @@ class AnnonceType extends AbstractType
             ))
             ->add('objets', CollectionType::class, array(
                 'label'         => false,
+                'by_reference'  => false,
                 'attr'          => array(
                     'class'         => 'form-post-objet'
                 ),

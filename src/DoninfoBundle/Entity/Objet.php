@@ -70,6 +70,7 @@ class Objet
      */
     private $description;
 
+    private $delete;
 
     /**
      * Get id
@@ -199,5 +200,29 @@ class Objet
     public function getCategorie()
     {
         return $this->categorie;
+    }
+    
+    /**
+     * Get delete
+     *
+     * @return boolean
+     */
+    public function getDelete()
+    {
+        return $this->delete;
+    }
+
+    /**
+     * Set delete
+     *
+     * @param boolean $delete
+     *
+     * @return Objet
+     */
+    public function setDelete($delete)
+    {
+        $this->delete = $delete;
+
+        return $this;
     }
 }

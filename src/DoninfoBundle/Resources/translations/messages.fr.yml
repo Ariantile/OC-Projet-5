@@ -20,6 +20,7 @@ doninfo:
             qte:            Quantité
             submit:         Publier
             description:    Description
+            supprimer:      Supprimer
     image:
         label:
             photo:          Photo

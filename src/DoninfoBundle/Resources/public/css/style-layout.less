@@ -84,7 +84,7 @@
 
 body
 {
-    font-family: Source Sans Pro;
+    font-family: 'open_sansregular';
 }
 
 p
@@ -106,6 +106,11 @@ h4
     font-size: 1.8em;
 }
 
+h5
+{
+    font-family: 'open_sansitalic', Arial, serif;
+}
+
 label
 {
     font-family: 'open_sansitalic', Arial, serif;
@@ -114,6 +119,11 @@ label
 /*------------------------------------------------------------------------
 ---------------------- BOUTONS / LIENS -----------------------------------
 ------------------------------------------------------------------------*/
+
+.navbar-toggle .icon-bar 
+{
+  background-color: #000000;
+}
 
 .button-container
 {
@@ -171,9 +181,27 @@ label
 ---------------------- BODY ----------------------------------------------
 ------------------------------------------------------------------------*/
 
+html 
+{
+    position: relative;
+    min-height: 100%;
+}
+
+
 body
 {
     background-color: @back_body;
+    margin-bottom: 100px;
+    background: url(../images/fond.png) no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+section
+{
+    height: 100%;
 }
 
 .bloc_page
@@ -261,47 +289,77 @@ a.lien3:hover
 
 footer
 {
-    padding-top: 50px;
     height: 100px;
     background-color: @back_top_footer;
     border-top: 1px solid black;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    .copy
+    {
+        text-align: center;
+    }
 }
 
 .bloc_footer
 {
-    margin-top: 20px;
+    width: 100%;
     padding-top: 20px;
-    height: 200px;
-    background: @back_footer;
-    p 
-    {
-        text-align: right;
-        margin-right: 20px;
-    }
+    height: 20px;
+}
+
+.container-foot
+{
+    max-width: 1000px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bloc-footer-button-contact, .bloc-footer-button-social
+{
+    text-align: center;
     a 
     {
-        margin-top: 20px;
-        margin-left: 20px;
+        width: 100%;
+        height: 100%;
+        color: #FFFFFF;
+        margin-left: 10px;
+        margin-right: 10px;
     }
+    
     a:hover
     {
         text-decoration: none;
-        color: @liensHoverFooter;
+        span 
+        {
+            color: @liensHoverFooter;
+        }
+    }
+    
+    span
+    {
+        font-size: 1em;
+    }
+    
+    h5
+    {
+        font-size: 1em;
+        color: #FFFFFF;
     }
 }
 
-.liens-footer
+.bloc-footer-button-social
 {
-    display: block;
+    
 }
 
 /*------------------------------------------------------------------------
 ---------------------- MESSAGES FLASH & ERREURS---------------------------
 ------------------------------------------------------------------------*/
 
-.flash-messages
+.flash-messages, .flash-messages-annonce
 {
-    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
@@ -309,6 +367,16 @@ footer
     background-color: @background-flash;
     color: @text-flash;
     text-align: center;
+}
+
+.flash-messages
+{
+    max-width: 500px;
+}
+
+.flash-messages-annonce
+{
+    max-width: 800px;
 }
 
 .bloc-erreurs
@@ -372,4 +440,55 @@ footer
     }
 }
 
+/*------------------------------------------------------------------------
+---------------------- MEDIA QUERIES -------------------------------------
+------------------------------------------------------------------------*/
+
+@media screen and (max-width: 769px) 
+{
+    footer
+    {
+        height: 200px;
+    }
+    
+    body
+    {
+        margin-bottom: 200px;
+    }
+    
+    .bloc-footer-button-contact, .bloc-footer-button-social
+    {
+        h5
+        {
+            font-size: 0.9em;
+        }
+    }
+    
+    .bloc-footer-button-contact
+    {
+        text-align: left;
+        a 
+        {
+            margin-left: 0px;
+            
+        }
+    }
+    
+    .bloc-footer-button-social, .copy
+    {
+        text-align: right!important;
+        
+        a 
+        {
+            margin-right: 0px;
+            
+        }
+    }
+    
+    .copy
+    {
+        margin-top: 30px;
+    }
+
+} 
 

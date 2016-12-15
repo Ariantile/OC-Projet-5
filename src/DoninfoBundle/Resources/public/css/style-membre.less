@@ -13,44 +13,311 @@
 
 
 /*------------------------------------------------------------------------
----------------------- ACCUEIL MEMBRE -----------------------------------
+------------------------------- MEMBRE -----------------------------------
 ------------------------------------------------------------------------*/
 
-.bloc-membre-structure, .bloc-membre-contact, .bloc-membre-nom, .bloc-membre-compte
+.bloc-menu-membre
 {
-    max-width: 300px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 25px;
-    background-color: @background-bloc;
-    h4
+    text-align: center;
+    margin-bottom: 80px;
+    
+    a 
     {
-        background: @back-titre;
-        color: @text-titre;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        height: 30px;
-        line-height: 35px;
-        text-align: center;
+        height: 100%;
+        width: 100%;
+        color: #FFFFFF;
+    }
         
+    a:hover
+    {
+        color: #000000;
+        
+        .bloc-menu-membre-bt
+        {
+            background: #A8E2FF;
+            border-bottom: 6px solid #000000;
+        }
     }
     
-    p 
+    .bloc-menu-membre-bt
     {
-        padding-left: 15px;
-        padding-right: 15px;
+        background: #B7B8EE;
+        border-bottom: 6px solid #8586AD;
+        padding-top: 10px;
+        padding-bottom: 5px;
     }
 }
 
-.membre-label
+.infos-membre
 {
-    margin-top: 5px;
-    font-weight: bold;
-    font-size: 1.2em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
-.membre-infos
+.infos-membre-annonce
+{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}
+
+.bloc-membre
+{
+    max-width: 100%;
+    .row
+    {
+        margin-left: 0px!important;
+        margin-right: 0px!important;
+    }
+    
+    .bloc-membre-infos
+    {
+        text-align: center;
+        padding: 10px;
+        font-family: 'open_sansregular', Arial, serif;
+    }
+    
+    .sous-bloc-membre-infos
+    {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .sous-bloc-membre-titre
+    {
+        padding: 5px;
+        color: #000000;
+        text-align: right;
+        font-size: 1.2em;
+        border-bottom: 1px solid #8586AD;
+        
+        i 
+        {
+            float: left;
+            font-size: 1.2em;
+            margin-top: 2px;
+            margin-left: 2px;
+        }
+        
+        span
+        {
+            font-size: 1em;
+        }
+    }
+}
+
+.membre-bt-container
+{
+    margin-top: 10px;
+    text-align: right;
+    padding-right: 0px!important;
+    padding-left: 0px!important;
+    span 
+    {
+        padding-right: 0px!important;
+        font-family: 'open_sansitalic', Arial, serif;
+    }
+}
+
+.membre-bt-edit
+{
+    color: #FFFFFF;
+    font-size: 1.3em;
+}
+
+.membre-bt-edit:hover
+{
+    color: #FFFFFF;
+    .bloc-membre-infos-bt
+    {
+        background: #38639E;
+    }  
+}
+
+.sous-bloc-membre-bt
+{
+    background: none!important;
+}
+
+.bloc-membre-infos-bt
+{
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background: #518FE4;
+    border: 1px solid #345B91;
+    width: 80px;
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+    padding-bottom: 0px!important;
+    padding-top: 1px!important;
+    float: right;
+}
+
+.bloc-membre-annonce
+{
+    max-width: 100%;
+}
+
+.titre-membre
+{
+    max-width: 100%;
+    color: #FFFFFF;
+    background: #B7B8EE;
+    border-bottom: 6px solid #8586AD;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: right;
+    margin-bottom: 0px;
+    font-style: italic;
+    span 
+    {
+        float: left;
+    }
+}
+
+.bloc-membre-row
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.sous-bloc-membre-row
+{
+    width: 100%; 
+}
+
+/*------------------------------------------------------------------------
+------------------------------- MESSAGES ---------------------------------
+------------------------------------------------------------------------*/
+
+.bloc-container-message
+{
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    
+    .row 
+    {
+        margin-left: 0px!important;
+        margin-right: 0px!important;
+    }
+}
+
+.sous-bloc-message
+{
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.bloc-message-contenu
+{
+    background-color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid #8586AD;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: justify;
+}
+
+.bloc-message-contenu, .bloc-message-infos
+{
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: 'open_sansregular', Arial, serif;
+    font-size: 1em;
+}
+
+.bloc-message-infos
+{   
+    .sous-bloc-message-infos 
+    {
+        text-align: left;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 0px!important;
+        padding-right: 0px!important;
+        
+        i 
+        {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    }
+    
+    .bloc-num
+    {
+        color: #518FE4;
+    }
+    
+    .bloc-date, .bloc-auteur
+    {
+        color: #000000;
+    }
+}
+
+.bloc-reponse
+{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.bloc-reponse
+{
+    padding-top: 10px;
+    
+    input
+    {
+        margin-bottom: 10px;
+    }
+    
+    textarea
+    {
+        margin-bottom: 10px;
+        resize: none;
+    }
+    
+    .button-msg-container
+    {
+        button
+        {
+            background: #518FE4;
+            color: #FFFFFF;
+            font-family: 'open_sansitalic', Arial, serif;
+        }
+        
+        button:hover
+        {
+            background: #38639E;
+        }
+    }
+}
+
+.bloc-lecture
 {
     padding-bottom: 10px;
 }
 
+/*------------------------------------------------------------------------
+---------------------- MEDIA QUERIES -------------------------------------
+------------------------------------------------------------------------*/
+
+@media screen and (max-width: 769px) 
+{
+    .bloc-message-infos 
+    {
+        .sous-bloc-message-infos
+        {
+            text-align: center;
+        }
+    }
+}

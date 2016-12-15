@@ -137,7 +137,17 @@
             
             <div class="form-post">
                 
-                <h4>Photos (facultatif)</h4>
+                {% if data is not defined %}
+                
+                    <h4>Photos (facultatif)</h4>
+                
+                {% endif %}
+
+                {% if data is defined %}
+                
+                    <h4>Ajouter / Modifier / Supprimer</h4>
+                
+                {% endif %}
                 
                 {% if data.images[0] is defined %}
                     <p>
@@ -150,7 +160,6 @@
                         Vous avez la possibilité de joindre trois photos à votre annonce. L'ajout de photo(s) est facultatif mais recommandé pour une meilleur appréciation par les futurs lecteurs.
                     </p>
                 {% endif %}
-
                    
                 {{ form_row(annonce.images,
                     {'attr': {'class' : 'bloc-photo-container row'}}
@@ -181,7 +190,9 @@
                 </p>
                 
                 <div class="bloc-objet-post">
+                   
                     {{ form_row(annonce.objets)}}
+                    
                     <div class="bloc-button">
                         <button id="addObjet" class="button-add"><i class="glyphicon glyphicon-plus"></i></button>
                     </div>

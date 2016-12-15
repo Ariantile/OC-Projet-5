@@ -5,10 +5,13 @@ namespace DoninfoBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ObjetType extends AbstractType
 {
@@ -32,8 +35,8 @@ class ObjetType extends AbstractType
                 'required'      => true,
                 'label'         => 'doninfo.objet.label.etat',
                 'choices'       => array(
-                    'Opérationnel'      => 'Opérationnel',
-                    'Ne fonctionne pas'   => 'Ne fonctionne pas'
+                    'Opérationnel'          => 'Opérationnel',
+                    'Ne fonctionne pas'     => 'Ne fonctionne pas'
                 ),
                 'attr'          => array(
                     'class'         => 'input-form-box form-control'
@@ -58,6 +61,26 @@ class ObjetType extends AbstractType
                 )
             ))     
         ;
+        
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) 
+        {
+            $objet  = $event->getData();
+            $form   = $event->getForm();
+            
+            if ($objet) 
+            {
+                $form->add('delete', CheckboxType::class, array(
+                    'label'     => 'doninfo.objet.label.supprimer',
+                    'required'  => false,
+                    'attr'      => array(
+                        'class'         => 'checkbox-item'
+                    ),
+                    'label_attr' =>  array(
+                        'class'         => 'checkbox-label'
+                    )
+                ));
+            }
+        });
     }
     
     /**

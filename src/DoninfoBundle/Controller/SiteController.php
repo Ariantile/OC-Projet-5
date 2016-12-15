@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Doctrine\Common\Collections\ArrayCollection;
 use DoninfoBundle\Entity\User;
 use DoninfoBundle\Entity\Favoris;
 use DoninfoBundle\Entity\Annonce;
@@ -17,6 +18,7 @@ use DoninfoBundle\Entity\ContactMembre;
 use DoninfoBundle\Entity\MdpOublie;
 use DoninfoBundle\Form\Type\InscriptionType;
 use DoninfoBundle\Form\Type\AnnonceType;
+use DoninfoBundle\Form\Type\AnnonceEditType;
 use DoninfoBundle\Form\Type\FavorisType;
 use DoninfoBundle\Form\Type\RemoveFavorisType;
 use DoninfoBundle\Form\Type\RechercheType;
@@ -356,12 +358,19 @@ class SiteController extends Controller
         $ville      = $annonce->getVille();
         $codeps     = $annonce->getCodepostal();
         
+        $objetsDb   = new ArrayCollection();
+
+        foreach ($annonce->getObjets() as $objet) {
+            $objetsDb->add($objet);
+        }
+        
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
         {
             $em = $this->getDoctrine()->getManager();
-            
+
             $updater = $this->container->get('doninfo.poster_annonce');
-            $updater->updateAnnonce($annonce, $user, $form);
+            
+            $updater->updateAnnonce($annonce, $user, $form, $objetsDb);
             
             $request->getSession()->getFlashBag()->add('message', 'Modifications enregistrée.');
             return $this->redirectToRoute('doninfo_annonce', array('id' => $annonce->getId()));
