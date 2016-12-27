@@ -483,6 +483,9 @@
 .bloc-photo-container
 {
     text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    
     div
     {
         display: inline;
@@ -503,6 +506,50 @@
     {
         background-color: #FA7574;
         cursor: pointer;
+    }
+}
+
+.bloc-photo-container-edit
+{
+    .sous-container-img
+    {
+        width: 100%!important;
+        padding-left: 0px!important;
+        padding-right: 0px!important;
+    }
+    
+    img 
+    {
+        height: 150px;
+    }
+    
+    label.inp-label
+    {
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+.bloc-photo-edit
+{
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+    label.inp-label
+    {
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100%;
+        font-size: 1.25em;
+        font-weight: 700;
+        color: #FFFFFF;
+        background-color: #B7B8EE;
+        display: inline-block;
     }
 }
 
@@ -732,7 +779,7 @@
     }
 }
 
-.checkbox-item
+.checkbox-item, .checkbox-img
 {
     margin-top: 0px!important;
     margin-bottom: 0px!important;
@@ -743,9 +790,38 @@
     color: #FFFFFF!important;
 }
 
+.sous-container-img
+{
+    div
+    {
+        display: block;
+    }
+}
+
+.border-bt
+{
+   border-bottom: 3px solid #BD5858; 
+}
+
+
 .del-img
 {
+    background: #FA7574;
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
     
+    label
+    {
+        vertical-align: top;
+    }
+    input
+    {
+        margin-left: 5px;
+        margin-top: 5px!important;
+    }
 }
 
 .checkbox-img
@@ -862,4 +938,14 @@
         background: #38639E;
     }
     */
+}
+
+@media screen and (max-width: 420px)
+{
+    #doninfobundle_annonce_images_0, #doninfobundle_annonce_images_1, #doninfobundle_annonce_images_2
+    {
+        width: 100%!important;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 }

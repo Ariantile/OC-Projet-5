@@ -21,6 +21,7 @@ doninfo:
             submit:         Publier
             description:    Description
             supprimer:      Supprimer
+            supprimer:      Supprimer
     image:
         label:
             photo:          Photo

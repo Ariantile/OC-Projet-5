@@ -102,79 +102,80 @@
                 
             </div>
             
-            {% if data.images[0] is defined %}
-            
             <div class="form-post">
+            
+            {% if data.images[0] is defined %}
                  
                 <h4>Photos en ligne</h4>
-                    
-                <div class="row">
-                    <div class="container-img-update">
-                        {% for i in 0..2 %}
-
-                            {% if data.images[i] is defined %}
-
-                                <div class="list-img-edit col-sm-4 col-xs-12">
-                                    <img src="{{ asset(data.images[i].webPath) }}" alt="{{ data.images[i].alt }}" class="img-responsive"/>                    
-                                </div>
-
-                            {% endif %}
-
-                            {% if data.images[i] is not defined %}
-
-                                <div class="list-img-edit col-sm-4 col-xs-12">
-                                    <img src="{{ asset('/uploads/img/placeholder.png') }}" alt="placeholder" class="img-responsive"/> 
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>     
-                </div>   
-            </div>
+                   
+                <p>
+                    Vous avez la possibilité d'ajouter jusqu'à trois photos à votre annonce. Vous pouvez également remplacer les photos déjà publiées.
+                </p>   
 
             {% endif %}
             
             {% if annonce.images is defined %}
-            
-            <div class="form-post">
                 
                 {% if data is not defined %}
                 
                     <h4>Photos (facultatif)</h4>
                 
                 {% endif %}
-
-                {% if data is defined %}
-                
-                    <h4>Ajouter / Modifier / Supprimer</h4>
-                
-                {% endif %}
-                
-                {% if data.images[0] is defined %}
-                    <p>
-                        Vous avez la possibilité d'ajouter jusqu'à trois photos à votre annonce. Vous pouvez également remplacer les photos déjà publiées.
-                    </p>
-                {% endif %}
                 
                 {% if data.images[0] is not defined %}
                     <p>
                         Vous avez la possibilité de joindre trois photos à votre annonce. L'ajout de photo(s) est facultatif mais recommandé pour une meilleur appréciation par les futurs lecteurs.
                     </p>
+                    
+                    {{ form_row(annonce.images,
+                        {'attr': {'class' : 'bloc-photo-container row'}}
+                    )}}   
                 {% endif %}
+                         
+                {% if data.images[0] is defined %}
                    
-                {{ form_row(annonce.images,
-                    {'attr': {'class' : 'bloc-photo-container row'}}
-                )}}    
-                   
+                    {% form_theme annonce _self %}
+                    
+                    {% block _images_row %}
+                    
+                    {% macro information_prototype(image) %}
+                        <div class="list-img-edit col-sm-4 col-xs-12">
+                            {% if image.vars.value is not null %}
+                                <img src="{{ asset(image.vars.value.webPath) }}" />
+                            {% endif %}
+                            
+                            {% if image.vars.value is null %}
+                                <img src="{{ asset('/uploads/img/placeholder.png') }}" alt="placeholder" class="img-responsive"/>
+                            {% endif %}
+                            
+                            {{ form_label(image) }}
+                            {{ form_errors(image) }}
+                            {{ form_widget(image) }}
+                        </div>
+                    {% endmacro %}
+                    
+                    <div id="doninfobundle_annonce_images" data-prototype="{{ _self.information_prototype(annonce.images.vars.prototype)|e }}" class="bloc-photo-container bloc-photo-container-edit row">
+                        
+                        {% for image in annonce.images %}
+                            {{ _self.information_prototype(image) }}
+                        {% endfor %}
+                    </div>    
+                        
+                        
+                    {% endblock %}
+                    
+                {% endif %}
+                  
                 <div class="liste-fichier">
                    
                     {% for l in 0..2 %}
                        <p class="chemin-photo doninfobundle_annonce_images_{{ l }}_file">Aucune image selectionnée</p>
                     {% endfor %}
                 </div>
-                
-            </div>
-            
+
             {% endif %}
+            
+            </div>
             
             <div class="form-post">
                

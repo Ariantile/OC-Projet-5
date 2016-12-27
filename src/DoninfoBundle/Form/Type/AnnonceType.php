@@ -86,7 +86,7 @@ class AnnonceType extends AbstractType
                     'entry_options' => array(
                         'label'         => false,
                         'attr'          => array(
-                            'class'         => 'col-xs-4'
+                            'class'         => 'col-xs-4 sous-container-img'
                         )
                     )
             ))

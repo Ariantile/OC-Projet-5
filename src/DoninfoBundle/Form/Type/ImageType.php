@@ -43,6 +43,9 @@ class ImageType extends AbstractType
                     'required' => false,
                     'attr'      => array(
                         'class'     => 'checkbox-img'
+                    ),
+                    'label_attr' =>  array(
+                        'class'         => 'checkbox-label'
                     )
                 ));
             }

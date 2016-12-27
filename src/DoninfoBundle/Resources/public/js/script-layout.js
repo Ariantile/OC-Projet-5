@@ -116,7 +116,22 @@ $(function () {
             }
         })
         
+        $('div.sous-container-img').each(function() {
+            console.log($(this).length);
+            if ( $(this).find('div').length > 1 ) {
+                $(this).children('div').last().addClass('del-img');
+            }
+        })
+        
         $('.checkbox-item').change(function() {
+            if ($(this).is(":checked")) {
+                $(this).parent().parent().parent().addClass('del-item-on');
+            } else if (!$(this).is(":checked") && $(this).parent().parent().parent().hasClass('del-item-on')) {
+                $(this).parent().parent().parent().removeClass('del-item-on');
+            }
+        })
+        
+        $('.checkbox-img').change(function() {
             if ($(this).is(":checked")) {
                 $(this).parent().parent().parent().addClass('del-item-on');
             } else if (!$(this).is(":checked") && $(this).parent().parent().parent().hasClass('del-item-on')) {
