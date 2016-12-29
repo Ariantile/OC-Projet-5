@@ -17,17 +17,35 @@
             <div class="col-xs-6 container-bloc-left">
                 <div class="bloc-left-acc-p">
                     <p class="acc-desc">Du matériel informatique à donner ou un projet nécessitant un nouvel ordinateur ?</p>
-                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-                    <p class="acc-highlight">Postez une annonce</p>
+                    
+                    <a href="{{ path('doninfo_post') }}" class="link-acc-p">
+                        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                        <p class="acc-highlight">Postez une annonce</p>
+                    </a>
                 </div>
             </div>
             <div class="col-xs-6 container-bloc-right">
                 <div class="bloc-right-acc-p">
                     <p class="acc-desc">Trouvez autour de vous un projet à soutenir ou une structure prête à vous aider.</p>
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    <p class="acc-highlight">Recherche simple et rapide</p>
+                    <a href="{{ path('doninfo_index_donations') }}" class="link-acc-p">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <p class="acc-highlight">Recherche simple et rapide</p>
+                    </a>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="col-xs-12 container-acc-t">
+        <div class="accueil_t row">
+            <p class="bloc-text-acc-t">
+                Doninfo, site gratuit de proposition de don et de présentation de besoin, à destination des associations et des professionnels.
+                <br><br>
+                L’objectif du site est de faciliter la mise en relation des professionnels et du milieu associatif. Le but est d’apporter un support permettant au professionnels de proposer du matériel informatique à la donation mais aussi permettre aux associations d’exprimer un besoin de même nature.
+                <br><br>
+                Pour consulter ou poster une annonce, une inscription est obligatoire. Une fois connecté vous pourrez lire et poster des annonces, contacter les autres utilisateurs via une messagerie interne et consulter vos messages.
+                <br><br>
+                Doninfo est dédié aux dons de matériel informatique.
+            </p>
         </div>
     </div>
     <div class="col-xs-12 container-acc-d">
@@ -54,18 +72,6 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 container-acc-t">
-        <div class="accueil_t row">
-            <p class="bloc-text-acc-t">
-                Doninfo, site gratuit de proposition de don et de présentation de besoin, à destination des associations et des professionnels.
-                <br><br>
-                L’objectif du site est de faciliter la mise en relation des professionnels et du milieu associatif. Le but est d’apporter un support permettant au professionnels de proposer du matériel informatique à la donation mais aussi permettre aux associations d’exprimer un besoin de même nature.
-                <br><br>
-                Pour consulter ou poster une annonce, une inscription est obligatoire. Une fois connecté vous pourrez lire et poster des annonces, contacter les autres utilisateurs via une messagerie interne et consulter vos messages.
-                <br><br>
-                Doninfo est dédié aux dons de matériel informatique.
-            </p>
-        </div>
-    </div>
+
 
 {% endblock %}

@@ -10,15 +10,20 @@
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/jquery-jvectormap-2.0.3.css') }}" />
-            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-layout.css') }}" />
-            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-accueil.css') }}" />
-            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-form.css') }}" />
-            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-index.css') }}" />
-            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-infos.css') }}" />
-            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-membre.css') }}" />
-            <link rel="stylesheet" href="{{ asset('bundles/doninfobundle/css/style-annonce.css') }}" />    
-        {% endblock %}
+         
+            {% stylesheets filter='?scssphp, cssrewrite'  
+                'bundles/doninfobundle/css/style-layout.css'
+                'bundles/doninfobundle/css/style-accueil.css'
+                'bundles/doninfobundle/css/style-form.css'
+                'bundles/doninfobundle/css/style-index.css'
+                'bundles/doninfobundle/css/style-infos.css'
+                'bundles/doninfobundle/css/style-membre.css'
+                'bundles/doninfobundle/css/style-annonce.css' %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+            {% endstylesheets %}
+        
+        {% endblock %} 
+        
         <script src="https://use.fontawesome.com/238fc2f7ad.js"></script>
     </head>
     
@@ -122,17 +127,16 @@
                     </div>
                 </div>
             </footer>
-            
-             
+
         {% block javascripts %}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            <script src="{{ asset('bundles/doninfobundle/js/jquery-jvectormap-2.0.3.min.js') }}"></script>
-            <script src="{{ asset('bundles/doninfobundle/js/jquery-jvectormap-fr-mill.js') }}"></script>
-            <script src="{{ asset('bundles/doninfobundle/js/script-layout.js') }}"></script>
-            <script src="{{ asset('bundles/doninfobundle/js/script-contact.js') }}"></script>
+            {% javascripts filter='jsqueeze'
+                'bundles/doninfobundle/js/script-layout.js'
+                'bundles/doninfobundle/js/script-contact.js' %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
         {% endblock %}
-    
     </body>
 </html>
