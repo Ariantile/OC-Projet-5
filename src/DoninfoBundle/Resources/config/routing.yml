@@ -85,14 +85,30 @@ doninfo_annonce_edit:
         id: \d+
     
 doninfo_index_donations:
-    path:       /donations
+    path:       /donations/{r_page}/{r_motcle}/{r_departement}/{r_categorie}
     defaults:
         _controller:    DoninfoBundle:Site:donations
+        r_page:           1
+        r_motcle:         null
+        r_departement:    null
+        r_categorie:      null
+    requirements:
+        r_page:           \d+
+        r_departement:    \d+
+        r_categorie:      \d+
         
 doninfo_index_besoins:
-    path:       /besoins
+    path:       /besoins/{r_page}/{r_motcle}/{r_departement}/{r_categorie}
     defaults:
         _controller:    DoninfoBundle:Site:besoins
+        r_page:           1
+        r_motcle:         null
+        r_departement:    null
+        r_categorie:      null
+    requirements:
+        r_page:           \d+
+        r_departement:    \d+
+        r_categorie:      \d+
         
 doninfo_tuto:
     path:       /tutoriel

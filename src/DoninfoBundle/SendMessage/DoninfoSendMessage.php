@@ -29,6 +29,9 @@ class DoninfoSendMessage
         $message->setNewm(0);
         $message->setDestinataire($destinataire);
         
+        $titre  = strip_tags($message->getTitre());
+        $message->setTitre($titre);
+        
         $em->persist($message);
         $em->flush();
     }

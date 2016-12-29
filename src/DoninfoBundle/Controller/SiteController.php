@@ -29,6 +29,7 @@ use DoninfoBundle\Form\Type\EndAnnonceType;
 use DoninfoBundle\Form\Type\MdpOublieType;
 use DoninfoBundle\Form\Type\ChangeMdpType;
 use \DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class SiteController extends Controller
 {
@@ -384,39 +385,47 @@ class SiteController extends Controller
                 'annonce'       => $form->createView(),
         ));
     } 
-    
-    public function donationsAction(Request $request)
+
+    public function donationsAction($page, Request $request)
     {
         $recherche  = new Recherche();
         $type       = 'Donation';
-        $limit      = 10;
+        $limit      = 5;
         
-        $form       = $this->get('form.factory')->create(RechercheType::class, $recherche);
+        $form       = $this->get('form.factory')->create(RechercheType::class, $recherche,  array(
+            'action' => $this->generateUrl('doninfo_index_donations', array(), true),
+            'method' => 'GET',
+        ));
+        
         $annonces   = $this->container->get('doninfo.list_annonce');
         
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
+        if ($request->isMethod('GET') && $form->handleRequest($request)->isValid()) 
         {
             $pagination = $annonces->rechercheAnnonce($type, $limit, $recherche);
         } else {
             $pagination = $annonces->listerAnnonceAll($type, $limit);
         }
-
+        
         return $this->render('DoninfoBundle:Site:donations.html.twig', array(
                 'recherche'  => $form->createView(),
                 'pagination' => $pagination
         ));
     }
     
-    public function besoinsAction(Request $request)
+    public function besoinsAction($page, Request $request)
     {
         $recherche  = new Recherche();
         $type       = 'Besoin';
-        $limit      = 10;
+        $limit      = 5;
         
-        $form       = $this->get('form.factory')->create(RechercheType::class, $recherche);
+        $form       = $this->get('form.factory')->create(RechercheType::class, $recherche, array(
+            'action' => $this->generateUrl('doninfo_index_besoins', array(), true),
+            'method' => 'GET'
+        ));
+        
         $annonces   = $this->container->get('doninfo.list_annonce');
         
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
+        if ($request->isMethod('GET') && $form->handleRequest($request)->isValid()) 
         {        
             $pagination = $annonces->rechercheAnnonce($type, $limit, $recherche);
         } else {

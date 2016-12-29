@@ -1,69 +1,71 @@
 {% extends "DoninfoBundle:Site:layout.html.twig" %} {% block title %} {{ parent() }} {% endblock %} {% block contenu %}
-<section>
-    <div class="banner">
-        <div class="banner-container-don col-xs-5">
+    <div class="banner col-xs-12">
+        <div class="col-xs-12">
+            <img src="{{ asset('bundles/doninfobundle/images/donfond.png') }}" class="img-responsive"/>
+        </div>
+        <div class="banner-container-don col-xs-12">
             <div class="banner-donner">
-                <p>Faite un </p>
-                <a href="{{ path('doninfo_inscription') }}" class="banner-liens">Don</a>
+                Faire un <a href="{{ path('doninfo_post') }}" class="banner-liens">don</a>
+                ou exprimer un <a href="{{ path('doninfo_post') }}" class="banner-liens">besoin</a>
+            </div>
+            <div class="banner-d">Pour professionnels et le milieu associatif</div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 container-acc-p">
+        <div class="accueil_p row">
+            <div class="col-xs-6 container-bloc-left">
+                <div class="bloc-left-acc-p">
+                    <p class="acc-desc">Du matériel informatique à donner ou un projet nécessitant un nouvel ordinateur ?</p>
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                    <p class="acc-highlight">Postez une annonce</p>
+                </div>
+            </div>
+            <div class="col-xs-6 container-bloc-right">
+                <div class="bloc-right-acc-p">
+                    <p class="acc-desc">Trouvez autour de vous un projet à soutenir ou une structure prête à vous aider.</p>
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <p class="acc-highlight">Recherche simple et rapide</p>
+                </div>
             </div>
         </div>
-        <div class="banner-container-besoin col-xs-offset-2 col-xs-5">    
-            <div class="banner-besoin">
-                <p>Exprimez un </p>
-                <a href="{{ path('doninfo_inscription') }}" class="banner-liens">Besoin</a>
+    </div>
+    <div class="col-xs-12 container-acc-d">
+        <div class="accueil_d row">
+            <div class="bloc-icon-acc-d col-sm-offset-1 col-sm-2 col-xs-6">
+                <i class="fa fa-eur" aria-hidden="true"></i>
+                <p>Service entièrement gratuit à l'utilisation</p>
+            </div>
+            <div class="bloc-icon-acc-d col-sm-2 col-xs-6">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <p>Nécessite une connexion à un compte valide</p>
+            </div>
+            <div class="bloc-icon-acc-d col-sm-2 col-xs-6">
+                <i class="fa fa-commenting" aria-hidden="true"></i>
+                <p>Système de messagerie interne</p>
+            </div>
+            <div class="bloc-icon-acc-d col-sm-2 col-xs-6">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <p>Localisation par département</p>
+            </div>
+            <div class="bloc-icon-acc-d col-sm-2 col-xs-12">
+                <i class="fa fa-tag" aria-hidden="true"></i>
+                <p>Recherche par catégories et mots clés</p>
             </div>
         </div>
     </div>
-
-    <div class="accueil_p">
-        <p>
-            &emsp;&emsp;Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam viderem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C. Caesare reducit, reconciliat, restituit in gratiam.
-            <br><br> Ipsam vero urbem Byzantiorum fuisse refertissimam atque ornatissimam signis quis ignorat? Quae illi, exhausti sumptibus bellisque maximis, cum omnis Mithridaticos impetus totumque Pontum armatum affervescentem in Asiam atque erumpentem, ore repulsum et cervicibus interclusum suis sustinerent, tum, inquam, Byzantii et postea signa illa et reliqua urbis ornanemta sanctissime custodita tenuerunt.
-            <br><br> Dein Syria per speciosam interpatet diffusa planitiem. hanc nobilitat Antiochia, mundo cognita civitas, cui non certaverit alia advecticiis ita adfluere copiis et internis, et Laodicia et Apamia itidemque Seleucia iam inde a primis auspiciis florentissimae.
-        </p>
-        <br>
-        <img src="{{ asset('bundles/doninfobundle/images/img-libre-acceuil-01.jpg') }}" alt="Ordinateur tablette telephone" class="img-responsive" />
-        <br>
-        <p>
-            Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam viderem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C. Caesare reducit, reconciliat, restituit in gratiam.
-            <br><br> Ipsam vero urbem Byzantiorum fuisse refertissimam atque ornatissimam signis quis ignorat? Quae illi, exhausti sumptibus bellisque maximis, cum omnis Mithridaticos impetus totumque Pontum armatum affervescentem in Asiam atque erumpentem, ore repulsum et cervicibus interclusum suis sustinerent, tum, inquam, Byzantii et postea signa illa et reliqua urbis ornanemta sanctissime custodita tenuerunt.
-            <br><br> Dein Syria per speciosam interpatet diffusa planitiem. hanc nobilitat Antiochia, mundo cognita civitas, cui non certaverit alia advecticiis ita adfluere copiis et internis, et Laodicia et Apamia itidemque Seleucia iam inde a primis auspiciis florentissimae.
-        </p>
-    </div>
-
-    <div class="acceuil_pair">
-        <div class="accueil_p">
-            <p>
-                &emsp;&emsp;Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam viderem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C. Caesare reducit, reconciliat, restituit in gratiam.
-                <br><br> Ipsam vero urbem Byzantiorum fuisse refertissimam atque ornatissimam signis quis ignorat? Quae illi, exhausti sumptibus bellisque maximis, cum omnis Mithridaticos impetus totumque Pontum armatum affervescentem in Asiam atque erumpentem, ore repulsum et cervicibus interclusum suis sustinerent, tum, inquam, Byzantii et postea signa illa et reliqua urbis ornanemta sanctissime custodita tenuerunt.
-                <br><br> Dein Syria per speciosam interpatet diffusa planitiem. hanc nobilitat Antiochia, mundo cognita civitas, cui non certaverit alia advecticiis ita adfluere copiis et internis, et Laodicia et Apamia itidemque Seleucia iam inde a primis auspiciis florentissimae.
-            </p>
-            <br>
-            <img src="{{ asset('bundles/doninfobundle/images/img-libre-acceuil-02.jpg') }}" alt="Ecole" class="img-responsive" />
-            <br>
-            <p>
-                Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam viderem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C. Caesare reducit, reconciliat, restituit in gratiam.
-                <br><br> Ipsam vero urbem Byzantiorum fuisse refertissimam atque ornatissimam signis quis ignorat? Quae illi, exhausti sumptibus bellisque maximis, cum omnis Mithridaticos impetus totumque Pontum armatum affervescentem in Asiam atque erumpentem, ore repulsum et cervicibus interclusum suis sustinerent, tum, inquam, Byzantii et postea signa illa et reliqua urbis ornanemta sanctissime custodita tenuerunt.
-                <br><br> Dein Syria per speciosam interpatet diffusa planitiem. hanc nobilitat Antiochia, mundo cognita civitas, cui non certaverit alia advecticiis ita adfluere copiis et internis, et Laodicia et Apamia itidemque Seleucia iam inde a primis auspiciis florentissimae.
+    <div class="col-xs-12 container-acc-t">
+        <div class="accueil_t row">
+            <p class="bloc-text-acc-t">
+                Doninfo, site gratuit de proposition de don et de présentation de besoin, à destination des associations et des professionnels.
+                <br><br>
+                L’objectif du site est de faciliter la mise en relation des professionnels et du milieu associatif. Le but est d’apporter un support permettant au professionnels de proposer du matériel informatique à la donation mais aussi permettre aux associations d’exprimer un besoin de même nature.
+                <br><br>
+                Pour consulter ou poster une annonce, une inscription est obligatoire. Une fois connecté vous pourrez lire et poster des annonces, contacter les autres utilisateurs via une messagerie interne et consulter vos messages.
+                <br><br>
+                Doninfo est dédié aux dons de matériel informatique.
             </p>
         </div>
     </div>
 
-    <div class="accueil_p">
-        <p>
-            &emsp;&emsp;Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam viderem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C. Caesare reducit, reconciliat, restituit in gratiam.
-            <br><br> Ipsam vero urbem Byzantiorum fuisse refertissimam atque ornatissimam signis quis ignorat? Quae illi, exhausti sumptibus bellisque maximis, cum omnis Mithridaticos impetus totumque Pontum armatum affervescentem in Asiam atque erumpentem, ore repulsum et cervicibus interclusum suis sustinerent, tum, inquam, Byzantii et postea signa illa et reliqua urbis ornanemta sanctissime custodita tenuerunt.
-            <br><br> Dein Syria per speciosam interpatet diffusa planitiem. hanc nobilitat Antiochia, mundo cognita civitas, cui non certaverit alia advecticiis ita adfluere copiis et internis, et Laodicia et Apamia itidemque Seleucia iam inde a primis auspiciis florentissimae.
-        </p>
-        <br>
-        <img src="{{ asset('bundles/doninfobundle/images/img-libre-acceuil-03.png') }}" alt="Usages" class="img-responsive" />
-        <br>
-        <p>
-            Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam viderem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C. Caesare reducit, reconciliat, restituit in gratiam.
-            <br><br> Ipsam vero urbem Byzantiorum fuisse refertissimam atque ornatissimam signis quis ignorat? Quae illi, exhausti sumptibus bellisque maximis, cum omnis Mithridaticos impetus totumque Pontum armatum affervescentem in Asiam atque erumpentem, ore repulsum et cervicibus interclusum suis sustinerent, tum, inquam, Byzantii et postea signa illa et reliqua urbis ornanemta sanctissime custodita tenuerunt.
-            <br><br> Dein Syria per speciosam interpatet diffusa planitiem. hanc nobilitat Antiochia, mundo cognita civitas, cui non certaverit alia advecticiis ita adfluere copiis et internis, et Laodicia et Apamia itidemque Seleucia iam inde a primis auspiciis florentissimae.
-        </p>
-    </div>
-
-</section>
 {% endblock %}

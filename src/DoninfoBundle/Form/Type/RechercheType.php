@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class RechercheType extends AbstractType
-{
+{  
     /**
      * {@inheritdoc}
      */
@@ -45,7 +45,7 @@ class RechercheType extends AbstractType
                 )
             ))
             ->add('chercher', SubmitType::class, array(
-                'label'         => 'doninfo.recherche.label.submit'
+                'label'     => 'doninfo.recherche.label.submit',  
             ))
         ;
     }
@@ -56,7 +56,8 @@ class RechercheType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'DoninfoBundle\Entity\Recherche'
+            'data_class' => 'DoninfoBundle\Entity\Recherche',
+            'csrf_protection' => false
         ));
     }
 
@@ -65,8 +66,6 @@ class RechercheType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'doninfobundle_recherche';
+        return 'search';
     }
-
-
 }

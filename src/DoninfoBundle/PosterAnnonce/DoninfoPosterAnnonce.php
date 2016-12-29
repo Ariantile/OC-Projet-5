@@ -28,6 +28,9 @@ class DoninfoPosterAnnonce
         $annonce->setStatut('En cours');
         $annonce->setUser($user);
         
+        $titre  = strip_tags($annonce->getTitre());
+        $annonce->setTitre($titre);
+        
         $typestructure = $user->getTypestructure();
         
         if ($typestructure === 'Entreprise')
@@ -81,6 +84,9 @@ class DoninfoPosterAnnonce
                   
         $codeps = $annonce->getCodepostal();
         
+        $titre  = strip_tags($annonce->getTitre());
+        $annonce->setTitre($titre);
+        
         if (substr($codeps, 0, 2) === 97)
         {
             $codeps_sub = substr($codeps, 0, 3);
@@ -94,16 +100,6 @@ class DoninfoPosterAnnonce
         
         $objetsNew  = $annonce->getObjets();
         $imgsNew    = $annonce->getImages();
-        
-        /*foreach ($form->get('objets') as $formObjet) {
-            $checkDelete = $formObjet->get('delete')->getData();
-            if ($checkDelete === true)
-            {
-                $delObjet = $formObjet->getData();
-                $annonce->removeObjet($delObjet);
-                
-            }
-        }*/
         
         foreach ($objetsNew as $objet) 
         {

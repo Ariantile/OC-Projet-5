@@ -87,7 +87,7 @@ class DoninfoListAnnonce extends PaginatorAware
                        ORDER BY a.datecreation DESC";
         
         $query      = $em->createQuery($dql)->setParameters(array('statut' => 'En cours', 'type' => $type));
-
+        
         $paginator  = $this->getPaginator();
         $pagination = $paginator->paginate(
             $query, 
@@ -126,8 +126,8 @@ class DoninfoListAnnonce extends PaginatorAware
                 array('param' => $categorie, 'requete' => $query_categorie, 'nomparam' => $param_categorie)
         );
          
-        $parameters = array ('statut'  => 'En cours',
-                             'type'    => $type
+        $parameters = array ('statut'       => 'En cours',
+                             'type'         => $type
         );
         
         $dqlquery = "";
@@ -158,15 +158,16 @@ class DoninfoListAnnonce extends PaginatorAware
         
         $query  = $em->createQuery($dql)->setParameters($parameters);
        
+        $page   = $request->query->getInt('page', 1);
+        
         $paginator  = $this->getPaginator();
         $pagination = $paginator->paginate(
-            $query, 
-            $request->query->getInt('page', 1),
+            $query,
+            $page,
             $limit
         );
         
         return $pagination;
     }
-    
     
 }
